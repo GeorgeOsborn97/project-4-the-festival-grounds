@@ -57,7 +57,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'The_Festival_Ground.urls'
+ROOT_URLCONF = 'the_festival_ground.urls'
 
 TEMPLATES = [
     {
@@ -75,7 +75,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'The_Festival_Ground.wsgi.application'
+WSGI_APPLICATION = 'the_festival_ground.wsgi.application'
 
 
 # Database
@@ -89,8 +89,7 @@ WSGI_APPLICATION = 'The_Festival_Ground.wsgi.application'
 # }
 
 DATABASES = {
-    'default': 
-    dj_database_url.parse(os.environ.get('DATABASE_URL'))
+    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
 }
 
 
