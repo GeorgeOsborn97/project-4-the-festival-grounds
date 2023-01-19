@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import Rooms, Tags
-from django_summernote import SummernoteModelAdmin
+from django_summernote.admin import SummernoteModelAdmin
 
 # Register your models here.
 
