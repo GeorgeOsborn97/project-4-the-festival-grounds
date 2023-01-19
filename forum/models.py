@@ -21,3 +21,6 @@ class Rooms(models.Model):
     tags = models.ManyToManyField(Tags, related_name='room_tags')
     members = models.ManyToManyField(User, related_name='room_members')
 
+    class Meta:  
+        verbose_name_plural = 'Rooms'
+
