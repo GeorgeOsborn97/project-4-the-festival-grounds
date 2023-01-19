@@ -11,6 +11,9 @@ class Tags(models.Model):
 
     class Meta:
         verbose_name_plural = 'Tags'
+    
+    def __str__(self):
+        return self.tag
 
 
 class Rooms(models.Model):
@@ -24,6 +27,35 @@ class Rooms(models.Model):
     tags = models.ManyToManyField(Tags, related_name='room_tags')
     members = models.ManyToManyField(User, related_name='room_members')
 
-    class Meta:  
+    class Meta:
         verbose_name_plural = 'Rooms'
 
+    def __str__(self):
+        return self.title
+
+
+class Converstations(models.Model):
+    room = models.ForeignKey(Rooms, on_delete=models.CASCADE, related_name='conversations')
+    title = models.CharField(max_length=200)
+    creator = models.ForeignKey(User, on_delete=models.CASCADE, related_name='conversations_starter')
+    content = models.TextField()
+    created_on = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name_plural = 'Converstaions'
+
+    def __str__(self):
+        return self.title
+
+
+class Comments(models.Model):
+    room = models.ForeignKey(Rooms, on_delete=models.CASCADE, related_name='room_comments')
+    converstaion = models.ForeignKey(Converstations, on_delete=models.CASCADE, related_name='conversation_comments')
+    body = models.TextField()
+    created_on = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name_plural = 'Comments'
+
+    def __str__(self):
+        return self.title

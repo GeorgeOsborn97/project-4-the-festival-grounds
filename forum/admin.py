@@ -9,10 +9,12 @@ from django_summernote.admin import SummernoteModelAdmin
 class RoomsAdmin(SummernoteModelAdmin):
 
     prepopulated_fields = {'slug': ('title',)}
+    list_filter = ('status', 'created_on', 'tags')
+    list_display = ('title', 'slug', 'creator', 'created_on', 'status')
+    search_fields = ['title', 'creator', 'tags']
     summernote_fields = ('description')
 
 
 @admin.register(Tags)
-class TagsAdmin(SummernoteModelAdmin):
-
-    summernote_fields = ('tag')
+class TagsAdmin(admin.ModelAdmin):
+    search_fields = ['tag']
