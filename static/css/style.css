@@ -1,0 +1,14 @@
+.title {
+    padding-top: 5%;
+    float: left;
+}
+
+.slogan {
+    padding-top: 5%;
+    float: right;
+}
+
+#break-line {
+    margin: 80px;
+    margin-bottom: 40px
+}
