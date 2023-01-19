@@ -9,6 +9,9 @@ STATUS = ((0, 'Public'), (1, 'Private'))
 class Tags(models.Model):
     tag = models.CharField(max_length=100, unique=True)
 
+    class Meta:
+        verbose_name_plural = 'Tags'
+
 
 class Rooms(models.Model):
     title = models.CharField(max_length=200, unique=True)
