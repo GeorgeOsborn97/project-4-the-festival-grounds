@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Rooms, Tags
+from .models import Rooms, Tags, Conversations, Comments
 from django_summernote.admin import SummernoteModelAdmin
 
 # Register your models here.
@@ -18,3 +18,22 @@ class RoomsAdmin(SummernoteModelAdmin):
 @admin.register(Tags)
 class TagsAdmin(admin.ModelAdmin):
     search_fields = ['tag']
+
+
+@admin.register(Conversations)
+class ConversationAdmin(SummernoteModelAdmin):
+
+    prepopulated_fields = {'slug': ('title',)}
+    list_filter = ('created_on',)
+    list_display = ('title', 'slug', 'creator', 'created_on')
+    search_fields = ['title', 'creator']
+    summernote_fields = ('content')
+
+
+@admin.register(Comments)
+class CommentAdmin(SummernoteModelAdmin):
+
+    list_filter = ('created_on', 'room')
+    list_display = ('name', 'room', 'conversation', 'created_on')
+    search_fields = ['room']
+    summernote_fields = ('body')

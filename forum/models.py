@@ -34,9 +34,10 @@ class Rooms(models.Model):
         return self.title
 
 
-class Converstations(models.Model):
+class Conversations(models.Model):
     room = models.ForeignKey(Rooms, on_delete=models.CASCADE, related_name='conversations')
     title = models.CharField(max_length=200)
+    slug = models.SlugField(max_length=200, unique=True)
     creator = models.ForeignKey(User, on_delete=models.CASCADE, related_name='conversations_starter')
     content = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
@@ -49,8 +50,9 @@ class Converstations(models.Model):
 
 
 class Comments(models.Model):
+    name = models.CharField(max_length=80)
     room = models.ForeignKey(Rooms, on_delete=models.CASCADE, related_name='room_comments')
-    converstaion = models.ForeignKey(Converstations, on_delete=models.CASCADE, related_name='conversation_comments')
+    conversation = models.ForeignKey(Conversations, on_delete=models.CASCADE, related_name='conversation_comments')
     body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
 
@@ -58,4 +60,4 @@ class Comments(models.Model):
         verbose_name_plural = 'Comments'
 
     def __str__(self):
-        return self.title
+        return self.name
