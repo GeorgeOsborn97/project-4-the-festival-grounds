@@ -33,6 +33,9 @@ class Rooms(models.Model):
     def __str__(self):
         return self.title
 
+    def number_of_members(self):
+        return self.members.count()
+
 
 class Conversations(models.Model):
     room = models.ForeignKey(Rooms, on_delete=models.CASCADE, related_name='conversations')

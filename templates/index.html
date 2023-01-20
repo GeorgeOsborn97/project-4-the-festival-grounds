@@ -5,9 +5,9 @@
 <div class="container text-center">
     <div class="row row-col-3 justify-content-md-center">
         {% for room in rooms_list %}
-            <div class="card col-md-3" style="max-width: 540px;">
+            <div class="card col-md-3 flip-card" style="max-width: 540px;">
                 <div class="row row-col-2">
-                    <div class="col-md-6">
+                    <div class="col-md-6 img-holder">
                         {% if 'placeholder' in room.cover_image.url %}
                         <img src="https://res.cloudinary.com/duijsqmts/image/upload/v1674143855/51JPnYISlYL._AC_SY580__jt2bvz.jpg"
                             alt="default image" class="card-img-top">
@@ -25,6 +25,19 @@
                             <p class="card-text"><small class="text-muted">Private</small></p>
                             {% endif %}
                         </div>
+                    </div>
+                    <div class="card-desc">
+                        <h5 class="card-title">{{  room.title  }}</h5>
+                        <p class="card-text">{{ room.description | safe }}</p>
+                        <p class="card-text">Created by: {{ room.creator | safe }}</p>
+                        <p class="card-text">{{ room.number_of_members }} Members</p>
+                        <a href="#" class="">
+                            {% if room.status == 0 %}
+                            <button type="submit" value="Join" name="join" class="btn btn-dark">Join</button>
+                            {% else %}
+                            <button type="submit" value="request" name="request" class="btn btn-dark">Request</button>
+                            {% endif %}
+                        </a>
                     </div>
                 </div>
             </div>
