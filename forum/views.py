@@ -7,6 +7,6 @@ from .models import Rooms
 
 class RoomList(generic.ListView):
     model = Rooms
-    queryset = Rooms.objects.order_by('-created_on')
+    queryset = Rooms.objects.order_by('created_on')
     template_name = 'index.html'
     paginate_by = 5
