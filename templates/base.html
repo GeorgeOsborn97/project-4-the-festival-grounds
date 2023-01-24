@@ -43,6 +43,9 @@
                 <div class="col-4">
                     <a href="{% url 'account_logout' %}">Logout</a>
                 </div>
+                <div class="col-4">
+                    <a href="#">Your Rooms</a>
+                </div>
                 {% else %}
                 <div class="col-4">
                     <a href="{% url 'account_signup' %}">Register</a>
@@ -50,10 +53,10 @@
                 <div class="col-4">
                     <a href="{% url 'account_login' %}">Login</a>
                 </div>
-                {% endif %}
                 <div class="col-4">
                     <a href="#">About</a>
                 </div>
+                {% endif %}
             </div>
         </nav>
         {% block header %}
