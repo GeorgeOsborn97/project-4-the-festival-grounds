@@ -36,20 +36,28 @@
     <div class="container text-center">
         <nav>
             <div class="row gy-5">
+                {% if user.is_authenticated %}
                 <div class="col-4">
-                    <a href="#">Register</a>
+                    <a href="#">Create Room</a>
                 </div>
                 <div class="col-4">
-                    <a href="#">Login</a>
+                    <a href="{% url 'account_logout' %}">Logout</a>
                 </div>
+                {% else %}
+                <div class="col-4">
+                    <a href="{% url 'account_signup' %}">Register</a>
+                </div>
+                <div class="col-4">
+                    <a href="{% url 'account_login' %}">Login</a>
+                </div>
+                {% endif %}
                 <div class="col-4">
                     <a href="#">About</a>
                 </div>
             </div>
         </nav>
-        <div class="col" style="margin-top:3%">
-            <h1>Rooms</h1>
-        </div>
+        {% block header %}
+        {% endblock %}
     </div>
     {% block cards %}
     {% endblock %}
