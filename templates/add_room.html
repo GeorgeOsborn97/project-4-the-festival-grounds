@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block cards %}
+<form method="POST">
+    {{ form | crispy }}
+    {% csrf_token %}
+    <div>
+        <p>
+            <button type="submit">Add Item</button>
+        </p>
+    </div>
+</form>
+{% endblock %}

@@ -21,7 +21,7 @@
     <div class="container text-center">
         <div class="row">
           <div class="col">
-            <h2 class="title">Title</h2>
+            <h2 class="title"><a href="{% url 'home' %}">Title</a></h2>
           </div>
           <div class="col">
             <h3 class="slogan">Slogan</h3>
@@ -38,7 +38,7 @@
             <div class="row gy-5">
                 {% if user.is_authenticated %}
                 <div class="col-4">
-                    <a href="#">Create Room</a>
+                    <a href="{% url 'add' %}">Create Room</a>
                 </div>
                 <div class="col-4">
                     <a href="{% url 'account_logout' %}">Logout</a>
