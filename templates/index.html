@@ -37,7 +37,7 @@
                         <p class="card-text">{{ room.description | safe }}</p>
                         <p class="card-text">Created by: {{ room.creator | safe }}</p>
                         <p class="card-text">{{ room.number_of_members }} Members</p>
-                        <a href="#" class="">
+                        <a href="{% url 'in_room' room.slug %}" class="">
                             {% if room.status == 0 %}
                             <button type="submit" value="Join" name="join" class="btn btn-dark">Join</button>
                             {% else %}
