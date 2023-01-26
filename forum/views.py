@@ -47,10 +47,25 @@ class RoomView(View):
         room = get_object_or_404(room_queryset, slug=slug)
         conversation = room.conversations.order_by('created_on')
 
-        return render(
-            request,
-            'room_view.html',
-            {
-             'conversation_list': conversation,
-            },
-            )
+        convo_queryset = Conversations.objects.filter(room=room)
+        
+        if convo_queryset.exists():
+            convo = get_object_or_404(convo_queryset)
+            comments = convo.conversation_comments.order_by('created_on')
+
+            return render(
+                request,
+                'room_view.html',
+                {
+                 'conversation_list': conversation,
+                 'comments': comments
+                },
+                )
+        else:
+            return render(
+                request,
+                'room_view.html',
+                {
+                 'conversation_list': conversation,
+                },
+                )

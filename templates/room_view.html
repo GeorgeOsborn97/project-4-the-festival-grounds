@@ -24,9 +24,24 @@
                     data-bs-parent="#accordionExample">
                     <div class="accordion-body">
                         <h4>{{ conversation.content | safe }}</h4>
-                        {% for comment in comment_list %}
-                        <p>{{ comment.body }} hello?</p>
+                        {% for comment in comments %}
+                        <p>{{ comment.body | safe }}</p>
                         {% endfor %}
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        No conversations started
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <p>No comments</p>
                     </div>
                 </div>
             </div>
