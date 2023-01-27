@@ -4,7 +4,7 @@ from django.views import generic, View
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
 from .models import Rooms, Conversations, Comments
-from .forms import RoomForm
+from .forms import RoomForm, ConversationForm
 
 # Create your views here.
 
@@ -24,14 +24,16 @@ class addRoom(View):
             'form': RoomForm()
         }
         return render(request, '../templates/add_room.html', context)
-    
+
     def post(self, request, *args, **kwargs):
         form = RoomForm(request.POST)
         if form.is_valid():
             form.instance.creator = request.user
             form.instance.slug = form.instance.title.replace(' ', '-')
             room = form.save(commit=False)
+            
             room.save()
+            form.instance.members.add(request.user)
         else:
             form = RoomForm()
 
@@ -48,7 +50,7 @@ class RoomView(View):
         conversation = room.conversations.order_by('created_on')
 
         convo_queryset = Conversations.objects.filter(room=room)
-        
+
         if convo_queryset.exists():
             convo = get_object_or_404(convo_queryset)
             comments = convo.conversation_comments.order_by('created_on')
@@ -58,7 +60,7 @@ class RoomView(View):
                 'room_view.html',
                 {
                  'conversation_list': conversation,
-                 'comments': comments
+                 'comments': comments,
                 },
                 )
         else:
@@ -67,5 +69,46 @@ class RoomView(View):
                 'room_view.html',
                 {
                  'conversation_list': conversation,
+                },
+                )
+
+    def post(self, request, slug, *args, **kwargs):
+        room_queryset = Rooms.objects.all()
+        room = get_object_or_404(room_queryset, slug=slug)
+        conversation = room.conversations.order_by('created_on')
+
+        form = ConversationForm(request.POST)
+
+        if form.is_valid():
+            form.instance.creator = request.user
+            form.instance.slug = form.instance.title.replace(' ', '-')
+            new_convo = form.save(commit=False)
+            new_convo.room = room
+            new_convo.save()
+        else:
+            form = ConversationForm()
+
+        convo_queryset = Conversations.objects.filter(room=room)
+
+        if convo_queryset.exists():
+            convo = get_object_or_404(convo_queryset)
+            comments = convo.conversation_comments.order_by('created_on')
+
+            return render(
+                request,
+                'room_view.html',
+                {
+                 'conversation_list': conversation,
+                 'comments': comments,
+                 'conversation_form': ConversationForm()
+                },
+                )
+        else:
+            return render(
+                request,
+                'room_view.html',
+                {
+                 'conversation_list': conversation,
+                 'conversation_form': ConversationForm()
                 },
                 )

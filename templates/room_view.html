@@ -1,5 +1,40 @@
 {% extends "base.html" %}
 
+{% block nav %}
+<div class="container text-center">
+    <nav>
+        <div class="row gy-5">
+            {% if user.is_authenticated %}
+            <div class="col-3">
+                <a href="{% url 'add' %}">Create Room</a>
+            </div>
+            <div class="col-3">
+                <a href="#">Start a Conversation</a>
+            </div>
+            <div class="col-3">
+                <a href="{% url 'account_logout' %}">Logout</a>
+            </div>
+            <div class="col-3">
+                <a href="#">Your Rooms</a>
+            </div>
+            {% else %}
+            <div class="col-4">
+                <a href="{% url 'account_signup' %}">Register</a>
+            </div>
+            <div class="col-4">
+                <a href="{% url 'account_login' %}">Login</a>
+            </div>
+            <div class="col-4">
+                <a href="#">About</a>
+            </div>
+            {% endif %}
+        </div>
+    </nav>
+    {% block header %}
+    {% endblock %}
+</div>
+{% endblock %}
+
 {% block cards %}
 
 <div id="card-container" class="container text-center">
@@ -25,7 +60,7 @@
                     <div class="accordion-body">
                         <h4>{{ conversation.content | safe }}</h4>
                         {% for comment in comments %}
-                        <p>{{ comment.body | safe }}</p>
+                        <p><strong>{{ comment.name }} said: </strong>{{ comment.body | safe }}</p>
                         {% endfor %}
                     </div>
                 </div>
