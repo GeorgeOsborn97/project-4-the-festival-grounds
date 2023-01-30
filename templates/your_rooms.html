@@ -1,8 +1,10 @@
 {% extends "base.html" %}
 
+{% load crispy_forms_tags %}
+
 {% block header %}
     <div class="col" style="margin-top:3%">
-        <h1>Rooms</h1>
+        <h1>Your Rooms</h1>
     </div>
 {% endblock %}
 
@@ -10,7 +12,8 @@
 
 <div id="card-container" class="container text-center">
     <div id="card-row" class="row row-col-3 justify-content-md-center">
-        {% for room in rooms_list %}
+        {% for room in room_list %}
+        {% if user in room.members.all %}
             <div data-role="test" id="card-{{ room.slug }}" class="card col-md-3" style="max-width: 540px;">
                 <div class="row row-col-2">
                     <div class="col-md-6 img-holder">
@@ -38,24 +41,10 @@
                         <p class="card-text">Created by: {{ room.creator | safe }}</p>
                         <p class="card-text">{{ room.number_of_members }} Members</p>
                         <a href="{% url 'in_room' room.slug %}" class="">
-                            {% if room.status == 0 %}
-                                {% if user in room.members.all %}
-                                <button type="submit" value="Join" name="join" class="btn btn-dark">Enter</button>
-                                {% else %}
-                                <button type="submit" value="Join" name="join" class="btn btn-dark">Join</button>
-                                {% endif %}
-                            {% else %}
-                                {% if user in room.members.all %}
-                                <button type="submit" value="Join" name="join" class="btn btn-dark">Enter</button>
-                                {% else %}
-                                <button type="submit" value="Join" name="join" class="btn btn-dark">Request</button>
-                                {% endif %}
-                            {% endif %}
+                            <button type="submit" value="Join" name="join" class="btn btn-dark">Enter</button>
                         </a>
                         {% if user == room.creator %}
-                        <a href="#">
-                        <button type="button" value="edit" name="edit" class="btn btn-dark" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" aria-controls="offcanvas">Edit</button>
-                        </a>
+                        <button type="button" value="edit" name="edit" class="btn btn-dark" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">Edit</button>
                         <a href="#" class="">
                             <button type="submit" value="delete" name="delete" class="btn btn-dark">Delete</button>
                         </a>
@@ -63,19 +52,28 @@
                     </div>
                 </div>
             </div>
+            {% endif %}
         {% endfor %}
     </div>
 </div>
 
-<div class="offcanvas offcanvas-start" id="offcanvas" aria-labelledby="offcanvasLabel">
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
     <div class="offcanvas-header">
-      <h5 class="offcanvas-title" id="offcanvasLabel">Backdrop with scrolling</h5>
+      <h5 class="offcanvas-title" id="offcanvasExampleLabel">Backdrop with scrolling</h5>
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
-        <p>Try scrolling the rest of the page to see this option in action.</p>
+        <form method="POST">
+            {{ form | crispy }}
+            {% csrf_token %}
+            <div>
+                <p>
+                    <button type="submit">Add Room</button>
+                </p>
+            </div>
+        </form>
     </div>
-  </div>
+</div>
 
 {% endblock %}
 {% block pagination %}

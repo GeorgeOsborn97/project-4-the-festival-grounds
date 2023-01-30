@@ -3,12 +3,12 @@
 {% load crispy_forms_tags %}
 
 {% block cards %}
-<form method="POST">
+<form method="POST" action="add_room">
     {{ form | crispy }}
     {% csrf_token %}
     <div>
         <p>
-            <button type="submit">Add Item</button>
+            <button type="submit">Add Room</button>
         </p>
     </div>
 </form>

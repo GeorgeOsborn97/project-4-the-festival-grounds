@@ -16,6 +16,52 @@ class RoomList(generic.ListView):
     paginate_by = 5
 
 
+#class YourRoomList(generic.ListView):
+#    model = Rooms
+#    queryset = Rooms.objects.order_by('created_on')
+#    template_name = 'your_rooms.html'
+#    paginate_by = 5
+
+
+class YourRoomList(View):
+
+    def get(self, request, *args, **kwargs):
+        room_list = Rooms.objects.all()
+        paginator = Paginator(room_list, 25) # Show 25 contacts per page.
+
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        form = RoomForm(request.POST)
+        context = {
+            'room_list': room_list,
+            'form': RoomForm()
+        }
+        return render(request, '../templates/your_rooms.html', context)
+
+    def post(self, request, *args, **kwargs):
+        room_list = Rooms.objects.all()
+        paginator = Paginator(room_list, 25) # Show 25 contacts per page.
+
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        form = RoomForm(request.POST)
+        if form.is_valid():
+            form.instance.creator = request.user
+            form.instance.slug = form.instance.title.replace(' ', '-')
+            room = form.save(commit=False)
+            
+            room.save()
+            form.instance.members.add(request.user)
+        else:
+            form = RoomForm()
+
+        context = {
+            'room_list': room_list,
+            'form': RoomForm(),
+        }
+        return render(request, '../templates/your_rooms.html', context)
+
+
 class addRoom(View):
 
     def get(self, request, *args, **kwargs):
