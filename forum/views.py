@@ -9,12 +9,53 @@ from .forms import RoomForm, ConversationForm
 # Create your views here.
 
 
-class RoomList(generic.ListView):
-    model = Rooms
-    queryset = Rooms.objects.order_by('created_on')
-    template_name = 'index.html'
-    paginate_by = 5
+#class RoomList(generic.ListView):
+#    model = Rooms
+#    queryset = Rooms.objects.order_by('created_on')
+#    template_name = 'index.html'
+#    paginate_by = 5
 
+
+class RoomList(View):
+
+    def get(self, request, *args, **kwargs):
+        room_list = Rooms.objects.order_by('created_on')
+        paginator = Paginator(room_list, 5)
+
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+
+        context = {
+            'rooms_list': room_list,
+            'page_obj': page_obj,
+            'form': RoomForm()
+        }
+        return render(request, '../templates/index.html', context)
+
+    def post(self, request, *args, **kwargs):
+        room_list = Rooms.objects.order_by('created_on')
+        paginator = Paginator(room_list, 5)
+
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        form = RoomForm(request.POST)
+        if form.is_valid():
+            form.instance.creator = request.user
+            form.instance.slug = form.instance.title.replace(' ', '-')
+            room = form.save(commit=False)
+            
+            room.save()
+            form.instance.members.add(request.user)
+        else:
+            form = RoomForm()
+
+        context = {
+            'rooms_list': room_list,
+            'page_obj': page_obj,
+            'form': RoomForm(),
+        }
+        return render(request, '../templates/index.html', context)
+    
 
 #class YourRoomList(generic.ListView):
 #    model = Rooms
@@ -26,21 +67,22 @@ class RoomList(generic.ListView):
 class YourRoomList(View):
 
     def get(self, request, *args, **kwargs):
-        room_list = Rooms.objects.all()
-        paginator = Paginator(room_list, 25) # Show 25 contacts per page.
+        room_list = Rooms.objects.order_by('created_on')
+        paginator = Paginator(room_list, 5)
 
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
-        form = RoomForm(request.POST)
+
         context = {
             'room_list': room_list,
+            'page_obj': page_obj,
             'form': RoomForm()
         }
         return render(request, '../templates/your_rooms.html', context)
 
     def post(self, request, *args, **kwargs):
-        room_list = Rooms.objects.all()
-        paginator = Paginator(room_list, 25) # Show 25 contacts per page.
+        room_list = Rooms.objects.order_by('created_on')
+        paginator = Paginator(room_list, 5)
 
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
@@ -57,6 +99,7 @@ class YourRoomList(View):
 
         context = {
             'room_list': room_list,
+            'page_obj': page_obj,
             'form': RoomForm(),
         }
         return render(request, '../templates/your_rooms.html', context)
@@ -95,6 +138,13 @@ class RoomView(View):
         room = get_object_or_404(room_queryset, slug=slug)
         conversation = room.conversations.order_by('created_on')
 
+        room_form = RoomForm(request.POST, instance=room)
+
+        if room_form.is_valid():
+            room_form.save()
+
+       # form = ConversationForm(request.POST)
+
         convo_queryset = Conversations.objects.filter(room=room)
 
         if convo_queryset.exists():
@@ -107,6 +157,7 @@ class RoomView(View):
                 {
                  'conversation_list': conversation,
                  'comments': comments,
+                 'room_form': room_form
                 },
                 )
         else:
@@ -115,6 +166,7 @@ class RoomView(View):
                 'room_view.html',
                 {
                  'conversation_list': conversation,
+                 'room_form': room_form
                 },
                 )
 
@@ -122,6 +174,11 @@ class RoomView(View):
         room_queryset = Rooms.objects.all()
         room = get_object_or_404(room_queryset, slug=slug)
         conversation = room.conversations.order_by('created_on')
+
+        room_form = RoomForm(request.POST, instance=room)
+
+        if room_form.is_valid():
+            room_form.save()
 
         form = ConversationForm(request.POST)
 
@@ -146,7 +203,8 @@ class RoomView(View):
                 {
                  'conversation_list': conversation,
                  'comments': comments,
-                 'conversation_form': ConversationForm()
+                 'conversation_form': form,
+                 'room_form': room_form
                 },
                 )
         else:
@@ -155,6 +213,7 @@ class RoomView(View):
                 'room_view.html',
                 {
                  'conversation_list': conversation,
-                 'conversation_form': ConversationForm()
+                 'conversation_form': form,
+                 'room_form': room_form
                 },
                 )

@@ -16,7 +16,7 @@ class RoomForm(forms.ModelForm):
 
 class ConversationForm(forms.ModelForm):
     class Meta:
-        model = Conversations()
+        model = Conversations
         fields = [
             'title',
             'content',

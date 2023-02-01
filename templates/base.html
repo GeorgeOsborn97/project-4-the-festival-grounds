@@ -1,5 +1,7 @@
 {% load static %}
 
+{% load crispy_forms_tags %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,7 +41,7 @@
             <div class="row gy-5">
                 {% if user.is_authenticated %}
                 <div class="col-4">
-                    <a href="{% url 'add' %}">Create Room</a>
+                    <button type="button" value="edit" name="edit" class="btn btn-dark" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">Create</button>
                 </div>
                 <div class="col-4">
                     <a href="{% url 'account_logout' %}">Logout</a>
@@ -76,6 +78,25 @@
             </div>
         </div>
     </div>
+    {% block canvas %}
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasExampleLabel">Backdrop with scrolling</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <form method="POST">
+                {{ form | crispy }}
+                {% csrf_token %}
+                <div>
+                    <p>
+                        <button type="submit">add Room</button>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+    {% endblock %}
     {% block pagination %}
     {% endblock %}
     <footer class="fixed-bottom" style="background-color:grey">
