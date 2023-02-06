@@ -6,10 +6,10 @@
         <div class="row gy-5">
             {% if user.is_authenticated %}
             <div class="col-3">
-                <button type="button" name="edit" class="btn btn-dark" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" aria-controls="offcanvasE">Edit Room</button>
+                <button type="button" name="edit" class="btn btn-dark" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" aria-controls="offcanvas">Edit Room</button>
             </div>
             <div class="col-3">
-                <a href="#">Start a Conversation</a>
+                <button type="button" name="edit" class="btn btn-dark" data-bs-toggle="offcanvas" data-bs-target="#convoOffcanvas" aria-controls="offcanvas">Start Conversation</button>
             </div>
             <div class="col-3">
                 <a href="{% url 'account_logout' %}">Logout</a>
@@ -60,7 +60,9 @@
                     <div class="accordion-body">
                         <h4>{{ conversation.content | safe }}</h4>
                         {% for comment in comments %}
+                        {% if comment.conversation == conversation %}
                         <p><strong>{{ comment.name }} said: </strong>{{ comment.body | safe }}</p>
+                        {% endif %}
                         {% endfor %}
                     </div>
                 </div>
@@ -99,6 +101,23 @@
             <div>
                 <p>
                     <button type="submit">edit Room</button>
+                </p>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="offcanvas offcanvas-start" tabindex="-1" id="convoOffcanvas" aria-labelledby="offcanvasLabel">
+    <div class="offcanvas-header">
+      <h5 class="ffcanvas-title" id="convoOffcanvasLabel">Backdrop with scrolling</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <form method="POST">
+            {{ conversation_form | crispy }}
+            {% csrf_token %}
+            <div>
+                <p>
+                    <button type="submit">Start a conversation</button>
                 </p>
             </div>
         </form>

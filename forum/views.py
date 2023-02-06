@@ -143,21 +143,31 @@ class RoomView(View):
         if room_form.is_valid():
             room_form.save()
 
-       # form = ConversationForm(request.POST)
+        form = ConversationForm(request.POST)
+
+        if form.is_valid():
+            form.instance.creator = request.user
+            form.instance.slug = form.instance.title.replace(' ', '-')
+            new_convo = form.save(commit=False)
+            new_convo.room = room
+            new_convo.save()
+        else:
+            form = ConversationForm()
 
         convo_queryset = Conversations.objects.filter(room=room)
 
         if convo_queryset.exists():
-            convo = get_object_or_404(convo_queryset)
-            comments = convo.conversation_comments.order_by('created_on')
-
+            #  convo = get_object_or_404(convo_queryset)
+          #  comments = convo.conversation_comments.order_by('created_on')
+            comment_queryset = Comments.objects.all()
             return render(
                 request,
                 'room_view.html',
                 {
                  'conversation_list': conversation,
-                 'comments': comments,
-                 'room_form': room_form
+                 'comments': comment_queryset,
+                 'room_form': room_form,
+                 'conversation_form': form
                 },
                 )
         else:
@@ -166,7 +176,8 @@ class RoomView(View):
                 'room_view.html',
                 {
                  'conversation_list': conversation,
-                 'room_form': room_form
+                 'room_form': room_form,
+                 'conversation_form': form
                 },
                 )
 
@@ -194,15 +205,16 @@ class RoomView(View):
         convo_queryset = Conversations.objects.filter(room=room)
 
         if convo_queryset.exists():
-            convo = get_object_or_404(convo_queryset)
-            comments = convo.conversation_comments.order_by('created_on')
+          #  convo = get_object_or_404(convo_queryset)
+          #  comments = convo.conversation_comments.order_by('created_on')
+            comment_queryset = Comments.objects.all()
 
             return render(
                 request,
                 'room_view.html',
                 {
                  'conversation_list': conversation,
-                 'comments': comments,
+                 'comments': comment_queryset,
                  'conversation_form': form,
                  'room_form': room_form
                 },
@@ -217,3 +229,4 @@ class RoomView(View):
                  'room_form': room_form
                 },
                 )
+        
