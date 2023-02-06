@@ -164,6 +164,7 @@ class RoomView(View):
                 request,
                 'room_view.html',
                 {
+                 'room': room,
                  'conversation_list': conversation,
                  'comments': comment_queryset,
                  'room_form': room_form,
@@ -213,6 +214,7 @@ class RoomView(View):
                 request,
                 'room_view.html',
                 {
+                 'room': room,
                  'conversation_list': conversation,
                  'comments': comment_queryset,
                  'conversation_form': form,

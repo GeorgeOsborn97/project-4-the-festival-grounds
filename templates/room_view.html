@@ -39,9 +39,7 @@
 
 <div id="card-container" class="container text-center">
     <div id="card-row" class="row row-col-3 justify-content-md-center">
-        {% for conversation in conversation_list %}
-        <h1>{{ conversation.title }}</h1>
-        {% endfor %}
+        <h1>{{ room.title }}</h1>
     </div>
 </div>
 <div id="card-container" class="container text-center">
@@ -51,12 +49,11 @@
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingOne">
                     <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        data-bs-target="#collapseOne-{{ conversation.slug }}" aria-expanded="true" aria-controls="collapseOne-{{ conversation.slug }}">
                         {{ conversation.title }}
                     </button>
                 </h2>
-                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
-                    data-bs-parent="#accordionExample">
+                <div id="collapseOne-{{  conversation.slug  }}" class="accordion-collapse collapse show" aria-labelledby="headingOne">
                     <div class="accordion-body">
                         <h4>{{ conversation.content | safe }}</h4>
                         {% for comment in comments %}
