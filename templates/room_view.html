@@ -100,10 +100,12 @@
 {% block canvas %}
 <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
     <div class="offcanvas-header">
-      <h5 class="offcanvas-title" id="offcanvasLabel">Backdrop with scrolling</h5>
+      <h5 class="offcanvas-title" id="offcanvasLabel">Edit: {{ room.title }}</h5>
+      <h6 id="roomId">{{ room.id }}</h6>
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
+        <div id="liveAlertPlaceholder"></div>
         <form method="POST">
             {{ room_form | crispy }}
             {% csrf_token %}
@@ -113,9 +115,9 @@
         </form>
         <hr id="break-line">
         <div>
-            <a href="/delete_room/{{ room.id }}">
-                <button class="btn btn-danger">delete Room</button>
-            </a>
+            {% if user == room.creator %}
+            <button type="button" class="btn btn-danger" id="liveAlertBtn">Delete Room</button>
+            {% endif %}
         </div>
     </div>
 </div>

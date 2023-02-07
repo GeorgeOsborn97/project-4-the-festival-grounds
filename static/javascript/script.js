@@ -15,3 +15,26 @@ $("#room-search").click(function() {
     });
 });
 
+const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
+const roomId = document.getElementById('roomId').innerHTML
+console.log(roomId)
+const alert = (message, type) => {
+  const wrapper = document.createElement('div')
+  wrapper.innerHTML = [
+    `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+    `   <div>${message}</div>`,
+    '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+    ` <a href="/delete_room/${roomId}"><button class="btn btn-danger">delete Room</button></a>`,
+    '</div>'
+  ].join('')
+
+  alertPlaceholder.append(wrapper)
+}
+
+const alertTrigger = document.getElementById('liveAlertBtn')
+if (alertTrigger) {
+  alertTrigger.addEventListener('click', () => {
+    alert('You are about to Delete this room, are you sure?', 'danger')
+  })
+  console.log('hello')
+}
