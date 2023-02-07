@@ -1,10 +1,10 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.core.paginator import Paginator
 from django.views import generic, View
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
 from .models import Rooms, Conversations, Comments
-from .forms import RoomForm, ConversationForm
+from .forms import RoomForm, ConversationForm, CommentForm
 
 # Create your views here.
 
@@ -157,9 +157,17 @@ class RoomView(View):
         convo_queryset = Conversations.objects.filter(room=room)
 
         if convo_queryset.exists():
-            #  convo = get_object_or_404(convo_queryset)
-          #  comments = convo.conversation_comments.order_by('created_on')
             comment_queryset = Comments.objects.all()
+
+            comment_form = CommentForm(request.POST)
+
+            if comment_form.is_valid():
+                new_comment = comment_form.save(commit=False)
+                new_comment.room = room
+                new_comment.save()
+            else:
+                comment_form = CommentForm()
+
             return render(
                 request,
                 'room_view.html',
@@ -168,7 +176,8 @@ class RoomView(View):
                  'conversation_list': conversation,
                  'comments': comment_queryset,
                  'room_form': room_form,
-                 'conversation_form': form
+                 'conversation_form': form,
+                 'comment_form': comment_form
                 },
                 )
         else:
@@ -176,9 +185,10 @@ class RoomView(View):
                 request,
                 'room_view.html',
                 {
+                 'room': room,
                  'conversation_list': conversation,
                  'room_form': room_form,
-                 'conversation_form': form
+                 'conversation_form': form,
                 },
                 )
 
@@ -206,9 +216,16 @@ class RoomView(View):
         convo_queryset = Conversations.objects.filter(room=room)
 
         if convo_queryset.exists():
-          #  convo = get_object_or_404(convo_queryset)
-          #  comments = convo.conversation_comments.order_by('created_on')
             comment_queryset = Comments.objects.all()
+
+            comment_form = CommentForm(request.POST)
+
+            if comment_form.is_valid():
+                new_comment = comment_form.save(commit=False)
+                new_comment.room = room
+                new_comment.save()
+            else:
+                comment_form = CommentForm()
 
             return render(
                 request,
@@ -218,7 +235,8 @@ class RoomView(View):
                  'conversation_list': conversation,
                  'comments': comment_queryset,
                  'conversation_form': form,
-                 'room_form': room_form
+                 'room_form': room_form,
+                 'comment_form': comment_form
                 },
                 )
         else:
@@ -226,9 +244,15 @@ class RoomView(View):
                 request,
                 'room_view.html',
                 {
+                 'room': room,
                  'conversation_list': conversation,
                  'conversation_form': form,
-                 'room_form': room_form
+                 'room_form': room_form,
                 },
                 )
-        
+
+
+def delete_room(request, room_id):
+    room = Rooms.objects.get(id=room_id)
+    room.delete()
+    return redirect('home')
