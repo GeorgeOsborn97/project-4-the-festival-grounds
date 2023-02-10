@@ -110,7 +110,9 @@ class RoomView(View):
         room_queryset = Rooms.objects.all()
         room = get_object_or_404(room_queryset, slug=slug)
         conversation = room.conversations.order_by('created_on')
-
+        if request.user not in room.members.all():
+            room.members.add(request.user)
+        
         room_form = RoomForm(request.POST, instance=room)
 
         if room_form.is_valid():
