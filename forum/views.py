@@ -105,33 +105,6 @@ class YourRoomList(View):
         return render(request, '../templates/your_rooms.html', context)
 
 
-class addRoom(View):
-
-    def get(self, request, *args, **kwargs):
-        form = RoomForm(request.POST)
-        context = {
-            'form': RoomForm()
-        }
-        return render(request, '../templates/add_room.html', context)
-
-    def post(self, request, *args, **kwargs):
-        form = RoomForm(request.POST)
-        if form.is_valid():
-            form.instance.creator = request.user
-            form.instance.slug = form.instance.title.replace(' ', '-')
-            room = form.save(commit=False)
-            
-            room.save()
-            form.instance.members.add(request.user)
-        else:
-            form = RoomForm()
-
-        context = {
-            'form': RoomForm(),
-        }
-        return render(request, '../templates/add_room.html', context)
-
-
 class RoomView(View):
     def get(self, request, slug, *args, **kwargs):
         room_queryset = Rooms.objects.all()
@@ -250,6 +223,18 @@ class RoomView(View):
                  'room_form': room_form,
                 },
                 )
+
+
+class edit_conversation(View):
+    def get(self, request, *args, **kwargs):
+        conversation_queryset = Conversations.objects.all()
+        comment_queryset = Comments.objects.all()
+
+        context = {
+            'conversation': conversation_queryset,
+            'comments': comment_queryset,
+         }
+        return render(request, '../templates/edit_conversations.html', context)
 
 
 def delete_room(request, room_id):

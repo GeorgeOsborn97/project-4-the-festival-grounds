@@ -1,31 +1,37 @@
 {% extends "base.html" %}
+
 {% load crispy_forms_tags %}
 {% block nav %}
 <div class="container text-center">
     <nav>
         <div class="row gy-5">
-            {% if user.is_authenticated %}
-            <div class="col-3">
-                <button type="button" name="edit" class="btn btn-dark" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" aria-controls="offcanvas">Edit Room</button>
-            </div>
-            <div class="col-3">
+            {% if user == room.creator %}
+            <div class="col-4 col-lg-2">
                 <button type="button" name="edit" class="btn btn-dark" data-bs-toggle="offcanvas" data-bs-target="#convoOffcanvas" aria-controls="offcanvas">Start Conversation</button>
             </div>
-            <div class="col-3">
+            <div class="col-4 col-lg-2">
+                <a href="{% url 'edit' %}">
+                    <button type="button" name="edit" class="btn btn-dark">Edit Conversations</button>
+                </a>           
+            </div>
+            <div class="col-4">
+                <button type="button" name="edit" class="btn btn-dark" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" aria-controls="offcanvas">Edit Room</button>
+            </div>
+            <div class="col-4 col-lg-2">
                 <a href="{% url 'account_logout' %}">Logout</a>
             </div>
-            <div class="col-3">
-                <a href="#">Your Rooms</a>
+            <div class="col-4 col-lg-2">
+                <a href="{% url 'your_home' %}">Your Rooms</a>
             </div>
             {% else %}
             <div class="col-4">
-                <a href="{% url 'account_signup' %}">Register</a>
+                <button type="button" name="edit" class="btn btn-dark" data-bs-toggle="offcanvas" data-bs-target="#convoOffcanvas" aria-controls="offcanvas">Start Conversation</button>
             </div>
             <div class="col-4">
-                <a href="{% url 'account_login' %}">Login</a>
+                <a href="{% url 'account_logout' %}">Logout</a>
             </div>
             <div class="col-4">
-                <a href="#">About</a>
+                <a href="{% url 'your_home' %}">Your Rooms</a>
             </div>
             {% endif %}
         </div>
@@ -44,13 +50,13 @@
 </div>
 <div id="card-container" class="container text-center">
     <div id="card-row" class="row row-col-3 justify-content-md-center">
-        <div class="accordion" id="accordionExample">
+        <div class="accordion" id="accordionExample" style="margin-bottom: 100px;">
             {% for conversation in conversation_list %}
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingOne">
                     <button class="accordion-button" type="button" data-bs-toggle="collapse"
                         data-bs-target="#collapseOne-{{ conversation.slug }}" aria-expanded="true" aria-controls="collapseOne-{{ conversation.slug }}">
-                        {{ conversation.title }}
+                        {{ conversation.title }} started by: {{ conversation.creator }}
                     </button>
                 </h2>
                 <div id="collapseOne-{{  conversation.slug  }}" class="accordion-collapse collapse show"

@@ -4,6 +4,7 @@
     <div class="col" style="margin-top:3%">
         <h1>Rooms</h1>
     </div>
+    <div id="liveAlertNotUser"></div>
 {% endblock %}
 
 {% block cards %}
@@ -37,21 +38,31 @@
                         <p class="card-text">{{ room.description | safe }}</p>
                         <p class="card-text">Created by: {{ room.creator | safe }}</p>
                         <p class="card-text">{{ room.number_of_members }} Members</p>
-                        <a href="{% url 'in_room' room.slug %}" class="">
                             {% if room.status == 0 %}
-                                {% if user in room.members.all %}
-                                <button type="submit" value="Join" name="join" class="btn btn-dark">Enter</button>
+                                {% if user.is_authenticated %}
+                                <a href="{% url 'in_room' room.slug %}" class="">
+                                    {% if user in room.members.all %}
+                                    <button type="submit" value="Join" name="join" class="btn btn-dark">Enter</button>
+                                    {% else %}
+                                    <button type="submit" value="Join" name="join" class="btn btn-dark">Join</button>
+                                    {% endif %}
+                                </a>
                                 {% else %}
-                                <button type="submit" value="Join" name="join" class="btn btn-dark">Join</button>
+                                <button type="button" class="btn btn-danger liveAlertNotUser" id="liveAlertNotUserBtn">Join</button>
                                 {% endif %}
                             {% else %}
-                                {% if user in room.members.all %}
-                                <button type="submit" value="Join" name="join" class="btn btn-dark">Enter</button>
+                                {% if user.is_authenticated %}
+                                <a href="{% url 'in_room' room.slug %}" class="">
+                                    {% if user in room.members.all %}
+                                    <button type="submit" value="Join" name="join" class="btn btn-dark">Enter</button>
+                                    {% else %}
+                                    <button type="submit" value="Join" name="join" class="btn btn-dark">Request</button>
+                                    {% endif %}
+                                </a>
                                 {% else %}
-                                <button type="submit" value="Join" name="join" class="btn btn-dark">Request</button>
+                                <button type="button" class="btn btn-danger" id="liveAlertNotUserBtn">Join</button>
                                 {% endif %}
                             {% endif %}
-                        </a>
                     </div>
                 </div>
             </div>

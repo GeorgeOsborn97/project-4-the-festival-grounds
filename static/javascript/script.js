@@ -15,6 +15,27 @@ $("#room-search").click(function() {
     });
 });
 
+const alertNotUserPlaceholder = document.getElementById('liveAlertNotUser')
+const NotUseralert = (message, type) => {
+  const NotUserwrapper = document.createElement('div')
+  NotUserwrapper.innerHTML = [
+    `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+    `   <div>${message}</div>`,
+    '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+    '</div>'
+  ].join('')
+
+  alertNotUserPlaceholder.append(NotUserwrapper)
+}
+
+const alertNotUserTrigger = document.getElementById('liveAlertNotUserBtn')
+if (alertNotUserTrigger) {
+  alertNotUserTrigger.addEventListener('click', () => {
+    NotUseralert('Please Log-in or create an account to Join Rooms', 'warning')
+  })
+  console.log('hello')
+}
+
 const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
 const roomId = document.getElementById('roomId').innerHTML
 console.log(roomId)
@@ -38,3 +59,4 @@ if (alertTrigger) {
   })
   console.log('hello')
 }
+

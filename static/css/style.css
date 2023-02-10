@@ -1,3 +1,7 @@
+body{
+  overflow: scroll;
+}
+
 .title {
     padding-top: 5%;
     float: left;
@@ -26,7 +30,7 @@
     margin-bottom: 100px;
 }
 
-ul {
+#foot {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -34,11 +38,11 @@ ul {
     background-color: #333333;
   }
   
-  li {
+.footer-item {
     float: left;
   }
   
-  li a {
+.footer-anchor {
     display: block;
     color: white;
     text-align: center;
@@ -47,20 +51,20 @@ ul {
   }
   
 
-  .card-desc {
-    display: block;
-    font-size: 1.2rem;
-    position: absolute;
-    height: 0;
-    top: 0;
-    opacity: 0;
-    padding: 18px 8%;
-    background-color: white;
-    overflow-y: scroll;
-    transition: 0.8s ease;
-  }
+.card-desc {
+  display: block;
+  font-size: 1.2rem;
+  position: absolute;
+  height: 0;
+  top: 0;
+  opacity: 0;
+  padding: 18px 8%;
+  background-color: white;
+  overflow-y: scroll;
+  transition: 0.8s ease;
+}
   
-  .card:hover .card-desc {
-    opacity: 1;
-    height: 100%;
-  }
+.card:hover .card-desc {
+  opacity: 1;
+  height: 100%;
+}
