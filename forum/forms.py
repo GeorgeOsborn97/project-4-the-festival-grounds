@@ -26,6 +26,11 @@ class ConversationForm(forms.ModelForm):
 
 
 class CommentForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(CommentForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper(self)
+        self.helper.form_id = 'id-exampleForm'
+
     class Meta:
         model = Comments
         fields = [
@@ -34,4 +39,4 @@ class CommentForm(forms.ModelForm):
             'conversation'
         ]
 
-   
+

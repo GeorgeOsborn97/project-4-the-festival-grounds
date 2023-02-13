@@ -48,7 +48,7 @@
                                     {% endif %}
                                 </a>
                                 {% else %}
-                                <button type="button" class="btn btn-danger liveAlertNotUser" id="liveAlertNotUserBtn">Join</button>
+                                <button type="button" class="btn btn-danger liveAlertNotUser" id="live{{ room.slug }}Btn">Join</button>
                                 {% endif %}
                             {% else %}
                                 {% if user.is_authenticated %}
@@ -60,12 +60,18 @@
                                     {% endif %}
                                 </a>
                                 {% else %}
-                                <button type="button" class="btn btn-danger" id="liveAlertNotUserBtn">Join</button>
+                                <button type="button" class="btn btn-danger" id="live{{ room.slug }}Btn">Join</button>
                                 {% endif %}
                             {% endif %}
                     </div>
                 </div>
             </div>
+            <script>
+                $('#live{{ room.slug }}Btn').click(function () {
+                    NotUseralert('Please Log-in or create an account to Join Rooms', 'warning')
+                    console.log('hello')
+                })
+            </script>
         {% endfor %}
     </div>
 </div>

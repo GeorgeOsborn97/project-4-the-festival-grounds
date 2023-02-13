@@ -8,16 +8,9 @@
     console.log(document.getElementById("room-search-input").value)
 })*/
 
-$("#room-search").click(function() {
-    var value = $('#room-search-input').val().toLowerCase();
-    $('div[data-role="test"]').filter(function() {
-        $(this).toggle($(this).find('h5').text().toLowerCase().indexOf(value) > -1)
-    });
-});
-
-const alertNotUserPlaceholder = document.getElementById('liveAlertNotUser')
-const NotUseralert = (message, type) => {
-  const NotUserwrapper = document.createElement('div')
+var alertNotUserPlaceholder = document.getElementById('liveAlertNotUser')
+var NotUseralert = (message, type) => {
+  var NotUserwrapper = document.createElement('div')
   NotUserwrapper.innerHTML = [
     `<div class="alert alert-${type} alert-dismissible" role="alert">`,
     `   <div>${message}</div>`,
@@ -28,38 +21,31 @@ const NotUseralert = (message, type) => {
   alertNotUserPlaceholder.append(NotUserwrapper)
 }
 
-const alertNotUserTrigger = document.getElementById('liveAlertNotUserBtn')
-if (alertNotUserTrigger) {
-  alertNotUserTrigger.addEventListener('click', () => {
-    NotUseralert('Please Log-in or create an account to Join Rooms', 'warning')
-  })
-  console.log('hello')
-}
+$('room_view').ready(function () {
+  const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
+  const roomId = document.getElementById('roomId').innerHTML
+  console.log(roomId)
+  const alert = (message, type) => {
+    const wrapper = document.createElement('div')
+    wrapper.innerHTML = [
+      `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+      `   <div>${message}</div>`,
+      '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+      ` <a href="/delete_room/${roomId}"><button class="btn btn-danger">delete Room</button></a>`,
+      '</div>'
+    ].join('')
 
-const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
-const roomId = document.getElementById('roomId').innerHTML
-console.log(roomId)
-const alert = (message, type) => {
-  const wrapper = document.createElement('div')
-  wrapper.innerHTML = [
-    `<div class="alert alert-${type} alert-dismissible" role="alert">`,
-    `   <div>${message}</div>`,
-    '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
-    ` <a href="/delete_room/${roomId}"><button class="btn btn-danger">delete Room</button></a>`,
-    '</div>'
-  ].join('')
+    alertPlaceholder.append(wrapper)
+  }
 
-  alertPlaceholder.append(wrapper)
-}
-
-const alertTrigger = document.getElementById('liveAlertBtn')
-if (alertTrigger) {
-  alertTrigger.addEventListener('click', () => {
-    alert('You are about to Delete this room, are you sure?', 'danger')
-  })
-  console.log('hello')
-}
-
+  const alertTrigger = document.getElementById('liveAlertBtn')
+  if (alertTrigger) {
+    alertTrigger.addEventListener('click', () => {
+      alert('You are about to Delete this room, are you sure?', 'danger')
+    })
+    console.log('hello')
+  }
+})
 
 /*$('room_view').ready(function() {
   console.log('in the function')
@@ -70,12 +56,3 @@ if (alertTrigger) {
   console.log(title)
 })*/
 
-$('room_view').ready(function() {
-  thelist = []
-  mydiv = $('.accordion-body > div')
-  mydiv.push(thelist)
-  console.log(thelist)
-  for(i in mydiv.length) {
-    console.log('hello')
-  }
-})
