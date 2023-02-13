@@ -270,3 +270,10 @@ def delete_room(request, room_id):
     room = Rooms.objects.get(id=room_id)
     room.delete()
     return redirect('home')
+
+
+def delete_conversation(request, conversation_id):
+    conversation = Conversations.objects.get(id=conversation_id)
+    slug = conversation.room.slug
+    conversation.delete()
+    return HttpResponseRedirect(reverse('in_room', args=[slug]))
