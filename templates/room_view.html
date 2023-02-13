@@ -10,9 +10,7 @@
                 <button type="button" name="edit" class="btn btn-dark" data-bs-toggle="offcanvas" data-bs-target="#convoOffcanvas" aria-controls="offcanvas">Start Conversation</button>
             </div>
             <div class="col-4 col-lg-2">
-                <a href="{% url 'edit' %}">
-                    <button type="button" name="edit" class="btn btn-dark">Edit Conversations</button>
-                </a>           
+          
             </div>
             <div class="col-4">
                 <button type="button" name="edit" class="btn btn-dark" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" aria-controls="offcanvas">Edit Room</button>
@@ -58,6 +56,9 @@
                         data-bs-target="#collapseOne-{{ conversation.slug }}" aria-expanded="true" aria-controls="collapseOne-{{ conversation.slug }}">
                         {{ conversation.title }} started by: {{ conversation.creator }}
                     </button>
+                    <a href="{% url 'edit' conversation.id %}">
+                        <button type="button" name="edit" class="btn btn-dark">Edit Conversations</button>
+                    </a> 
                 </h2>
                 <div id="collapseOne-{{  conversation.slug  }}" class="accordion-collapse collapse show"
                     aria-labelledby="headingOne">
@@ -68,7 +69,7 @@
                         <p><strong>{{ comment.name }} said: </strong>{{ comment.body | safe }}</p>
                         {% endif %}
                         {% endfor %}
-                        <div>
+                        <div id="{{  conversation.slug  }}-form">
                             <form method="POST">
                                 {{ comment_form | crispy }}
                                 {% csrf_token %}

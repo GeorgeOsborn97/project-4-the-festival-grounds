@@ -60,3 +60,22 @@ if (alertTrigger) {
   console.log('hello')
 }
 
+
+/*$('room_view').ready(function() {
+  console.log('in the function')
+  mydiv = $('.accordion-body > div')
+  console.log(mydiv)
+  console.log(mydiv.attr('id'))
+  title = mydiv.attr('id').replaceAll('-', ' ')
+  console.log(title)
+})*/
+
+$('room_view').ready(function() {
+  thelist = []
+  mydiv = $('.accordion-body > div')
+  mydiv.push(thelist)
+  console.log(thelist)
+  for(i in mydiv.length) {
+    console.log('hello')
+  }
+})

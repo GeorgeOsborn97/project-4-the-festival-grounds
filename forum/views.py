@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.core.paginator import Paginator
 from django.views import generic, View
 from django.http import HttpResponseRedirect
@@ -228,15 +228,42 @@ class RoomView(View):
 
 
 class edit_conversation(View):
-    def get(self, request, *args, **kwargs):
+    def get(self, request, conversation_id, *args, **kwargs):
         conversation_queryset = Conversations.objects.all()
+        convo = get_object_or_404(conversation_queryset, id=conversation_id)
         comment_queryset = Comments.objects.all()
 
+        convo_form = ConversationForm(request.POST, instance=convo)
+
+        if convo_form.is_valid():
+            convo_form.save()
+
         context = {
-            'conversation': conversation_queryset,
+            'conversations': conversation_queryset,
+            'conversation': convo,
             'comments': comment_queryset,
+            'form': convo_form
          }
         return render(request, '../templates/edit_conversations.html', context)
+
+    def post(self, request, conversation_id, *args, **kwargs):
+        conversation_queryset = Conversations.objects.all()
+        convo = get_object_or_404(conversation_queryset, id=conversation_id)
+        slug = convo.room.slug
+        comment_queryset = Comments.objects.all()
+
+        convo_form = ConversationForm(request.POST, instance=convo)
+
+        if convo_form.is_valid():
+            convo_form.save()
+
+        context = {
+            'conversations': conversation_queryset,
+            'conversation': convo,
+            'comments': comment_queryset,
+            'form': convo_form
+         }
+        return HttpResponseRedirect(reverse('in_room', args=[slug]))
 
 
 def delete_room(request, room_id):
