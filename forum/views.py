@@ -277,3 +277,10 @@ def delete_conversation(request, conversation_id):
     slug = conversation.room.slug
     conversation.delete()
     return HttpResponseRedirect(reverse('in_room', args=[slug]))
+
+
+def delete_comment(request, comment_id):
+    comment = Comments.objects.get(id=comment_id)
+    slug = comment.room.slug
+    comment.delete()
+    return HttpResponseRedirect(reverse('in_room', args=[slug]))

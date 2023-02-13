@@ -67,10 +67,15 @@
                         {% for comment in comments %}
                         {% if comment.conversation == conversation %}
                         <p><strong>{{ comment.name }} said: </strong>{{ comment.body | safe }}</p>
+                        {% if  user == comment.creator or user == room.creator %}
+                        <a href="/delete_comment/{{ comment.id }}">
+                            <button type="button" class="btn btn-danger" id="liveAlertBtn">Delete Comment</button>
+                        </a>
+                        {% endif %}
                         {% endif %}
                         {% endfor %}
                         <div id="{{  conversation.slug  }}-form">
-                            <button id="{{ conversation.slug }}-btnid" type="button" data-bs-toggle="offcanvas" data-bs-target="#{{ conversation.slug }}Offcanvas" aria-controls="offcanvas">canvas</button>
+                            <button id="{{ conversation.slug }}-btnid" type="button" data-bs-toggle="offcanvas" data-bs-target="#{{ conversation.slug }}Offcanvas" aria-controls="offcanvas">Add a comment</button>
                         </div>
                     </div>
                 </div>
@@ -104,11 +109,6 @@
                     </div>
                 </div>
             </div>
-            <script>
-                $("#{{ conversation.slug }}Offcanvas").click( function(){
-                    console.log('{{ conversation.title }}')
-                })
-            </script>
             {% endfor %}
         </div>
     </div>

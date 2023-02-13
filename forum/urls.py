@@ -7,5 +7,6 @@ urlpatterns = [
     path('<slug:slug>/', views.RoomView.as_view(), name='in_room'),
     path('delete_room/<room_id>', views.delete_room, name='delete'),
     path('delete_conversation/<conversation_id>', views.delete_conversation, name='delete_conversation'),
+    path('delete_comment/<comment_id>', views.delete_comment, name='delete_comment'),
     path('edit_conversation/<conversation_id>', views.edit_conversation.as_view(), name='edit'),
 ]
