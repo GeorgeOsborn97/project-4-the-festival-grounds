@@ -77,7 +77,16 @@
             </div>
             <script>
                 $("#{{ conversation.slug }}-btnid").on('click', function(){
-                    console.log('hello');
+                    console.log('{{ conversation.title }}');
+                    $(function() {
+                        $("#id_conversation option").each(function(i){
+                            console.log($(this).text() + " : " + $(this).val());
+                            if($(this).text() == '{{ conversation.title }}'){
+                                console.log('found it: {{ conversation.title }}')
+                                $(this).attr('selected','selected')
+                            }
+                        });
+                    });
                 });
             </script>
             {% empty %}
@@ -97,7 +106,7 @@
             </div>
             <script>
                 $("#{{ conversation.slug }}Offcanvas").click( function(){
-                    console.log('hello')
+                    console.log('{{ conversation.title }}')
                 })
             </script>
             {% endfor %}
