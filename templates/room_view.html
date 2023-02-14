@@ -7,26 +7,34 @@
         <div class="row gy-5">
             {% if user == room.creator %}
             <div class="col-3">
-                <button type="button" name="edit" class="btn btn-dark" data-bs-toggle="offcanvas" data-bs-target="#convoOffcanvas" aria-controls="offcanvas">Start Conversation</button>
+                <button type="button" class="btn btn-dark" data-bs-toggle="offcanvas" data-bs-target="#convoOffcanvas" aria-controls="offcanvas">Start Conversation</button>
             </div>
             <div class="col-3">
-                <button type="button" name="edit" class="btn btn-dark" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" aria-controls="offcanvas">Edit Room</button>
+                <button type="button" class="btn btn-dark" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" aria-controls="offcanvas">Edit Room</button>
             </div>
             <div class="col-3">
-                <a href="{% url 'account_logout' %}">Logout</a>
+                <a href="{% url 'account_logout' %}">
+                    <button type="button" class="btn btn-dark">Logout</button>
+                </a>
             </div>
             <div class="col-3">
-                <a href="{% url 'your_home' %}">Your Rooms</a>
+                <a href="{% url 'your_home' %}">
+                    <button type="button" class="btn btn-dark">Your Rooms</button>
+                </a>
             </div>
             {% else %}
             <div class="col-4">
-                <button type="button" name="edit" class="btn btn-dark" data-bs-toggle="offcanvas" data-bs-target="#convoOffcanvas" aria-controls="offcanvas">Start Conversation</button>
+                <button type="button" class="btn btn-dark" data-bs-toggle="offcanvas" data-bs-target="#convoOffcanvas" aria-controls="offcanvas">Start Conversation</button>
             </div>
             <div class="col-4">
-                <a href="{% url 'account_logout' %}">Logout</a>
+                <a href="{% url 'account_logout' %}">
+                    <button type="button" class="btn btn-dark">Logout</button>
+                </a>
             </div>
             <div class="col-4">
-                <a href="{% url 'your_home' %}">Your Rooms</a>
+                <a href="{% url 'your_home' %}">
+                    <button type="button" class="btn btn-dark">Your Rooms</button>
+                </a>
             </div>
             {% endif %}
         </div>
@@ -66,7 +74,7 @@
                         {% for comment in comments %}
                         {% if comment.conversation == conversation %}
                         <div class="comment">
-                            <div class="col-8">
+                            <div class="bubble bubble-bottom-left col-4">
                                 <p><strong>{{ comment.name }} said: </strong>{{ comment.body | safe }}</p>
                                 {% if  user == comment.creator or user == room.creator %}
                                 <a href="/delete_comment/{{ comment.id }}">
@@ -82,7 +90,7 @@
                         {% endif %}
                         {% endfor %}
                         <div id="{{  conversation.slug  }}-form">
-                            <button id="{{ conversation.slug }}-btnid" type="button" data-bs-toggle="offcanvas" data-bs-target="#{{ conversation.slug }}Offcanvas" aria-controls="offcanvas">Add a comment</button>
+                            <button id="{{ conversation.slug }}-btnid" class="btn btn-dark" type="button" data-bs-toggle="offcanvas" data-bs-target="#{{ conversation.slug }}Offcanvas" aria-controls="offcanvas">Add a comment</button>
                         </div>
                     </div>
                 </div>

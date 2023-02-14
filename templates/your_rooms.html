@@ -2,10 +2,49 @@
 
 {% load crispy_forms_tags %}
 
-{% block header %}
+{% block nav %}
+<div class="container text-center">
+    <nav>
+        <div class="row gy-5">
+            {% if user.is_authenticated %}
+            <div class="col-4">
+                <button type="button" class="btn btn-dark" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">Create</button>
+            </div>
+            <div class="col-4">
+                <a href="{% url 'account_logout' %}">
+                    <button type="button" class="btn btn-dark">Logout</button>
+                </a>
+            </div>
+            <div class="col-4">
+                <a href="{% url 'home' %}">
+                    <button type="button" class="btn btn-dark">Home</button>
+                </a>
+            </div>
+            {% else %}
+            <div class="col-4">
+                <a href="{% url 'account_signup' %}">
+                    <button type="button" class="btn btn-dark">Register</button>
+                </a>
+            </div>
+            <div class="col-4">
+                <a href="{% url 'account_login' %}">
+                    <button type="button" class="btn btn-dark">login</button>
+                </a>
+            </div>
+            <div class="col-4">
+                <a href="#">
+                    <button type="button" class="btn btn-dark">About</button>
+                </a>
+            </div>
+            {% endif %}
+        </div>
+    </nav>
+    {% block header %}
     <div class="col" style="margin-top:3%">
         <h1>Your Rooms</h1>
     </div>
+{% endblock %}
+</div>
 {% endblock %}
 
 {% block cards %}
@@ -56,6 +95,18 @@
     </div>
 </div>
 
+{% endblock %}
+{% block search %}
+    <div class="container text-center" style="margin-bottom: 100px;">
+        <div class="row justify-content-md-center">
+            <div class="col-md-2">
+                <input id="room-search-input" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            </div>
+            <div class="col-md-1">
+                <button id="room-search" class="btn btn-outline-success" type="submit">Search</button>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 {% block pagination %}
 <div class="container text-center pageination-holder">

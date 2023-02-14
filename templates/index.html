@@ -87,6 +87,18 @@
   </div>
 
 {% endblock %}
+{% block search %}
+    <div class="container text-center" style="margin-bottom: 100px;">
+        <div class="row justify-content-md-center">
+            <div class="col-md-2">
+                <input id="room-search-input" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            </div>
+            <div class="col-md-1">
+                <button id="room-search" class="btn btn-outline-success" type="submit">Search</button>
+            </div>
+        </div>
+    </div>
+{% endblock %}
 {% block pagination %}
 <div class="container text-center pageination-holder">
     <div class="row justify-content-md-center">

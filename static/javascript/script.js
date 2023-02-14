@@ -48,8 +48,8 @@ $('room_view').ready(function () {
 })
 
 $('room_view').ready(function () {
-  var CommentDiv = $('div.comment'); //let's cache the array
-  var length = CommentDiv.length; //let's cache the  length
+  var CommentDiv = $('div.comment');
+  var length = CommentDiv.length;
     for(var x=0; x < length; x++) {
       CommentDiv.eq(x).prop('id', x);
       if ( x % 2 === 0) {

@@ -23,7 +23,7 @@
     <div class="container text-center">
         <div class="row">
           <div class="col">
-            <h2 class="title"><a href="{% url 'home' %}">Title</a></h2>
+            <a href="{% url 'home' %}"><img class="title" src="https://res.cloudinary.com/duijsqmts/image/upload/v1676389802/the-festival-ground-low-resolution-logo-color-on-transparent-background_n0gdr3.png"></a>
           </div>
           <div class="col">
             <h3 class="slogan">Slogan</h3>
@@ -41,23 +41,33 @@
             <div class="row gy-5">
                 {% if user.is_authenticated %}
                 <div class="col-4">
-                    <button type="button" value="edit" name="edit" class="btn btn-dark" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">Create</button>
+                    <button type="button" class="btn btn-dark" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">Create</button>
                 </div>
                 <div class="col-4">
-                    <a href="{% url 'account_logout' %}">Logout</a>
+                    <a href="{% url 'account_logout' %}">
+                        <button type="button" class="btn btn-dark">Logout</button>
+                    </a>
                 </div>
                 <div class="col-4">
-                    <a href="{% url 'your_home' %}">Your Rooms</a>
+                    <a href="{% url 'your_home' %}">
+                        <button type="button" class="btn btn-dark">Your Rooms</button>
+                    </a>
                 </div>
                 {% else %}
                 <div class="col-4">
-                    <a href="{% url 'account_signup' %}">Register</a>
+                    <a href="{% url 'account_signup' %}">
+                        <button type="button" class="btn btn-dark">Register</button>
+                    </a>
                 </div>
                 <div class="col-4">
-                    <a href="{% url 'account_login' %}">Login</a>
+                    <a href="{% url 'account_login' %}">
+                        <button type="button" class="btn btn-dark">Login</button>
+                    </a>
                 </div>
                 <div class="col-4">
-                    <a href="#">About</a>
+                    <a href="#">
+                        <button type="button" class="btn btn-dark">About</button>
+                    </a>
                 </div>
                 {% endif %}
             </div>
@@ -68,16 +78,8 @@
     {% endblock %}
     {% block cards %}
     {% endblock %}
-    <div class="container text-center" style="margin-bottom: 100px;">
-        <div class="row justify-content-md-center">
-            <div class="col-md-2">
-                <input id="room-search-input" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            </div>
-            <div class="col-md-1">
-                <button id="room-search" class="btn btn-outline-success" type="submit">Search</button>
-            </div>
-        </div>
-    </div>
+    {% block search %}
+    {% endblock %}
     {% block canvas %}
     <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
         <div class="offcanvas-header">
@@ -100,7 +102,7 @@
     {% block pagination %}
     {% endblock %}
     <footer class="fixed-bottom" style="background-color:grey">
-        <div>
+        <div id="footer-container">
             <ul id="foot">
                 <li class="footer-item"><a class="footer-anchor" href="#">A</a></li>
                 <li class="footer-item"><a class="footer-anchor" href="#">B</a></li>
