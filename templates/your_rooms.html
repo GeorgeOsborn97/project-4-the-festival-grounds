@@ -12,7 +12,7 @@
 
 <div id="card-container" class="container text-center">
     <div id="card-row" class="row row-col-3 justify-content-md-center">
-        {% for room in room_list %}
+        {% for room in page_obj %}
         {% if user in room.members.all %}
             <div data-role="test" id="card-{{ room.slug }}" class="card col-md-3" style="max-width: 540px;">
                 <div class="row row-col-2">
