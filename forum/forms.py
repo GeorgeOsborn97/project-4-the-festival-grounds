@@ -14,7 +14,7 @@ class RoomForm(forms.ModelForm):
             'tags',
             'cover_image',
         ]
-
+    
 
 class ConversationForm(forms.ModelForm):
     class Meta:
@@ -39,4 +39,12 @@ class CommentForm(forms.ModelForm):
             'conversation'
         ]
 
+
+class EditCommentForm(forms.ModelForm):
+    class Meta:
+        model = Comments
+        fields = [
+            'name',
+            'body',
+        ]
 

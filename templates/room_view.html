@@ -71,6 +71,9 @@
                         <a href="/delete_comment/{{ comment.id }}">
                             <button type="button" class="btn btn-danger" id="liveAlertBtn">Delete Comment</button>
                         </a>
+                        <a href="{% url 'edit_comment' comment.id %}">
+                            <button type="button" name="edit" class="btn btn-dark">Edit Comment</button>
+                        </a> 
                         {% endif %}
                         {% endif %}
                         {% endfor %}

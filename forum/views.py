@@ -4,16 +4,9 @@ from django.views import generic, View
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
 from .models import Rooms, Conversations, Comments
-from .forms import RoomForm, ConversationForm, CommentForm
+from .forms import RoomForm, ConversationForm, CommentForm, EditCommentForm
 
 # Create your views here.
-
-
-#class RoomList(generic.ListView):
-#    model = Rooms
-#    queryset = Rooms.objects.order_by('created_on')
-#    template_name = 'index.html'
-#    paginate_by = 5
 
 
 class RoomList(View):
@@ -56,13 +49,6 @@ class RoomList(View):
         }
         return render(request, '../templates/index.html', context)
     
-
-#class YourRoomList(generic.ListView):
-#    model = Rooms
-#    queryset = Rooms.objects.order_by('created_on')
-#    template_name = 'your_rooms.html'
-#    paginate_by = 5
-
 
 class YourRoomList(View):
 
@@ -116,6 +102,7 @@ class RoomView(View):
         room_form = RoomForm(request.POST, instance=room)
 
         if room_form.is_valid():
+            room_form.instance.title = room.title
             room_form.save()
 
         form = ConversationForm(request.POST)
@@ -175,6 +162,7 @@ class RoomView(View):
         room_form = RoomForm(request.POST, instance=room)
 
         if room_form.is_valid():
+            room_form.instance.title = room.title
             room_form.save()
 
         form = ConversationForm(request.POST)
@@ -262,6 +250,40 @@ class edit_conversation(View):
             'conversation': convo,
             'comments': comment_queryset,
             'form': convo_form
+         }
+        return HttpResponseRedirect(reverse('in_room', args=[slug]))
+
+
+class edit_comment(View):
+    def get(self, request, comment_id, *args, **kwargs):
+        comment_queryset = Comments.objects.all()
+        comment = get_object_or_404(comment_queryset, id=comment_id)
+
+        comment_form = EditCommentForm(request.GET, instance=comment)
+
+        if comment_form.is_valid():
+            comment_form.save()
+
+        context = {
+            'comment': comment,
+            'comments': comment_queryset,
+            'form': comment_form
+         }
+        return render(request, '../templates/edit_comment.html', context)
+
+    def post(self, request, comment_id, *args, **kwargs):
+        comment_queryset = Comments.objects.all()
+        comment = get_object_or_404(comment_queryset, id=comment_id)
+        slug = comment.room.slug
+        comment_form = EditCommentForm(request.POST, instance=comment)
+
+        if comment_form.is_valid():
+            comment_form.save()
+
+        context = {
+            'comment': comment,
+            'comments': comment_queryset,
+            'form': comment_form
          }
         return HttpResponseRedirect(reverse('in_room', args=[slug]))
 
