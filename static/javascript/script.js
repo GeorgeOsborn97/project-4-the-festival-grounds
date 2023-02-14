@@ -47,12 +47,16 @@ $('room_view').ready(function () {
   }
 })
 
-/*$('room_view').ready(function() {
-  console.log('in the function')
-  mydiv = $('.accordion-body > div')
-  console.log(mydiv)
-  console.log(mydiv.attr('id'))
-  title = mydiv.attr('id').replaceAll('-', ' ')
-  console.log(title)
-})*/
-
+$('room_view').ready(function () {
+  var CommentDiv = $('div.comment'); //let's cache the array
+  var length = CommentDiv.length; //let's cache the  length
+    for(var x=0; x < length; x++) {
+      CommentDiv.eq(x).prop('id', x);
+      if ( x % 2 === 0) {
+        CommentDiv.eq(x).prop('class', 'comment row justify-content-start');
+      }
+      else{
+        CommentDiv.eq(x).prop('class', 'comment row justify-content-end');
+      }
+    }
+})

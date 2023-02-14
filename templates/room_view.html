@@ -59,22 +59,26 @@
                     </a> 
                     {% endif %}
                 </h2>
-                <h6 id="{{ conversation.title }}-id">{{ conversation.id }}</h6>
-                <div id="collapseOne-{{  conversation.slug  }}" class="accordion-collapse collapse show"
+                <div id="collapseOne-{{  conversation.slug  }}" class="accordion-collapse collapse show container"
                     aria-labelledby="headingOne">
-                    <div class="accordion-body">
+                    <div class="accordion-body container">
                         <h4>{{ conversation.content | safe }}</h4>
                         {% for comment in comments %}
                         {% if comment.conversation == conversation %}
-                        <p><strong>{{ comment.name }} said: </strong>{{ comment.body | safe }}</p>
-                        {% if  user == comment.creator or user == room.creator %}
-                        <a href="/delete_comment/{{ comment.id }}">
-                            <button type="button" class="btn btn-danger" id="liveAlertBtn">Delete Comment</button>
-                        </a>
-                        <a href="{% url 'edit_comment' comment.id %}">
-                            <button type="button" name="edit" class="btn btn-dark">Edit Comment</button>
-                        </a> 
-                        {% endif %}
+                        <div class="comment">
+                            <div class="col-8">
+                                <p><strong>{{ comment.name }} said: </strong>{{ comment.body | safe }}</p>
+                                {% if  user == comment.creator or user == room.creator %}
+                                <a href="/delete_comment/{{ comment.id }}">
+                                    <button type="button" class="btn btn-danger" id="liveAlertBtn">Delete
+                                        Comment</button>
+                                </a>
+                                <a href="{% url 'edit_comment' comment.id %}">
+                                    <button type="button" name="edit" class="btn btn-dark">Edit Comment</button>
+                                </a>
+                                {% endif %}
+                            </div>
+                        </div>
                         {% endif %}
                         {% endfor %}
                         <div id="{{  conversation.slug  }}-form">

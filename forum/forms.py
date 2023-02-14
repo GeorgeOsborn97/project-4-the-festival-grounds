@@ -5,6 +5,10 @@ from crispy_forms.layout import Layout, HTML, Fieldset
 
 
 class RoomForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(RoomForm, self).__init__(*args, **kwargs)
+        self.fields['title'].initial = 'a title'
+
     class Meta:
         model = Rooms
         fields = [

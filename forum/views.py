@@ -100,13 +100,10 @@ class RoomView(View):
             room.members.add(request.user)
         
         room_form = RoomForm(request.POST, instance=room)
-
         if room_form.is_valid():
-            room_form.instance.title = room.title
             room_form.save()
 
         form = ConversationForm(request.POST)
-
         if form.is_valid():
             form.instance.creator = request.user
             form.instance.slug = form.instance.title.replace(' ', '-')
@@ -122,7 +119,6 @@ class RoomView(View):
             comment_queryset = Comments.objects.all()
 
             comment_form = CommentForm(request.POST)
-
             if comment_form.is_valid():
                 new_comment = comment_form.save(commit=False)
                 new_comment.room = room
@@ -162,7 +158,6 @@ class RoomView(View):
         room_form = RoomForm(request.POST, instance=room)
 
         if room_form.is_valid():
-            room_form.instance.title = room.title
             room_form.save()
 
         form = ConversationForm(request.POST)
