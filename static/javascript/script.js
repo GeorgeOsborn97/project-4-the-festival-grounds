@@ -1,4 +1,4 @@
-/*$('#room-search').click(function(event){
+$('#room-search').click(function(){
     $('#card-row > div').each(function () {
          if( $(this).attr("id").indexOf(document.getElementById("room-search-input").value) == -1){
             console.log($(this).attr("id"))
@@ -6,7 +6,7 @@
          }
     })
     console.log(document.getElementById("room-search-input").value)
-})*/
+})
 
 var alertNotUserPlaceholder = document.getElementById('liveAlertNotUser')
 var NotUseralert = (message, type) => {

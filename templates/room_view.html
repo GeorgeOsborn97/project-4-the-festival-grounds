@@ -7,33 +7,33 @@
         <div class="row gy-5">
             {% if user == room.creator %}
             <div class="col-3">
-                <button type="button" class="btn btn-dark" data-bs-toggle="offcanvas" data-bs-target="#convoOffcanvas" aria-controls="offcanvas">Start Conversation</button>
+                <button type="button" class="button-style" data-bs-toggle="offcanvas" data-bs-target="#convoOffcanvas" aria-controls="offcanvas">Start Conversation</button>
             </div>
             <div class="col-3">
-                <button type="button" class="btn btn-dark" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" aria-controls="offcanvas">Edit Room</button>
+                <button type="button" class="button-style" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" aria-controls="offcanvas"  style="background-color: #739deb">Edit Room</button>
             </div>
             <div class="col-3">
                 <a href="{% url 'account_logout' %}">
-                    <button type="button" class="btn btn-dark">Logout</button>
+                    <button type="button" class="button-style">Logout</button>
                 </a>
             </div>
             <div class="col-3">
                 <a href="{% url 'your_home' %}">
-                    <button type="button" class="btn btn-dark">Your Rooms</button>
+                    <button type="button" class="button-style">Your Rooms</button>
                 </a>
             </div>
             {% else %}
             <div class="col-4">
-                <button type="button" class="btn btn-dark" data-bs-toggle="offcanvas" data-bs-target="#convoOffcanvas" aria-controls="offcanvas">Start Conversation</button>
+                <button type="button" class="button-style" data-bs-toggle="offcanvas" data-bs-target="#convoOffcanvas" aria-controls="offcanvas">Start Conversation</button>
             </div>
             <div class="col-4">
                 <a href="{% url 'account_logout' %}">
-                    <button type="button" class="btn btn-dark">Logout</button>
+                    <button type="button" class="button-style">Logout</button>
                 </a>
             </div>
             <div class="col-4">
                 <a href="{% url 'your_home' %}">
-                    <button type="button" class="btn btn-dark">Your Rooms</button>
+                    <button type="button" class="button-style">Your Rooms</button>
                 </a>
             </div>
             {% endif %}
@@ -48,7 +48,7 @@
 
 <div id="card-container" class="container text-center">
     <div id="card-row" class="row row-col-3 justify-content-md-center">
-        <h1>{{ room.title }}</h1>
+        <h1 id="page-title">{{ room.title }}</h1>
     </div>
 </div>
 <div id="card-container" class="container text-center">
@@ -63,7 +63,7 @@
                     </button>
                     {% if  user == room.creator or user == conversation.creator %}
                     <a href="{% url 'edit' conversation.id %}">
-                        <button type="button" name="edit" class="btn btn-dark">Edit Conversation</button>
+                        <button type="button" name="edit" class="button-style"  style="background-color: #739deb">Edit Conversation</button>
                     </a> 
                     {% endif %}
                 </h2>
@@ -78,11 +78,11 @@
                                 <p><strong>{{ comment.name }} said: </strong>{{ comment.body | safe }}</p>
                                 {% if  user == comment.creator or user == room.creator %}
                                 <a href="/delete_comment/{{ comment.id }}">
-                                    <button type="button" class="btn btn-danger" id="liveAlertBtn">Delete
+                                    <button type="button" class="button-style" id="liveAlertBtn" style="background-color: #e61b1b">Delete
                                         Comment</button>
                                 </a>
                                 <a href="{% url 'edit_comment' comment.id %}">
-                                    <button type="button" name="edit" class="btn btn-dark">Edit Comment</button>
+                                    <button type="button" name="edit" class="button-style"  style="background-color: #739deb">Edit Comment</button>
                                 </a>
                                 {% endif %}
                             </div>
@@ -90,7 +90,7 @@
                         {% endif %}
                         {% endfor %}
                         <div id="{{  conversation.slug  }}-form">
-                            <button id="{{ conversation.slug }}-btnid" class="btn btn-dark" type="button" data-bs-toggle="offcanvas" data-bs-target="#{{ conversation.slug }}Offcanvas" aria-controls="offcanvas">Add a comment</button>
+                            <button id="{{ conversation.slug }}-btnid" class="button-style" type="button" data-bs-toggle="offcanvas" data-bs-target="#{{ conversation.slug }}Offcanvas" aria-controls="offcanvas">Add a comment</button>
                         </div>
                     </div>
                 </div>

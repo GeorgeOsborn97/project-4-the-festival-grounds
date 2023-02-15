@@ -1,5 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 body{
   overflow: scroll;
+}
+
+#top-container{
+  border-color: #00000000;
+  background-color: rgba(255, 0, 0, 0);
+  background-position: center;
+  background-image: url('https://res.cloudinary.com/duijsqmts/image/upload/ar_16:9,c_crop,e_sharpen,g_auto,h_151,w_800,x_0,y_0/v1676458845/crowds-enjoying-themselves-outdoor-music-festival-having-fun-39235366_xiq8uc.jpg');
+  background-repeat: no-repeat;
 }
 
 .title {
@@ -15,7 +24,7 @@ body{
 }
 
 #break-line {
-  overflow: visible; /* For IE */
+  overflow: visible;
   padding: 0;
   border: none;
   border-top: medium double black;
@@ -33,15 +42,53 @@ body{
   background: white;
 }
 
+#page-title{
+  font-family: 'Anton', sans-serif;
+}
+
 .card {
+    background-color: #00000000;
     margin-right: 2%;
     margin-bottom: 2%;
+}
+.card:before, .card:after {
+	content: '';
+	position: absolute;
+	left: -2px;
+	top: -2px;
+	background: linear-gradient(45deg, #e95670, #b34270, #713770,#432f70, #4f4f4f, #72277c, 
+		#5f093d, #b21368,#d67ba8, #727272);
+	background-size: 400%;
+	width: calc(100% + 4px);
+	height: calc(100% + 4px);
+	z-index: -1;
+  filter: blur(50px);
+	animation: steam 20s linear infinite;
+}
+
+@keyframes steam {
+	0% {
+		background-position: 0 0;
+	}
+	50% {
+		background-position: 400% 0;
+	}
+	100% {
+		background-position: 0 0;
+	}
+}
+
+.card:after {
+	filter: blur(50px);
 }
 
 .img-holder {
     padding-top:8%
 }
 
+.card-title {
+  font-family: 'Anton', sans-serif;
+}
 
 .card-desc {
   display: block;
@@ -60,6 +107,39 @@ body{
   opacity: 1;
   height: 100%;
 }
+
+.card-style {
+  background-color: #d978e6;
+  border: 0 solid #E5E7EB;
+  box-sizing: border-box;
+  color: #222222;
+  display: flex;
+  font-family: 'Anton', sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  justify-content: center;
+  line-height: 1.75rem;
+  padding: .75rem 1.65rem;
+  position: relative;
+  text-align: center;
+  text-decoration: none #000000 solid;
+
+  width: 100%;
+  max-width: 460px;
+  position: relative;
+  cursor: pointer;
+  transform: rotate(-2deg);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  border: 1px solid #000000;
+  bottom: 4px;
+  left: 4px;
+  width: calc(100% - 1px);
+  height: calc(100% - 1px);
+}
+
+
 
 .pageination-holder{
   margin-bottom: 100px;
@@ -118,4 +198,57 @@ text-align: center;
   left: 32px;
   bottom: -24px;
   background: #fff;
+}
+
+.button-style {
+  background-color: #d978e6;
+  border: 0 solid #E5E7EB;
+  box-sizing: border-box;
+  color: #222222;
+  display: flex;
+  font-family: 'Anton', sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  justify-content: center;
+  line-height: 1.75rem;
+  padding: .75rem 1.65rem;
+  position: relative;
+  text-align: center;
+  text-decoration: none #000000 solid;
+
+  width: 100%;
+  max-width: 460px;
+  position: relative;
+  cursor: pointer;
+  transform: rotate(-2deg);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-style:focus {
+  outline: 0;
+}
+
+.button-style:after {
+  content: '';
+  text-decoration: none #000000 solid;
+  position: absolute;
+  border: 1px solid #000000;
+  bottom: 4px;
+  left: 4px;
+  width: calc(100% - 1px);
+  height: calc(100% - 1px);
+}
+
+.button-style:hover:after {
+  bottom: 2px;
+  left: 2px;
+}
+
+@media (min-width: 768px) {
+  .button-style {
+    padding: .75rem 3rem;
+    font-size: 1.25rem;
+  }
 }

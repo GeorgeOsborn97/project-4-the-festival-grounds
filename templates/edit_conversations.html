@@ -6,9 +6,9 @@
     {% csrf_token %}
     <div>
         <p>
-            <button type="submit">Edit {{ conversation.title }}</button>
+            <button class="button-style" type="submit" style="background-color: #739deb">Edit {{ conversation.title }}</button>
         </p>
     </div>
 </form>
-<a href="/delete_conversation/{{ conversation.id }}"><button class="btn btn-danger">delete conversation</button></a>,
+<a href="/delete_conversation/{{ conversation.id }}"><button class="button-style" style="background-color: #e61b1b">delete conversation</button></a>,
 {% endblock %}

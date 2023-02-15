@@ -8,32 +8,32 @@
         <div class="row gy-5">
             {% if user.is_authenticated %}
             <div class="col-4">
-                <button type="button" class="btn btn-dark" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">Create</button>
+                <button type="button" class="button-style" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">Create</button>
             </div>
             <div class="col-4">
                 <a href="{% url 'account_logout' %}">
-                    <button type="button" class="btn btn-dark">Logout</button>
+                    <button type="button" class="button-style">Logout</button>
                 </a>
             </div>
             <div class="col-4">
                 <a href="{% url 'home' %}">
-                    <button type="button" class="btn btn-dark">Home</button>
+                    <button type="button" class="button-style">Home</button>
                 </a>
             </div>
             {% else %}
             <div class="col-4">
                 <a href="{% url 'account_signup' %}">
-                    <button type="button" class="btn btn-dark">Register</button>
+                    <button type="button" class="button-style">Register</button>
                 </a>
             </div>
             <div class="col-4">
                 <a href="{% url 'account_login' %}">
-                    <button type="button" class="btn btn-dark">login</button>
+                    <button type="button" class="button-style">login</button>
                 </a>
             </div>
             <div class="col-4">
                 <a href="#">
-                    <button type="button" class="btn btn-dark">About</button>
+                    <button type="button" class="button-style">About</button>
                 </a>
             </div>
             {% endif %}
@@ -41,7 +41,7 @@
     </nav>
     {% block header %}
     <div class="col" style="margin-top:3%">
-        <h1>Your Rooms</h1>
+        <h1 id="page-title">Your Rooms</h1>
     </div>
 {% endblock %}
 </div>
@@ -80,11 +80,11 @@
                         <p class="card-text">Created by: {{ room.creator | safe }}</p>
                         <p class="card-text">{{ room.number_of_members }} Members</p>
                         <a href="{% url 'in_room' room.slug %}" class="">
-                            <button type="submit" value="Join" name="join" class="btn btn-dark">Enter</button>
+                            <button type="submit" value="Join" name="join" class="button-style">Enter</button>
                         </a>
                         {% if user == room.creator %}
                         <a href="#" class="">
-                            <button type="submit" value="delete" name="delete" class="btn btn-dark">Delete</button>
+                            <button type="submit" value="delete" name="delete" class="button-style" style="background-color: #e61b1b">Delete</button>
                         </a>
                         {% endif %}
                     </div>
