@@ -38,7 +38,7 @@ $('room_view').ready(function () {
     alertPlaceholder.append(wrapper)
   }
 
-  const alertTrigger = document.getElementById('liveAlertBtn')
+  const alertTrigger = document.getElementById('delRoomBtn')
   if (alertTrigger) {
     alertTrigger.addEventListener('click', () => {
       alert('You are about to Delete this room, are you sure?', 'danger')

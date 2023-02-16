@@ -55,9 +55,9 @@
     <div id="card-row" class="row row-col-3 justify-content-md-center">
         <div class="accordion" id="accordionExample" style="margin-bottom: 100px;">
             {% for conversation in conversation_list %}
-            <div class="accordion-item">
+            <div class="accordion-item" style="border-color: #00000000;">
                 <h2 class="accordion-header" id="headingOne">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                    <button class="button-style" type="button" data-bs-toggle="collapse"
                         data-bs-target="#collapseOne-{{ conversation.slug }}" aria-expanded="true" aria-controls="collapseOne-{{ conversation.slug }}">
                         {{ conversation.title }} started by: {{ conversation.creator }}
                     </button>
@@ -69,8 +69,11 @@
                 </h2>
                 <div id="collapseOne-{{  conversation.slug  }}" class="accordion-collapse collapse show container"
                     aria-labelledby="headingOne">
-                    <div class="accordion-body container">
-                        <h4>{{ conversation.content | safe }}</h4>
+                    <div class="accordion-body container" style="max-height: 500px; overflow-y: scroll;">
+                        <div class="conversation-start blurred">
+                            <h4>{{ conversation.content | safe }}</h4>
+                        </div>
+                        <div class="pointer"></div>
                         {% for comment in comments %}
                         {% if comment.conversation == conversation %}
                         <div class="comment">
@@ -110,9 +113,9 @@
                 });
             </script>
             {% empty %}
-            <div class="accordion-item">
+            <div class="accordion-item" style="border-color: #00000000;">
                 <h2 class="accordion-header" id="headingOne">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                    <button class="button-style" type="button" data-bs-toggle="collapse"
                         data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                         No conversations started
                     </button>
@@ -120,7 +123,6 @@
                 <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
                     data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        <p>No comments</p>
                     </div>
                 </div>
             </div>
@@ -149,7 +151,7 @@
         <hr id="break-line">
         <div>
             {% if user == room.creator %}
-            <button type="button" class="btn btn-danger" id="liveAlertBtn">Delete Room</button>
+            <button type="button" class="btn btn-danger" id="delRoomBtn">Delete Room</button>
             {% endif %}
         </div>
     </div>
