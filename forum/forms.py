@@ -38,7 +38,6 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comments
         fields = [
-            'name',
             'body',
             'conversation'
         ]

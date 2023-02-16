@@ -116,10 +116,11 @@ class RoomView(View):
         convo_queryset = Conversations.objects.filter(room=room)
 
         if convo_queryset.exists():
-            comment_queryset = Comments.objects.all()
+            comment_queryset = Comments.objects.all().order_by('created_on')
 
             comment_form = CommentForm(request.POST)
             if comment_form.is_valid():
+                comment_form.instance.name = request.user
                 new_comment = comment_form.save(commit=False)
                 new_comment.room = room
                 new_comment.save()
@@ -174,11 +175,12 @@ class RoomView(View):
         convo_queryset = Conversations.objects.filter(room=room)
 
         if convo_queryset.exists():
-            comment_queryset = Comments.objects.all()
+            comment_queryset = Comments.objects.all().order_by('created_on')
 
             comment_form = CommentForm(request.POST)
 
             if comment_form.is_valid():
+                comment_form.instance.name = request.user
                 new_comment = comment_form.save(commit=False)
                 new_comment.room = room
                 new_comment.save()
@@ -257,7 +259,7 @@ class edit_comment(View):
         comment_form = EditCommentForm(request.GET, instance=comment)
 
         if comment_form.is_valid():
-            comment_form.save()
+            comment_form.save(commit=False)
 
         context = {
             'comment': comment,

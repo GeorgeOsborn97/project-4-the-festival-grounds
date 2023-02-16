@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
 {% block cards %}
+<div id="liveAlertComment"></div>
 <form method="POST">
     {{ form | crispy }}
     {% csrf_token %}
@@ -10,4 +11,8 @@
         </p>
     </div>
 </form>
+<button type="button" class="button-style" id="delcommentBtn" style="background-color: #e61b1b">Delete Comment</button>
+<h6 id="conversationId" hidden>{{ comment.conversation }}</h6>
+<h6 id="roomId" hidden>{{ comment.room }}</h6>
+<h6 id="commentId" hidden>{{ comment.id }}</h6>
 {% endblock %}

@@ -53,7 +53,7 @@
     <div id="liveAlertComment"></div>
 </div>
 <div id="card-container" class="container text-center">
-    <div id="card-row" class="row row-col-3 justify-content-md-center">
+    <div id="card-row" class="row justify-content-md-center">
         <div class="accordion" id="accordionExample" style="margin-bottom: 100px;">
             {% for conversation in conversation_list %}
             <div class="accordion-item" style="border-color: #00000000;">
@@ -62,7 +62,7 @@
                         data-bs-target="#collapseOne-{{ conversation.slug }}" aria-expanded="true" aria-controls="collapseOne-{{ conversation.slug }}">
                         {{ conversation.title }} started by: {{ conversation.creator }}
                     </button>
-                    {% if  user == room.creator or user == conversation.creator %}
+                    {% if user == room.creator or user == conversation.creator %}
                     <a href="{% url 'edit' conversation.id %}">
                         <button type="button" name="edit" class="button-style"  style="background-color: #739deb">Edit Conversation</button>
                     </a> 
@@ -80,8 +80,7 @@
                         <div class="comment">
                             <div class="bubble bubble-bottom-left col-4">
                                 <p><strong>{{ comment.name }} said: </strong>{{ comment.body | safe }}</p>
-                                {% if  user == comment.creator or user == room.creator %}
-                                    <button type="button" class="button-style" id="delcommentBtn" style="background-color: #e61b1b">Delete Comment</button>
+                                {% if  user == comment.name or user == room.creator %}
                                 <a href="{% url 'edit_comment' comment.id %}">
                                     <button type="button" name="edit" class="button-style"  style="background-color: #739deb">Edit Comment</button>
                                 </a>
@@ -185,7 +184,7 @@
             {% csrf_token %}
             <div>
                 <p>
-                    <button class="button-style" type="submit">add comment to {{ conversation.title }}</button>
+                    <button id="add-comment" class="button-style" type="submit">add comment to {{ conversation.title }}</button>
                 </p>
             </div>
         </form>

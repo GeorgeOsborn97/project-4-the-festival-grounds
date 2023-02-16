@@ -27,7 +27,11 @@
             <a href="{% url 'home' %}"><img class="title" src="https://res.cloudinary.com/duijsqmts/image/upload/v1676389802/the-festival-ground-low-resolution-logo-color-on-transparent-background_n0gdr3.png"></a>
           </div>
           <div class="col">
+            {% if user.is_authenticated %}
+            <p class="slogan">Logged in as: {{ user.username }}</p>
+            {% else %}
             <h3 class="slogan">Slogan</h3>
+            {% endif %}
           </div>
         </div>
     </div>
@@ -93,7 +97,7 @@
                 {% csrf_token %}
                 <div>
                     <p>
-                        <button type="submit">add Room</button>
+                        <button class="button-style" type="submit">add Room</button>
                     </p>
                 </div>
             </form>

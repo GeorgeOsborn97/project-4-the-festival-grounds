@@ -54,7 +54,7 @@
         {% for room in page_obj %}
         {% if user in room.members.all %}
             <div data-role="test" id="card-{{ room.slug }}" class="card col-md-3" style="max-width: 540px;">
-                <div class="row row-col-2">
+                <div class="row row-col-2  card-style">
                     <div class="col-md-6 img-holder">
                         {% if 'placeholder' in room.cover_image.url %}
                         <img src="https://res.cloudinary.com/duijsqmts/image/upload/v1674143855/51JPnYISlYL._AC_SY580__jt2bvz.jpg"

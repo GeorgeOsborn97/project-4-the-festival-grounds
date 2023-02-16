@@ -225,6 +225,7 @@ text-align: center;
 }
 
 .button-style {
+  margin-top: 5px;
   background-color: #d978e6;
   border: 0 solid #E5E7EB;
   box-sizing: border-box;
@@ -239,7 +240,6 @@ text-align: center;
   position: relative;
   text-align: center;
   text-decoration: none #000000 solid;
-
   width: 100%;
   max-width: 460px;
   position: relative;
