@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
 {% block cards %}
+<div id="liveAlertPlaceholder"></div>
 <form method="POST">
     {{ form | crispy }}
     {% csrf_token %}
@@ -10,5 +11,8 @@
         </p>
     </div>
 </form>
-<a href="/delete_conversation/{{ conversation.id }}"><button class="button-style" style="background-color: #e61b1b">delete conversation</button></a>,
+<button id="delconversationBtn" class="button-style" style="background-color: #e61b1b">delete conversation</button>,
+<h6 id="conversationId" hidden>{{ conversation.id }}</h6>
+<h6 id="roomId" hidden>{{ conversation.room }}</h6>
+<h6 id="commentId" hidden>comment</h6>
 {% endblock %}

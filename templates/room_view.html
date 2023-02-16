@@ -50,6 +50,7 @@
     <div id="card-row" class="row row-col-3 justify-content-md-center">
         <h1 id="page-title">{{ room.title }}</h1>
     </div>
+    <div id="liveAlertComment"></div>
 </div>
 <div id="card-container" class="container text-center">
     <div id="card-row" class="row row-col-3 justify-content-md-center">
@@ -80,10 +81,7 @@
                             <div class="bubble bubble-bottom-left col-4">
                                 <p><strong>{{ comment.name }} said: </strong>{{ comment.body | safe }}</p>
                                 {% if  user == comment.creator or user == room.creator %}
-                                <a href="/delete_comment/{{ comment.id }}">
-                                    <button type="button" class="button-style" id="liveAlertBtn" style="background-color: #e61b1b">Delete
-                                        Comment</button>
-                                </a>
+                                    <button type="button" class="button-style" id="delcommentBtn" style="background-color: #e61b1b">Delete Comment</button>
                                 <a href="{% url 'edit_comment' comment.id %}">
                                     <button type="button" name="edit" class="button-style"  style="background-color: #739deb">Edit Comment</button>
                                 </a>
@@ -130,13 +128,15 @@
         </div>
     </div>
 </div>
+<h6 id="commentId" hidden>comment.id</h6>
+<h6 id="conversationId" hidden>conversation id</h6>
 {% endblock %}
 
 {% block canvas %}
 <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
     <div class="offcanvas-header">
       <h5 class="offcanvas-title" id="offcanvasLabel">Edit: {{ room.title }}</h5>
-      <h6 id="roomId">{{ room.id }}</h6>
+      <h6 id="roomId" hidden>{{ room.id }}</h6>
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
@@ -145,13 +145,13 @@
             {{ room_form | crispy }}
             {% csrf_token %}
             <div>
-                <button type="submit" class="btn btn-dark">edit Room</button>
+                <button type="submit" class="button-style"  style="background-color: #739deb">Edit Room</button>
             </div>
         </form>
         <hr id="break-line">
         <div>
             {% if user == room.creator %}
-            <button type="button" class="btn btn-danger" id="delRoomBtn">Delete Room</button>
+            <button type="button" class="button-style" style="background-color: #e61b1b" id="delRoomBtn">Delete Room</button>
             {% endif %}
         </div>
     </div>
@@ -185,7 +185,7 @@
             {% csrf_token %}
             <div>
                 <p>
-                    <button type="submit">add comment to {{ conversation.title }}</button>
+                    <button class="button-style" type="submit">add comment to {{ conversation.title }}</button>
                 </p>
             </div>
         </form>

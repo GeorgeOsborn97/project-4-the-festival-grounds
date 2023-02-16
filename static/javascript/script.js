@@ -23,25 +23,42 @@ var NotUseralert = (message, type) => {
 
 $('room_view').ready(function () {
   const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
+  const alertComment = document.getElementById('liveAlertComment')
   const roomId = document.getElementById('roomId').innerHTML
+  const conversationId = document.getElementById('conversationId').innerHTML
+  const commentId = document.getElementById('commentId').innerHTML
   console.log(roomId)
-  const alert = (message, type) => {
+  const alert = (message, type, location, id, post) => {
     const wrapper = document.createElement('div')
     wrapper.innerHTML = [
       `<div class="alert alert-${type} alert-dismissible" role="alert">`,
       `   <div>${message}</div>`,
       '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
-      ` <a href="/delete_room/${roomId}"><button class="btn btn-danger">delete Room</button></a>`,
+      ` <a href="/delete_${location}/${id}"><button class="button-style" style="background-color: #e61b1b">delete ${location}</button></a>`,
       '</div>'
     ].join('')
 
-    alertPlaceholder.append(wrapper)
+    post.append(wrapper)
   }
 
-  const alertTrigger = document.getElementById('delRoomBtn')
-  if (alertTrigger) {
-    alertTrigger.addEventListener('click', () => {
-      alert('You are about to Delete this room, are you sure?', 'danger')
+  const roomAlertTrigger = document.getElementById('delRoomBtn')
+  if (roomAlertTrigger) {
+    roomAlertTrigger.addEventListener('click', () => {
+      alert('You are about to Delete this room, are you sure?', 'danger', 'room', roomId, alertPlaceholder)
+    })
+    console.log('hello')
+  }
+  const conversationAlertTrigger = document.getElementById('delconversationBtn')
+  if (conversationAlertTrigger) {
+    conversationAlertTrigger.addEventListener('click', () => {
+      alert('You are about to Delete this conversation, are you sure?', 'danger', 'conversation', conversationId, alertPlaceholder)
+    })
+    console.log('hello')
+  }
+  const commentAlertTrigger = document.getElementById('delcommentBtn')
+  if (commentAlertTrigger) {
+    commentAlertTrigger.addEventListener('click', () => {
+      alert('You are about to Delete this comment, are you sure?', 'danger', 'comment', commentId, alertComment)
     })
     console.log('hello')
   }
