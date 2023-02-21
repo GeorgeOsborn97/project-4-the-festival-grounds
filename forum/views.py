@@ -99,9 +99,7 @@ class RoomView(View):
         if request.user not in room.members.all():
             room.members.add(request.user)
         
-        room_form = RoomForm(request.POST, instance=room)
-        if room_form.is_valid():
-            room_form.save()
+        room_form = RoomForm(instance=room)
 
         form = ConversationForm(request.POST)
         if form.is_valid():
@@ -218,10 +216,7 @@ class edit_conversation(View):
         convo = get_object_or_404(conversation_queryset, id=conversation_id)
         comment_queryset = Comments.objects.all()
 
-        convo_form = ConversationForm(request.POST, instance=convo)
-
-        if convo_form.is_valid():
-            convo_form.save()
+        convo_form = ConversationForm(instance=convo)
 
         context = {
             'conversations': conversation_queryset,
@@ -256,10 +251,7 @@ class edit_comment(View):
         comment_queryset = Comments.objects.all()
         comment = get_object_or_404(comment_queryset, id=comment_id)
 
-        comment_form = EditCommentForm(request.GET, instance=comment)
-
-        if comment_form.is_valid():
-            comment_form.save(commit=False)
+        comment_form = EditCommentForm(instance=comment)
 
         context = {
             'comment': comment,
