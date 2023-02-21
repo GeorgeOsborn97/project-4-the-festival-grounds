@@ -71,20 +71,22 @@
                 <div id="collapseOne-{{  conversation.slug  }}" class="accordion-collapse collapse show container"
                     aria-labelledby="headingOne">
                     <div class="accordion-body container" style="max-height: 500px; overflow-y: scroll;">
-                        <div class="conversation-start blurred">
+                        <div class="speech-bubble blurred" style="background: #739deb;">
                             <h4>{{ conversation.content | safe }}</h4>
                         </div>
-                        <div class="pointer"></div>
                         {% for comment in comments %}
                         {% if comment.conversation == conversation %}
                         <div class="comment">
-                            <div class="bubble bubble-bottom-left col-4">
-                                <p><strong>{{ comment.name }} said: </strong>{{ comment.body | safe }}</p>
-                                {% if  user == comment.name or user == room.creator %}
-                                <a href="{% url 'edit_comment' comment.id %}">
-                                    <button type="button" name="edit" class="button-style"  style="background-color: #739deb">Edit Comment</button>
-                                </a>
-                                {% endif %}
+                            <div class="row justify-content-center">
+                                <div class="speech-bubble col-6">
+                                    <p><strong>{{ comment.name }} said: </strong>{{ comment.body | safe }}</p>
+                                    {% if  user == comment.name or user == room.creator %}
+                                    <a href="{% url 'edit_comment' comment.id %}">
+                                        <button type="button" name="edit" class="button-style"
+                                            style="background-color: #739deb; margin-left: 30px;">Edit Comment</button>
+                                    </a>
+                                    {% endif %}
+                                </div>
                             </div>
                         </div>
                         {% endif %}
@@ -100,10 +102,11 @@
                     console.log('{{ conversation.title }}');
                     $(function() {
                         $("#id_conversation option").each(function(i){
-                            console.log($(this).text() + " : " + $(this).val());
                             if($(this).text() == '{{ conversation.title }}'){
-                                console.log('found it: {{ conversation.title }}')
                                 $(this).attr('selected','selected')
+                            }
+                            else{
+                                $(this).remove()
                             }
                         });
                     });
