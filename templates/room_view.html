@@ -80,7 +80,7 @@
                             <div class="row justify-content-center">
                                 <div class="speech-bubble col-6">
                                     <p><strong>{{ comment.name }} said: </strong>{{ comment.body | safe }}</p>
-                                    {% if  user == comment.name or user == room.creator %}
+                                    {% if  user.username == comment.name or user == room.creator %}
                                     <a href="{% url 'edit_comment' comment.id %}">
                                         <button type="button" name="edit" class="button-style"
                                             style="background-color: #739deb; margin-left: 30px;">Edit Comment</button>
