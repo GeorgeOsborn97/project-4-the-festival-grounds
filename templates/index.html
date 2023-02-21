@@ -37,11 +37,11 @@
                         <h5 class="card-title">{{  room.title  }}</h5>
                         <p class="card-text">{{ room.description | safe }}</p>
                         <p class="card-text">Created by: {{ room.creator | safe }}</p>
-                        <p class="card-text">{{ room.number_of_members }} Members</p>
+                        <p class="card-text member_count">{{ room.number_of_members }} Members</p>
                             {% if room.status == 0 %}
                                 {% if user.is_authenticated %}
                                 <a href="{% url 'in_room' room.slug %}" class="">
-                                    {% if user in room.members.all %}
+                                    {% if user in room.members.all or user == room.creator %}
                                     <button type="submit" value="Join" name="join" class="button-style">Enter</button>
                                     {% else %}
                                     <button type="submit" value="Join" name="join" class="button-style">Join</button>

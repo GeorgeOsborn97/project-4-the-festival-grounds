@@ -52,7 +52,7 @@
 <div id="card-container" class="container text-center">
     <div id="card-row" class="row row-col-3 justify-content-md-center">
         {% for room in page_obj %}
-        {% if user in room.members.all %}
+        {% if user in room.members.all or user == room.creator %}
             <div data-role="test" id="card-{{ room.slug }}" class="card col-md-3" style="max-width: 540px;">
                 <div class="row row-col-2  card-style">
                     <div class="col-md-6 img-holder">
@@ -82,11 +82,6 @@
                         <a href="{% url 'in_room' room.slug %}" class="">
                             <button type="submit" value="Join" name="join" class="button-style">Enter</button>
                         </a>
-                        {% if user == room.creator %}
-                        <a href="#" class="">
-                            <button type="submit" value="delete" name="delete" class="button-style" style="background-color: #e61b1b">Delete</button>
-                        </a>
-                        {% endif %}
                     </div>
                 </div>
             </div>

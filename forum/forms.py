@@ -7,7 +7,6 @@ from crispy_forms.layout import Layout, HTML, Fieldset
 class RoomForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(RoomForm, self).__init__(*args, **kwargs)
-        self.fields['title'].initial = 'a title'
 
     class Meta:
         model = Rooms
@@ -18,7 +17,24 @@ class RoomForm(forms.ModelForm):
             'tags',
             'cover_image',
         ]
-    
+
+
+class EditRoomForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(EditRoomForm, self).__init__(*args, **kwargs)
+        self.fields['members'].required = False
+
+    class Meta:
+        model = Rooms
+        fields = [
+            'title',
+            'description',
+            'status',
+            'tags',
+            'cover_image',
+            'members'
+        ]
+
 
 class ConversationForm(forms.ModelForm):
     class Meta:

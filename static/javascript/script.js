@@ -64,20 +64,11 @@ $('room_view').ready(function () {
   }
 })
 
-/*$('room_view').ready(function () {
-  var CommentDiv = $('div.comment');
-  var length = CommentDiv.length;
-  for (var x = 0; x < length; x++) {
-    console.log(CommentDiv.eq(x).prop('class'))
-    if (CommentDiv.eq(x).hasClass('comment-done') === true) {
-      console.log('done')
-    } else {
-      CommentDiv.eq(x).prop('id', x);
-      if (x % 2 === 0) {
-        CommentDiv.eq(x).prop('class', 'comment-done row justify-content-start');
-      } else {
-        CommentDiv.eq(x).prop('class', 'comment-done row justify-content-end');
-      }
+$('room_view').ready(function(){
+  $('.form-check-input').each(function () {
+    if ($(this).val() ==  $('#user-id-num').text()){
+        $(this).attr("checked", "checked")
+        $(this).attr("disabled", "disabled")
     }
-  }
-})*/
+  })
+})

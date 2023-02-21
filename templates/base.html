@@ -29,6 +29,7 @@
           <div class="col">
             {% if user.is_authenticated %}
             <p class="slogan">Logged in as: {{ user.username }}</p>
+            <p id="user-id-num" class="slogan">{{ user.id }}</p>
             {% else %}
             <h3 class="slogan">Slogan</h3>
             {% endif %}

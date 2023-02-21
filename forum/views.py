@@ -4,7 +4,7 @@ from django.views import generic, View
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
 from .models import Rooms, Conversations, Comments
-from .forms import RoomForm, ConversationForm, CommentForm, EditCommentForm
+from .forms import RoomForm, EditRoomForm, ConversationForm, CommentForm, EditCommentForm, forms
 
 # Create your views here.
 
@@ -99,7 +99,11 @@ class RoomView(View):
         if request.user not in room.members.all():
             room.members.add(request.user)
         
-        room_form = RoomForm(instance=room)
+        room_form = EditRoomForm(instance=room)
+        room_form.fields['members'] = forms.ModelMultipleChoiceField(
+            room.members,
+            widget=forms.CheckboxSelectMultiple
+        )
 
         form = ConversationForm(request.POST)
         if form.is_valid():
@@ -154,10 +158,15 @@ class RoomView(View):
         room = get_object_or_404(room_queryset, slug=slug)
         conversation = room.conversations.order_by('created_on')
 
-        room_form = RoomForm(request.POST, instance=room)
+        room_form = EditRoomForm(request.POST, instance=room)
 
         if room_form.is_valid():
             room_form.save()
+        
+        room_form.fields['members'] = forms.ModelMultipleChoiceField(
+            room.members,
+            widget=forms.CheckboxSelectMultiple
+        )
 
         form = ConversationForm(request.POST)
 
