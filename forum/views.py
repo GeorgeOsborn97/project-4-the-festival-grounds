@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.core.paginator import Paginator
 from django.views import generic, View
 from django.http import HttpResponseRedirect
+from django.contrib import messages
 from django.contrib.auth.models import User
 from .models import Rooms, Conversations, Comments
 from .forms import RoomForm, EditRoomForm, ConversationForm, CommentForm, EditCommentForm, forms
@@ -38,6 +39,11 @@ class RoomList(View):
             room = form.save(commit=False)
             
             room.save()
+            messages.add_message(
+                request,
+                messages.SUCCESS,
+                'Your room has successfully been created!'
+            )
             form.instance.members.add(request.user)
         else:
             form = RoomForm()
@@ -79,6 +85,12 @@ class YourRoomList(View):
             room = form.save(commit=False)
             
             room.save()
+            messages.add_message(
+                request,
+                messages.SUCCESS,
+                'Your room has successfully been created!'
+            )
+            form.instance.members.add(request.user)
             form.instance.members.add(request.user)
         else:
             form = RoomForm()
@@ -162,6 +174,11 @@ class RoomView(View):
 
         if room_form.is_valid():
             room_form.save()
+            messages.add_message(
+                request,
+                messages.SUCCESS,
+                'your room has successfully been edited!'
+            )
         
         room_form.fields['members'] = forms.ModelMultipleChoiceField(
             room.members,
@@ -176,6 +193,11 @@ class RoomView(View):
             new_convo = form.save(commit=False)
             new_convo.room = room
             new_convo.save()
+            messages.add_message(
+                request,
+                messages.SUCCESS,
+                'your conversation has successfully been started!'
+            )
         else:
             form = ConversationForm()
 
@@ -191,6 +213,11 @@ class RoomView(View):
                 new_comment = comment_form.save(commit=False)
                 new_comment.room = room
                 new_comment.save()
+                messages.add_message(
+                    request,
+                    messages.SUCCESS,
+                    'your comment has successfully been added!'
+                )
             else:
                 comment_form = CommentForm()
 
@@ -245,6 +272,11 @@ class edit_conversation(View):
 
         if convo_form.is_valid():
             convo_form.save()
+            messages.add_message(
+                request,
+                messages.SUCCESS,
+                'your conversation has successfully been edited!'
+            )
 
         context = {
             'conversations': conversation_queryset,
@@ -277,6 +309,11 @@ class edit_comment(View):
 
         if comment_form.is_valid():
             comment_form.save()
+            messages.add_message(
+                request,
+                messages.SUCCESS,
+                'your comment has successfully been edited!'
+            )
 
         context = {
             'comment': comment,
@@ -289,6 +326,11 @@ class edit_comment(View):
 def delete_room(request, room_id):
     room = Rooms.objects.get(id=room_id)
     room.delete()
+    messages.add_message(
+                request,
+                messages.SUCCESS,
+                'your room has successfully been deleted!'
+            )
     return redirect('home')
 
 
@@ -296,6 +338,11 @@ def delete_conversation(request, conversation_id):
     conversation = Conversations.objects.get(id=conversation_id)
     slug = conversation.room.slug
     conversation.delete()
+    messages.add_message(
+                request,
+                messages.SUCCESS,
+                'your conversation has successfully been deleted!'
+            )
     return HttpResponseRedirect(reverse('in_room', args=[slug]))
 
 
@@ -303,4 +350,9 @@ def delete_comment(request, comment_id):
     comment = Comments.objects.get(id=comment_id)
     slug = comment.room.slug
     comment.delete()
+    messages.add_message(
+                request,
+                messages.SUCCESS,
+                'your comment has successfully been deleted!'
+            )
     return HttpResponseRedirect(reverse('in_room', args=[slug]))
