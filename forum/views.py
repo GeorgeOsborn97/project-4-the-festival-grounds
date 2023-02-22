@@ -4,7 +4,7 @@ from django.views import generic, View
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth.models import User
-from .models import Rooms, Conversations, Comments
+from .models import Rooms, Conversations, Comments, Tags
 from .forms import RoomForm, EditRoomForm, ConversationForm, CommentForm, EditCommentForm, forms
 
 # Create your views here.
@@ -14,6 +14,7 @@ class RoomList(View):
 
     def get(self, request, *args, **kwargs):
         room_list = Rooms.objects.order_by('created_on')
+        tag_list = Tags.objects.all()
         paginator = Paginator(room_list, 5)
 
         page_number = request.GET.get('page')
@@ -22,12 +23,14 @@ class RoomList(View):
         context = {
             'rooms_list': room_list,
             'page_obj': page_obj,
+            'tag_list': tag_list,
             'form': RoomForm(request.POST, request.FILES)
         }
         return render(request, '../templates/index.html', context)
 
     def post(self, request, *args, **kwargs):
         room_list = Rooms.objects.order_by('created_on')
+        tag_list = Tags.objects.all()
         paginator = Paginator(room_list, 5)
 
         page_number = request.GET.get('page')
@@ -51,6 +54,7 @@ class RoomList(View):
         context = {
             'rooms_list': room_list,
             'page_obj': page_obj,
+            'tag_list': tag_list,
             'form': form,
         }
         return render(request, '../templates/index.html', context)
