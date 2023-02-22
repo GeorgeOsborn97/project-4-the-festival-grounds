@@ -45,6 +45,7 @@ $('room_view').ready(function () {
   if (roomAlertTrigger) {
     roomAlertTrigger.addEventListener('click', () => {
       alert('You are about to Delete this room, are you sure?', 'danger', 'room', roomId, alertPlaceholder)
+      $('#edit-room-form').hide()
     })
     console.log('hello')
   }

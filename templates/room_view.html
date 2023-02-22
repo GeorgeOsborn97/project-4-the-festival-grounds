@@ -143,7 +143,7 @@
     </div>
     <div class="offcanvas-body">
         <div id="liveAlertPlaceholder"></div>
-        <form method="POST">
+        <form id="edit-room-form" method="POST">
             {{ room_form | crispy }}
             {% csrf_token %}
             <div>
@@ -169,7 +169,7 @@
             {% csrf_token %}
             <div>
                 <p>
-                    <button type="submit">Start a conversation</button>
+                    <button type="submit" class="button-style">Start a conversation</button>
                 </p>
             </div>
         </form>

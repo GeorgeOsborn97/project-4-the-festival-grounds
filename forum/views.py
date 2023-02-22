@@ -32,7 +32,7 @@ class RoomList(View):
 
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
-        form = RoomForm(request.POST)
+        form = RoomForm(request.POST, request.FILES)
         if form.is_valid():
             form.instance.creator = request.user
             form.instance.slug = form.instance.title.replace(' ', '-')
@@ -78,7 +78,7 @@ class YourRoomList(View):
 
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
-        form = RoomForm(request.POST)
+        form = RoomForm(request.POST, request.FILES)
         if form.is_valid():
             form.instance.creator = request.user
             form.instance.slug = form.instance.title.replace(' ', '-')
@@ -170,7 +170,7 @@ class RoomView(View):
         room = get_object_or_404(room_queryset, slug=slug)
         conversation = room.conversations.order_by('created_on')
 
-        room_form = EditRoomForm(request.POST, instance=room)
+        room_form = EditRoomForm(request.POST, request.FILES, instance=room)
 
         if room_form.is_valid():
             room_form.save()
