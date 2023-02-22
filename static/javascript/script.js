@@ -12,7 +12,7 @@ var alertNotUserPlaceholder = document.getElementById('liveAlertNotUser')
 var NotUseralert = (message, type) => {
   var NotUserwrapper = document.createElement('div')
   NotUserwrapper.innerHTML = [
-    `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+    `<div class="alert alert-${type} alert-dismissible button-style" role="alert" style="background-color: #e61b1b; color: black">`,
     `   <div>${message}</div>`,
     '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
     '</div>'
