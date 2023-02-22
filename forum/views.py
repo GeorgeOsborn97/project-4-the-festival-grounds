@@ -22,7 +22,7 @@ class RoomList(View):
         context = {
             'rooms_list': room_list,
             'page_obj': page_obj,
-            'form': RoomForm()
+            'form': RoomForm(request.POST, request.FILES)
         }
         return render(request, '../templates/index.html', context)
 
@@ -36,7 +36,7 @@ class RoomList(View):
         if form.is_valid():
             form.instance.creator = request.user
             form.instance.slug = form.instance.title.replace(' ', '-')
-            room = form.save(commit=False)
+            room = form.save()
             
             room.save()
             messages.add_message(
@@ -51,7 +51,7 @@ class RoomList(View):
         context = {
             'rooms_list': room_list,
             'page_obj': page_obj,
-            'form': RoomForm(),
+            'form': form,
         }
         return render(request, '../templates/index.html', context)
     
