@@ -25,7 +25,9 @@
                         <div class="card-body">
                             <h5 class="card-title">{{  room.title  }}</h5>
                             {% for tags in room.tags.all %}
-                            <p>{{ tags }}</p>
+                            <ul>
+                                <li>{{ tags }}</li>
+                            </ul>
                             {% endfor %}
                             {% if room.status == 0 %}
                             <p class="card-text"><small class="text-muted">Public</small></p>

@@ -4,17 +4,14 @@ from django.views import generic, View
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth.models import User
-from .models import Rooms, Conversations, Comments, Tags
+from .models import Rooms, Conversations, Comments
 from .forms import RoomForm, EditRoomForm, ConversationForm, CommentForm, EditCommentForm, forms
-
-# Create your views here.
 
 
 class RoomList(View):
 
     def get(self, request, *args, **kwargs):
         room_list = Rooms.objects.order_by('created_on')
-        tag_list = Tags.objects.all()
         paginator = Paginator(room_list, 5)
 
         page_number = request.GET.get('page')
@@ -23,14 +20,12 @@ class RoomList(View):
         context = {
             'rooms_list': room_list,
             'page_obj': page_obj,
-            'tag_list': tag_list,
             'form': RoomForm(request.POST, request.FILES)
         }
         return render(request, '../templates/index.html', context)
 
     def post(self, request, *args, **kwargs):
         room_list = Rooms.objects.order_by('created_on')
-        tag_list = Tags.objects.all()
         paginator = Paginator(room_list, 5)
 
         page_number = request.GET.get('page')
@@ -50,11 +45,15 @@ class RoomList(View):
             form.instance.members.add(request.user)
         else:
             form = RoomForm()
+            messages.add_message(
+                request,
+                messages.ERROR,
+                'The title of your room has already been taken, please choose a different title'
+            )
 
         context = {
             'rooms_list': room_list,
             'page_obj': page_obj,
-            'tag_list': tag_list,
             'form': form,
         }
         return render(request, '../templates/index.html', context)
@@ -72,7 +71,7 @@ class YourRoomList(View):
         context = {
             'room_list': room_list,
             'page_obj': page_obj,
-            'form': RoomForm()
+            'form': RoomForm(request.POST, request.FILES)
         }
         return render(request, '../templates/your_rooms.html', context)
 
@@ -86,7 +85,7 @@ class YourRoomList(View):
         if form.is_valid():
             form.instance.creator = request.user
             form.instance.slug = form.instance.title.replace(' ', '-')
-            room = form.save(commit=False)
+            room = form.save()
             
             room.save()
             messages.add_message(
@@ -95,14 +94,18 @@ class YourRoomList(View):
                 'Your room has successfully been created!'
             )
             form.instance.members.add(request.user)
-            form.instance.members.add(request.user)
         else:
             form = RoomForm()
+            messages.add_message(
+                request,
+                messages.ERROR,
+                'The title of your room has already been taken, please choose a different title'
+            )
 
         context = {
             'room_list': room_list,
             'page_obj': page_obj,
-            'form': RoomForm(),
+            'form': form,
         }
         return render(request, '../templates/your_rooms.html', context)
 
@@ -360,3 +363,10 @@ def delete_comment(request, comment_id):
                 'your comment has successfully been deleted!'
             )
     return HttpResponseRedirect(reverse('in_room', args=[slug]))
+
+
+class about(View):
+    def get(self, request):
+        return render(request, '../templates/about.html')
+    
+
