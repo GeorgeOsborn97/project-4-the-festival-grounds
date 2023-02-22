@@ -14,7 +14,7 @@ body{
 .title {
     max-height: 200px;
     max-width: 200px;
-    padding-top: 5%;
+    padding-top: 2.5%;
     float: left;
 }
 .title:hover {
@@ -146,7 +146,7 @@ body{
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #333333;
+  background-color: #4b03557e;
 }
 
 #footer-container{
