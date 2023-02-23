@@ -4,6 +4,7 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, HTML, Fieldset
 
 
+# Room Form
 class RoomForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(RoomForm, self).__init__(*args, **kwargs)
@@ -19,6 +20,7 @@ class RoomForm(forms.ModelForm):
         ]
 
 
+# Edit Room form
 class EditRoomForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(EditRoomForm, self).__init__(*args, **kwargs)
@@ -36,6 +38,7 @@ class EditRoomForm(forms.ModelForm):
         ]
 
 
+# Conversation form
 class ConversationForm(forms.ModelForm):
     class Meta:
         model = Conversations
@@ -45,6 +48,7 @@ class ConversationForm(forms.ModelForm):
         ]
 
 
+# Comment Form
 class CommentForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(CommentForm, self).__init__(*args, **kwargs)
@@ -59,6 +63,7 @@ class CommentForm(forms.ModelForm):
         ]
 
 
+# Edit Comment Form
 class EditCommentForm(forms.ModelForm):
     class Meta:
         model = Comments
