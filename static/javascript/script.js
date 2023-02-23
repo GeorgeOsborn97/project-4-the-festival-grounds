@@ -1,3 +1,5 @@
+//Search funcyionality yet to be completed and implemented properly, 
+// it wont searcxh over paginated pages
 $('#room-search').click(function(){
     $('#card-row > div').each(function () {
          if( $(this).attr("id").indexOf(document.getElementById("room-search-input").value) == -1){
@@ -8,6 +10,7 @@ $('#room-search').click(function(){
     console.log(document.getElementById("room-search-input").value)
 })
 
+// Function to add an alert when an unautherised user attempts to join a room
 var alertNotUserPlaceholder = document.getElementById('liveAlertNotUser')
 var NotUseralert = (message, type) => {
   var NotUserwrapper = document.createElement('div')
@@ -21,6 +24,8 @@ var NotUseralert = (message, type) => {
   alertNotUserPlaceholder.append(NotUserwrapper)
 }
 
+// This group of functions all provide a validation message to the user when they attempt to delete
+// anything from the database. it asks if they are sure and provides them with a final button to confirm the deletion.
 $('room_view').ready(function () {
   const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
   const alertComment = document.getElementById('liveAlertComment')
@@ -65,6 +70,7 @@ $('room_view').ready(function () {
   }
 })
 
+//This function checks the user as a member of a room, and stops them from being able to remove themselves from that room.
 $('room_view').ready(function(){
   $('.form-check-input').each(function () {
     if ($(this).val() ==  $('#user-id-num').text()){
@@ -74,6 +80,7 @@ $('room_view').ready(function(){
   })
 })
 
+// This function removes green user alerts after 3s
 setTimeout(function () {
   let messages = $('#msg');
   let alert = new bootstrap.Alert(messages);
