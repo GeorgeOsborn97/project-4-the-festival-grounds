@@ -65,4 +65,3 @@ class EditCommentForm(forms.ModelForm):
         fields = [
             'body',
         ]
-
