@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
 {% block nav %}
+<!--Page specific navigation-->
     <div id="second-container" class="container text-center">
         <nav>
             <div class="row gy-5">
@@ -19,7 +20,9 @@
     </div>
 {% endblock %}
 {% block cards %}
+<!--A holder for alerts-->
 <div id="liveAlertPlaceholder"></div>
+<!--The conversation form that holds the instance the user wishes to edit-->
 <form method="POST">
     {{ form | crispy }}
     {% csrf_token %}
@@ -30,6 +33,7 @@
     </div>
 </form>
 <button id="delconversationBtn" class="button-style" style="background-color: #e61b1b">delete conversation</button>,
+<!--hidden divs to avoid javascript errors-->
 <h6 id="conversationId" hidden>{{ conversation.id }}</h6>
 <h6 id="roomId" hidden>{{ conversation.room }}</h6>
 <h6 id="commentId" hidden>comment</h6>

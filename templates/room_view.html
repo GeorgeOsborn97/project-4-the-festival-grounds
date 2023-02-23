@@ -5,6 +5,7 @@
 <div class="container text-center">
     <nav>
         <div class="row gy-5">
+            <!--If the user is the room creator they get the option to edit the room from the nav bar-->
             {% if user == room.creator %}
             <div class="col-3">
                 <button type="button" class="button-style" data-bs-toggle="offcanvas" data-bs-target="#convoOffcanvas" aria-controls="offcanvas">Start Conversation</button>
@@ -43,25 +44,28 @@
     {% endblock %}
 </div>
 {% endblock %}
-
 {% block cards %}
-
 <div id="card-container" class="container text-center">
+    <!--The room title-->
     <div id="card-row" class="row row-col-3 justify-content-md-center">
         <h1 id="page-title">{{ room.title }}</h1>
     </div>
+    <!--a div to hold alerts-->
     <div id="liveAlertComment"></div>
 </div>
 <div id="card-container" class="container text-center">
     <div id="card-row" class="row justify-content-md-center">
         <div class="accordion" id="accordionExample" style="margin-bottom: 100px;">
+            <!--Iterate over all conversations in the conversation list, which holds the conversations specific to the relevant room-->
             {% for conversation in conversation_list %}
+            <!--The conversations are made into bootstrap accordions so that the thread can be clappsed-->
             <div class="accordion-item" style="border-color: #00000000;">
                 <h2 class="accordion-header" id="headingOne">
                     <button class="button-style" type="button" data-bs-toggle="collapse"
                         data-bs-target="#collapseOne-{{ conversation.slug }}" aria-expanded="true" aria-controls="collapseOne-{{ conversation.slug }}">
                         {{ conversation.title }} started by: {{ conversation.creator }}
                     </button>
+                    <!--If the user is the room or conversation creator they can edit the conversation-->
                     {% if user == room.creator or user == conversation.creator %}
                     <a href="{% url 'edit' conversation.id %}">
                         <button type="button" name="edit" class="button-style"  style="background-color: #739deb">Edit Conversation</button>
@@ -74,12 +78,14 @@
                         <div class="speech-bubble blurred" style="background: #739deb;">
                             <h4>{{ conversation.content | safe }}</h4>
                         </div>
+                        <!--Iterate over all the comments if the comment is in this conversation it will be shown-->
                         {% for comment in comments %}
                         {% if comment.conversation == conversation %}
                         <div class="comment">
                             <div class="row justify-content-center">
                                 <div class="speech-bubble col-6">
                                     <p><strong>{{ comment.name }} said: </strong>{{ comment.body | safe }}</p>
+                                    <!--If the user is the room or comment creator they can edit the comment-->
                                     {% if  user.username == comment.name or user == room.creator %}
                                     <a href="{% url 'edit_comment' comment.id %}">
                                         <button type="button" name="edit" class="button-style"
@@ -91,12 +97,14 @@
                         </div>
                         {% endif %}
                         {% endfor %}
+                        <!--Any member of the room can add a comment-->
                         <div id="{{  conversation.slug  }}-form">
                             <button id="{{ conversation.slug }}-btnid" class="button-style" type="button" data-bs-toggle="offcanvas" data-bs-target="#{{ conversation.slug }}Offcanvas" aria-controls="offcanvas">Add a comment</button>
                         </div>
                     </div>
                 </div>
             </div>
+            <!--Conversation specific script that finds the specific conversartion title and adds it to the comment form-->
             <script>
                 $("#{{ conversation.slug }}-btnid").on('click', function(){
                     console.log('{{ conversation.title }}');
@@ -113,6 +121,7 @@
                 });
             </script>
             {% empty %}
+            <!--If the conversation list is empty show that no conversations have been started-->
             <div class="accordion-item" style="border-color: #00000000;">
                 <h2 class="accordion-header" id="headingOne">
                     <button class="button-style" type="button" data-bs-toggle="collapse"
@@ -130,11 +139,13 @@
         </div>
     </div>
 </div>
+<!--hidden elements that are used to avoid javascript errors-->
 <h6 id="commentId" hidden>comment.id</h6>
 <h6 id="conversationId" hidden>conversation id</h6>
 {% endblock %}
 
 {% block canvas %}
+<!--This is a side canvas that is shown when the user wishs to edit the room.-->
 <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
     <div class="offcanvas-header">
       <h5 class="offcanvas-title" id="offcanvasLabel">Edit: {{ room.title }}</h5>
@@ -158,9 +169,10 @@
         </div>
     </div>
 </div>
+<!--This  side canvas holds the form to start a conversation.-->
 <div class="offcanvas offcanvas-start" tabindex="-1" id="convoOffcanvas" aria-labelledby="offcanvasLabel">
     <div class="offcanvas-header">
-      <h5 class="offcanvas-title" id="convoOffcanvasLabel">Backdrop with scrolling</h5>
+      <h5 class="offcanvas-title" id="convoOffcanvasLabel">Start a conversation</h5>
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
@@ -176,9 +188,10 @@
     </div>
 </div>
 {% for conversation in conversation_list %}
+<!--This side canvas holds the form to add comments to specific conversations-->
 <div class="offcanvas offcanvas-start" tabindex="-1" id="{{ conversation.slug }}Offcanvas" aria-labelledby="offcanvasLabel">
     <div class="offcanvas-header">
-      <h5 class="offcanvas-title" id="{{ conversation.slug }}OffcanvasLabel">Backdrop with scrolling</h5>
+      <h5 class="offcanvas-title" id="{{ conversation.slug }}OffcanvasLabel">Add a comment</h5>
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">

@@ -1,25 +1,28 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
 {% block nav %}
-    <div id="second-container" class="container text-center">
-        <nav>
-            <div class="row gy-5">
-                <div class="col-6">
-                    <a href="{% url 'account_logout' %}">
-                        <button type="button" class="button-style">Logout</button>
-                    </a>
-                </div>
-                <div class="col-6">
-                    <a href="{% url 'your_home' %}">
-                        <button type="button" class="button-style">Your Rooms</button>
-                    </a>
-                </div>
+<!--Page specific navigation-->
+<div id="second-container" class="container text-center">
+    <nav>
+        <div class="row gy-5">
+            <div class="col-6">
+                <a href="{% url 'account_logout' %}">
+                    <button type="button" class="button-style">Logout</button>
+                </a>
             </div>
-        </nav>
-    </div>
+            <div class="col-6">
+                <a href="{% url 'your_home' %}">
+                    <button type="button" class="button-style">Your Rooms</button>
+                </a>
+            </div>
+        </div>
+    </nav>
+</div>
 {% endblock %}
 {% block cards %}
+<!--A holder for alerts-->
 <div id="liveAlertComment"></div>
+<!--The comment form that holds the instance the user wishes to edit-->
 <form method="POST">
     {{ form | crispy }}
     {% csrf_token %}
@@ -30,6 +33,7 @@
     </div>
 </form>
 <button type="button" class="button-style" id="delcommentBtn" style="background-color: #e61b1b">Delete Comment</button>
+<!--hidden divs to avoid javascript errors-->
 <h6 id="conversationId" hidden>{{ comment.conversation }}</h6>
 <h6 id="roomId" hidden>{{ comment.room }}</h6>
 <h6 id="commentId" hidden>{{ comment.id }}</h6>

@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="Description" content="Enter your description here" />
+    <!--internal and external links such as my css, bootstrap and jquery-->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" 
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
@@ -19,6 +20,7 @@
     <title>The Festival Ground</title>
 </head>
 <body>
+    <!--Simple logo that acts as a link to the home page and a cover image-->
     <div id="top-container" class="container text-center card">
         <div id="line-break" class="row">
           <div class="col">
@@ -32,6 +34,7 @@
             <hr id="break-line">
         </div>
     </div>
+    <!--internal navigation links, changes upon user authentifaction-->
     {% block nav %}
     <div id="second-container" class="container text-center">
         <nav>
@@ -69,10 +72,13 @@
                 {% endif %}
             </div>
         </nav>
+        <!--Header that is defined in individual pages-->
         {% block header %}
         {% endblock %}
     {% endblock %}
+    <!--A div to contain a message that will alert upon an unautherised user trying to join a room.-->
     <div id="liveAlertNotUser"></div>
+     <!--A container that will produce an alert upon an autherised user interacting with the site in various ways.-->
         <div class="container">
             <div class="row">
                 <div class="col-md-8 offset-md-2">
@@ -87,14 +93,16 @@
             </div>
         </div>
     </div>
+    <!--The room cards will be contained here-->
     {% block cards %}
     {% endblock %}
     {% block search %}
     {% endblock %}
+    <!--This side canvas is triggered by the create button and holds the form a user would use to create a room-->
     {% block canvas %}
     <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
         <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="offcanvasExampleLabel">Backdrop with scrolling</h5>
+          <h5 class="offcanvas-title" id="offcanvasExampleLabel">Create a Room</h5>
           <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
@@ -110,8 +118,10 @@
         </div>
     </div>
     {% endblock %}
+    <!--The pagination block that is presnt in the index and your_rooms-->
     {% block pagination %}
     {% endblock %}
+    <!--The Footer present in all pages that holds all the social account links and shows when you are logged in-->
     <footer class="fixed-bottom" style="background-color:grey">
         <div id="footer-container">
             <ul id="foot">
@@ -127,6 +137,7 @@
             </ul>
         </div>
     </footer>
+    <!--Javascript links-->
     <script src="{% static 'javascript/script.js' %}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>

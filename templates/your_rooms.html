@@ -1,12 +1,10 @@
 {% extends "base.html" %}
-
 {% load crispy_forms_tags %}
-
 {% block nav %}
+<!--Navigation-->
 <div class="container text-center">
     <nav>
         <div class="row gy-5">
-            {% if user.is_authenticated %}
             <div class="col-4">
                 <button type="button" class="button-style" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">Create</button>
             </div>
@@ -20,42 +18,28 @@
                     <button type="button" class="button-style">Home</button>
                 </a>
             </div>
-            {% else %}
-            <div class="col-4">
-                <a href="{% url 'account_signup' %}">
-                    <button type="button" class="button-style">Register</button>
-                </a>
-            </div>
-            <div class="col-4">
-                <a href="{% url 'account_login' %}">
-                    <button type="button" class="button-style">login</button>
-                </a>
-            </div>
-            <div class="col-4">
-                <a href="#">
-                    <button type="button" class="button-style">About</button>
-                </a>
-            </div>
-            {% endif %}
         </div>
     </nav>
+    <!--Header specific for this room-->
     {% block header %}
     <div class="col" style="margin-top:3%">
         <h1 id="page-title">Your Rooms</h1>
     </div>
-{% endblock %}
+    {% endblock %}
 </div>
 {% endblock %}
-
 {% block cards %}
-
+<!--Containers hold the 'cards' that contain each created room. Bootstrap classes have been used for the layout-->
 <div id="card-container" class="container text-center">
     <div id="card-row" class="row row-col-3 justify-content-md-center">
+        <!--Iterate through each room in the paginated object-->
         {% for room in page_obj %}
+        <!--A filter on the paginated object to only show rooms where the user is a member-->
         {% if user in room.members.all or user == room.creator %}
             <div data-role="test" id="card-{{ room.slug }}" class="card col-md-3" style="max-width: 540px;">
                 <div class="row row-col-2  card-style">
                     <div class="col-md-6 img-holder">
+                        <!--if the user has uploaded an image, use that otherwise use the place holder image-->
                         {% if 'placeholder' in room.cover_image.url %}
                         <img src="https://res.cloudinary.com/duijsqmts/image/upload/v1674143855/51JPnYISlYL._AC_SY580__jt2bvz.jpg"
                             alt="default image" class="card-img-top">
@@ -66,11 +50,13 @@
                     <div class="col-md-6">
                         <div class="card-body">
                             <h5 class="card-title">{{  room.title  }}</h5>
+                            <!--Iterate over the tags the user has selected and add them to a list-->
                             {% for tags in room.tags.all %}
                             <ul>
                                 <li>{{ tags }}</li>
                             </ul>
                             {% endfor %}
+                            <!--set public or private depending on user choice.-->
                             {% if room.status == 0 %}
                             <p class="card-text"><small class="text-muted">Public</small></p>
                             {% else %}
@@ -79,6 +65,7 @@
                         </div>
                     </div>
                     <div class="card-desc">
+                        <!--Show all relevant information about the room on the backsideof the card-->
                         <h5 class="card-title">{{  room.title  }}</h5>
                         <p class="card-text">{{ room.description | safe }}</p>
                         <p class="card-text">Created by: {{ room.creator | safe }}</p>
@@ -93,8 +80,8 @@
         {% endfor %}
     </div>
 </div>
-
 {% endblock %}
+<!--Search button yet to be implamented-->
 {% block search %}
     <div class="container text-center" style="margin-bottom: 100px;">
         <div class="row justify-content-md-center">
@@ -107,6 +94,7 @@
         </div>
     </div>
 {% endblock %}
+<!--Page pagination-->
 {% block pagination %}
 <div class="container text-center pageination-holder">
     <div class="row justify-content-md-center">

@@ -1,19 +1,20 @@
 {% extends "base.html" %}
-
+<!--Header specific for this room-->
 {% block header %}
     <div class="col" style="margin-top:3%">
         <h1 id="page-title">Rooms</h1>
     </div>
 {% endblock %}
-
 {% block cards %}
-
+<!--Containers hold the 'cards' that contain each created room. Bootstrap classes have been used for the layout-->
 <div id="card-container" class="container text-center">
     <div id="card-row" class="row row-col-3 justify-content-md-center">
+        <!--Iterate through each room in the paginated object-->
         {% for room in page_obj %}
             <div data-role="test" id="card-{{ room.slug }}" class="card col-lg-3" style="max-width: 540px;">
                 <div class="row row-col-2 card-style">
                     <div class="col-md-6 img-holder">
+                        <!--if the user has uploaded an image, use that otherwise use the place holder image-->
                         {% if 'placeholder' in room.cover_image.url %}
                         <img src="https://res.cloudinary.com/duijsqmts/image/upload/v1674143855/51JPnYISlYL._AC_SY580__jt2bvz.jpg"
                             alt="default image" class="card-img-top">
@@ -24,11 +25,13 @@
                     <div class="col-md-6">
                         <div class="card-body">
                             <h5 class="card-title">{{  room.title  }}</h5>
+                            <!--Iterate over the tags the user has selected and add them to a list-->
                             {% for tags in room.tags.all %}
                             <ul class="tag-list">
                                 <li>{{ tags }}</li>
                             </ul>
                             {% endfor %}
+                            <!--set public or private depending on user choice.-->
                             {% if room.status == 0 %}
                             <p class="card-text"><small class="text-muted">Public</small></p>
                             {% else %}
@@ -37,11 +40,14 @@
                         </div>
                     </div>
                     <div class="card-desc">
+                        <!--Show all relevant information about the room on the backsideof the card-->
                         <h5 class="card-title">{{  room.title  }}</h5>
                         <p class="card-text">{{ room.description | safe }}</p>
                         <p class="card-text">Created by: {{ room.creator | safe }}</p>
                         <p class="card-text member_count">{{ room.number_of_members }} Members</p>
+                        <!--Set different words for public or private entry-->
                             {% if room.status == 0 %}
+                            <!--If the user is authenticated let them join the room, if not don't allow them to join-->
                                 {% if user.is_authenticated %}
                                 <a href="{% url 'in_room' room.slug %}" class="">
                                     {% if user in room.members.all or user == room.creator %}
@@ -69,6 +75,7 @@
                     </div>
                 </div>
             </div>
+            <!--Card specific javascript to alert the user to log in/register-->
             <script>
                 $('#live{{ room.slug }}Btn').click(function () {
                     NotUseralert('Please Log-in or create an account to Join Rooms', 'warning')
@@ -78,18 +85,8 @@
         {% endfor %}
     </div>
 </div>
-
-<div class="offcanvas offcanvas-start" id="offcanvas" aria-labelledby="offcanvasLabel">
-    <div class="offcanvas-header">
-      <h5 class="offcanvas-title" id="offcanvasLabel">Backdrop with scrolling</h5>
-      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <div class="offcanvas-body">
-        <p>Try scrolling the rest of the page to see this option in action.</p>
-    </div>
-</div>
-
 {% endblock %}
+<!--Search button yet to be implamented-->
 {% block search %}
     <div class="container text-center" style="margin-bottom: 100px;">
         <div class="row justify-content-md-center">
@@ -102,6 +99,7 @@
         </div>
     </div>
 {% endblock %}
+<!--Page pagination-->
 {% block pagination %}
 <div class="container text-center pageination-holder">
     <div class="row justify-content-md-center">
