@@ -33,7 +33,7 @@ class RoomList(View):
         form = RoomForm(request.POST, request.FILES)
         if form.is_valid():
             form.instance.creator = request.user
-            form.instance.slug = form.instance.title.replace(' ', '-')
+            form.instance.slug = "".join(ch for ch in form.instance.title if ch.isalnum())
             room = form.save()
             
             room.save()
@@ -84,7 +84,7 @@ class YourRoomList(View):
         form = RoomForm(request.POST, request.FILES)
         if form.is_valid():
             form.instance.creator = request.user
-            form.instance.slug = form.instance.title.replace(' ', '-')
+            form.instance.slug = "".join(ch for ch in form.instance.title if ch.isalnum())
             room = form.save()
             
             room.save()
@@ -127,7 +127,7 @@ class RoomView(View):
         form = ConversationForm(request.POST)
         if form.is_valid():
             form.instance.creator = request.user
-            form.instance.slug = form.instance.title.replace(' ', '-')
+            form.instance.slug = "".join(ch for ch in form.instance.title if ch.isalnum())
             new_convo = form.save(commit=False)
             new_convo.room = room
             new_convo.save()
@@ -196,7 +196,7 @@ class RoomView(View):
 
         if form.is_valid():
             form.instance.creator = request.user
-            form.instance.slug = form.instance.title.replace(' ', '-')
+            form.instance.slug = "".join(ch for ch in form.instance.title if ch.isalnum())
             new_convo = form.save(commit=False)
             new_convo.room = room
             new_convo.save()
