@@ -1,5 +1,23 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
+{% block nav %}
+    <div id="second-container" class="container text-center">
+        <nav>
+            <div class="row gy-5">
+                <div class="col-6">
+                    <a href="{% url 'account_logout' %}">
+                        <button type="button" class="button-style">Logout</button>
+                    </a>
+                </div>
+                <div class="col-6">
+                    <a href="{% url 'your_home' %}">
+                        <button type="button" class="button-style">Your Rooms</button>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </div>
+{% endblock %}
 {% block cards %}
 <div id="liveAlertComment"></div>
 <form method="POST">
