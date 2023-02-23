@@ -121,7 +121,9 @@ body{
   text-align: center;
   text-decoration: none #000000 solid;
   width: 100%;
-  max-width: 460px;
+  max-width: 700px;
+  min-width: 250px;
+  max-height: 500px;
   position: relative;
   cursor: pointer;
   transform: rotate(-2deg);
@@ -135,6 +137,17 @@ body{
   height: calc(100% - 1px);
 }
 
+@media (min-width:750px) and (max-width:1023px) {
+  .card-style{
+    min-width: 200px;
+    max-height: 200px;
+    overflow-y: scroll;
+
+  }
+  .tag-list{
+    padding: 0%;
+  }
+}
 
 
 .pageination-holder{
@@ -273,4 +286,7 @@ text-align: center;
 
 #about-article {
   margin-bottom: 10%;
+}
+#pagination-text {
+  font-family: 'Anton', sans-serif;
 }
