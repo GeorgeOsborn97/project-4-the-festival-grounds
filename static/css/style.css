@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 body{
-  overflow: scroll;
+  overflow-y: scroll;
 }
 
 #top-container{
@@ -20,6 +20,16 @@ body{
 .title:hover {
   scale: 1.2;
 }
+@media (max-width:420px){
+  #top-container{
+    width: 100%;
+  }
+  .title {
+    height: 100px;
+    width: 100px;
+  }
+}
+
 
 .slogan {
     padding-top: 3%;
@@ -137,10 +147,10 @@ body{
   height: calc(100% - 1px);
 }
 
-@media (min-width:750px) and (max-width:1023px) {
+@media (max-width:1023px) {
   .card-style{
     min-width: 200px;
-    max-height: 200px;
+    max-height: 350px;
     overflow-y: scroll;
 
   }

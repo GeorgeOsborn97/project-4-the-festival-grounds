@@ -11,7 +11,7 @@
 <div id="card-container" class="container text-center">
     <div id="card-row" class="row row-col-3 justify-content-md-center">
         {% for room in page_obj %}
-            <div data-role="test" id="card-{{ room.slug }}" class="card col-md-3" style="max-width: 540px;">
+            <div data-role="test" id="card-{{ room.slug }}" class="card col-lg-3" style="max-width: 540px;">
                 <div class="row row-col-2 card-style">
                     <div class="col-md-6 img-holder">
                         {% if 'placeholder' in room.cover_image.url %}
