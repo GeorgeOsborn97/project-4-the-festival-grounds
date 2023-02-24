@@ -23,7 +23,7 @@ class RoomList(View):
         context = {
             'rooms_list': room_list,
             'page_obj': page_obj,
-            'form': RoomForm(request.POST, request.FILES)
+            'form': RoomForm(request.POST, request.FILES),
         }
         return render(request, '../templates/index.html', context)
 
@@ -62,7 +62,7 @@ class RoomList(View):
             'page_obj': page_obj,
             'form': form,
         }
-        return render(request, '../templates/index.html', context)
+        return HttpResponseRedirect(reverse('home'))
 
 
 # Your Rooms page
@@ -117,7 +117,7 @@ class YourRoomList(View):
             'page_obj': page_obj,
             'form': form,
         }
-        return render(request, '../templates/your_rooms.html', context)
+        return HttpResponseRedirect(reverse('your_home'))
 
 
 # in the room page

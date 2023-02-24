@@ -36,7 +36,7 @@
         {% for room in page_obj %}
         <!--A filter on the paginated object to only show rooms where the user is a member-->
         {% if user in room.members.all or user == room.creator %}
-            <div data-role="test" id="card-{{ room.slug }}" class="card col-md-3" style="max-width: 540px;">
+            <div data-role="test" id="card-{{ room.slug }}" class="card col-lg-3" style="max-width: 540px;">
                 <div class="row row-col-2  card-style">
                     <div class="col-md-6 img-holder">
                         <!--if the user has uploaded an image, use that otherwise use the place holder image-->

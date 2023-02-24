@@ -1,108 +1,113 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# The Festival Ground
 
-Welcome GeorgeOsborn97,
+![full-mockup]()
+This site has been designed to..
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+Find a link to the deployed site [here]()
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **September 1, 2021**
+## contents:
+1. [User experience](#user-experience)
+   - [what i wanted to achieve](#what-i-wanted-to-achieve)
+   - [the road map](#the-plan-and-the-roadmap)
+2. [Final product](#final-product)
+   - [The start](#the-start)
+   - [The end](#the-end)
+   - [The background infomation](#the-background)
+3. [Features](#features)
+   - [The intro](#welcome-page)
+   - [colour scheme](#colour-scheme)
+4. [Technology that was utilized](#technology-that-was-utilized)   
+   - [Languages](#languages)
+   - [External assets](#external-assets-utilized)
+5. [Testing](#testing)  
+   - [Feature testing](#feature-testing)
+   - [Device testing](#device-testing)
+   - [Validation](#validation)
+6. [Deployment](#deployment)
+7. [Credits/Acknowledgments](#creditsacknowledgments)
+   - [Content](#content)
+   - [Media](#media)  
+8. [Final thoughts](#final-thoughts)    
+___
+## User experience:
+### What I wanted to achieve:
 
-## Gitpod Reminders
+1. Create a...
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+___
+### The Plan and the Roadmap:
+![The flow chart](assets/roadmap.png)
+- The plan for this application in the begining was...
 
-`python3 -m http.server`
+___
+## Final Product
+### The start
+![The start](assets/final-product.png)
+* As you can see above this is the first screen that the user will be faced with. It is hoped that through reading this brief introduction that they will understand what this application has to offer and will be excited to begin to create their own charcater.
+___
+## Features: 
+### Welcome page:
+  - The first thing the user will see is the intro page. This was put in to help describe the purpose of the site and to help them understand the mechanics. It also helps the user understand that not all the information they read about a race or a class will be present at the end.
+  ![the intro page](assets/intro.png)
 
-A blue button should appear to click: _Make Public_,
+### Colour scheme:
+  - Throughout this application the user would of seen various colours. These were specific choices. The Logo is a bright red that so often is related to DnD. Each class and race has their own colour to give a sense of difference but also to give a sense of their 'personality' e.g the elf and gnome are green to reflect their link to Nature. The Tiefling is Red to give a sense of their link to Hell. The Character sheet at the end is also presnted in the colour of the users chosen class.
 
-Another blue button should appear to click: _Open Browser_.
+___
+## Technology that was utilized:
+### languages:
+* python
+### external assets utilized:
+* [GitHub](https://github.com/)
+* [GitPod](https://gitpod.io/)
+* [Heroku](https://dashboard.heroku.com/)
+___
+## Testing:
+### Feature Testing:
+* Fixes refers to any potential current fixes/improvements that are still potentially available. 'None required' refers to the fact that at this moment there is no additional work needed to improve that feature. Many bugs and errors were encounted during the development process and several of these features were very much trail and error. The accounts of which can be found throughout the commits in GitHub.
+* Choose Race: 
+   - What was expected? The user types a Race from the list provided and is presented with the relevent information regarding that Race. The user can then read and cycle through the information at their liesure. If the user inputs a Race that is not present or misspells one of the races they are told that their choice is not playable and are asked to pick again.
+   - How it was tested? First H was typed, "H is not a playable Race, please select again" was shown. Secondly Humman was typed, "Humman is not a playable Race, please select again." was shown. human was then typed, the first bit of infomation regarding humans was then presented to the user. with the next input "Click enter to cycle through info: " The text colour was also changed to reflect the chosen Race. Enter was clicked. the previos infomation was cleared and the next bit of information was presented. A was then typed into the input. Nothing happened. A was then entered. The next bit of information was then presented without issue. These steps were then repeated for all the playable races.
+   - What was the outcome? All information presented was correct for that Race, the ability to cycle through the information worked just as planned and only the relevent information is shown. Incorrect inputs are correctly identified and the usre is prompt to choose again.
+   - Fixes? None required.
+* Choose Class: 
+   - What was expected? The user types a class from the list provided and is presented with the relevent information regarding that Class. The user can then read and cycle through the information at their liesure. If the user inputs a Class that is not present or spells one of the Classes incorrectly they are told that their choice is not playable and are asked to pick again.
+   - How it was tested?  First B was typed, "B is not a playable Class, please select again" was shown. Secondly Bardbarian was typed, "Bardbarian is not a playable Class, please select again." was shown. Barbarian was then typed, the first bit of infomation regarding barbarians was then presented to the user. with the next input "Click enter to cycle through info: " The text colour was also changed to reflect the chosen Class. Enter was clicked. the previos infomation was cleared and the next bit of information was presented. A was then typed into the input. nothing happened. A was then entered. The next bit of information was then presented without issue. These steps were then repeated for all the playable Classes.
+   - What was the outcome? All information presented was correct for that Class, the ability to cycle through the information worked just as planned and only the relevent information is shown. Incorrect inputs are correctly identified and the usre is prompt to choose again.
+   - Fixes? None required.
+                   
+#### Device testing:
+This site has been physically tested on:
+   - ASUS ZenBook
+#### Validation
+The code was put into pythonchecker.com a link to which can be found [here](https://www.pythonchecker.com/)
+As you can see from the two images the highest score was a 92% and the lowest 82% which upon their rating system is regarded as excellent. All of the code was put through this checker I have purposely only included images of the highest and lowest scores as to avoid clutter. All other results sit in between these two figures.
+![Validatio High](assets/validation-high.png)
+![Validation Low](assets/validation-low.png)   
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+   ___
+## Deployment:
+1. Firstly pip3 freeze > requirements.txt was used in order to update the requirements.txt file so that all the imports would be read properly on Heroku.
+2. From the Heroku dashboard 'create a new app' was clicked.
+3. I then named my app characetr-creator-ci-project-3. 
+4. I selected my region and clicked create app.
+5. I then clicked on settings at the tab at the top of the page.
+6. I then created a configs var to include my creds.json file 
+7. I then added the python and node.js buildpacks.
+8. I then hit deploy in tab at the top of the page.
+9. I then connected to my github.
+10. After connecting to my gitHub I was able to search and select my required repository.
+11. I then selected automatic deployment in order to push any changes made in GitHub automatically to my application.
+12. With that done I was able to view my application and ensure everything worked as expected.
 
-A blue button should appear to click: _Make Public_,
+___
+## credits/acknowledgments
+### Content:
+- All code was written by myself, no external code was taking during the devolopment of this application. 
+- Pandas was used to read the google sheets.
+- Tabulate was used for the presentation of the character sheet.
+### Media:
+- I would like to Thank DnD Beyond for providing all the information available throughout this application. Without their vast amount of available information this application would not have been quite so possible.
 
-Another blue button should appear to click: _Open Browser_.
-
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
-
-To log into the Heroku toolbelt CLI:
-
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
-
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
-
-------
-
-## Release History
-
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
-
-**September 1 2021:** Remove `PGHOSTADDR` environment variable.
-
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
-
-**July 2 2021:** Remove extensions that are not available in Open VSX.
-
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
-
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
-
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
-
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
-
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
-
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
-
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
-
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
-
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
-
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
-
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
-
-------
-
-## FAQ about the uptime script
-
-**Why have you added this script?**
-
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
-
-**How will this affect me?**
-
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
-
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
-
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
-
-**So….?**
-
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
-
-**Can I opt out?**
-
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
-
-```
-pkill uptime.sh
-rm .vscode/uptime.sh
-```
-
-**Anything more?**
-
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
-
----
-
-Happy coding!
+## Final thoughts
+- This was a monumental task I set myself, I under estimated the work that would be needed to achieve what I wanted. However I do have to say im happy with how it has turned out. There is still lots that could be done here. I know that it's far from perfect but I learnt a lot along the way and I pushed myself to do something different and I can be proud of what I achieved here.
