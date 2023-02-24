@@ -11,6 +11,7 @@
     <div id="card-row" class="row row-col-3 justify-content-md-center">
         <!--Iterate through each room in the paginated object-->
         {% for room in page_obj %}
+        {% if room.status == 0 %}
             <div data-role="test" id="card-{{ room.slug }}" class="card col-lg-3" style="max-width: 540px;">
                 <div class="row row-col-2 card-style">
                     <div class="col-md-6 img-holder">
@@ -82,6 +83,7 @@
                     console.log('hello')
                 })
             </script>
+        {% endif %}
         {% endfor %}
     </div>
 </div>
