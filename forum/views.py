@@ -165,25 +165,25 @@ class RoomView(View):
                 request,
                 'room_view.html',
                 {
-                 'room': room,
-                 'conversation_list': conversation,
-                 'comments': comment_queryset,
-                 'room_form': room_form,
-                 'conversation_form': form,
-                 'comment_form': comment_form
+                    'room': room,
+                    'conversation_list': conversation,
+                    'comments': comment_queryset,
+                    'room_form': room_form,
+                    'conversation_form': form,
+                    'comment_form': comment_form
                 },
-                )
+            )
         else:
             return render(
                 request,
                 'room_view.html',
                 {
-                 'room': room,
-                 'conversation_list': conversation,
-                 'room_form': room_form,
-                 'conversation_form': form,
+                    'room': room,
+                    'conversation_list': conversation,
+                    'room_form': room_form,
+                    'conversation_form': form,
                 },
-                )
+            )
 
     def post(self, request, slug, *args, **kwargs):
         room_queryset = Rooms.objects.all()
@@ -241,25 +241,25 @@ class RoomView(View):
                 request,
                 'room_view.html',
                 {
-                 'room': room,
-                 'conversation_list': conversation,
-                 'comments': comment_queryset,
-                 'conversation_form': form,
-                 'room_form': room_form,
-                 'comment_form': comment_form
+                    'room': room,
+                    'conversation_list': conversation,
+                    'comments': comment_queryset,
+                    'conversation_form': form,
+                    'room_form': room_form,
+                    'comment_form': comment_form
                 },
-                )
+            )
         else:
             return render(
                 request,
                 'room_view.html',
                 {
-                 'room': room,
-                 'conversation_list': conversation,
-                 'conversation_form': form,
-                 'room_form': room_form,
+                    'room': room,
+                    'conversation_list': conversation,
+                    'conversation_form': form,
+                    'room_form': room_form,
                 },
-                )
+            )
 
 
 # edit conversation page

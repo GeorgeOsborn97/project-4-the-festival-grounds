@@ -1,15 +1,14 @@
 # The Festival Ground
 
 ![full-mockup]()
-This site has been designed to..
+This site has been designed to be a music based community forum. The general idea of the website was to build a place where anyone and everyone could come togther to discuss and debate any topics surronding music that would like to. A key goal from the start was for the user to be in complete control over what they build into the site, they have control over the rooms that they create, the conversations they start and the comments they leave.
 
 Find a link to the deployed site [here]()
 
 ## contents:
 1. [User experience](#user-experience)
    - [what I wanted to achieve](#what-i-wanted-to-achieve)
-   - [My goals for the user](#my-goals-for-the-user)
-   - [the road map](#the-plan-and-the-roadmap)
+   - [the road map](#the-road-map)
       1. [User Stories](#user-stories)
       2. [Development Plan](#development-plan)
       3. [Structure](#structure)
@@ -25,26 +24,30 @@ Find a link to the deployed site [here]()
    - [Edit Conversation and Edit Comment](#edit-conversation-and-edit-comment)
 3. [Features](#features)
    - [Home Page](#home-page)
-      1. [feature 1]()
-      2. [feature 2]()
+      1. [Navigation]()
+      2. [Room layout]()
+      3. [Room interactivity]()
+      4. [Room creation]()
+      5. [Pagination]()
    - [About Page](#about-page)
-      1. [feature 1]()
-      2. [feature 2]()
+      1. [Website description]()
    - [Room View](#room-view)
-      1. [feature 1]()
-      2. [feature 2]()
+      1. [Navigation edited]()
+      2. [Conversation and Comment layout]()
+      3. [Starting conversations]()
+      4. [Adding comments]()
+      5. [Edit]()
    - [Your Rooms](#your-rooms)
-      1. [feature 1]()
-      2. [feature 2]()
+      1. [Your room layout]()
    - [Register](#register)
-      1. [feature 1]()
-      2. [feature 2]()
+      1. [Registration layout]()
+      2. [Registration form]()
    - [Login](#login)
-      1. [feature 1]()
-      2. [feature 2]()
+      1. [Login layout]()
+      2. [Log in form]()
    - [Edit Conversation and Edit Comment](#edit-conversation-and-edit-comment)
-      1. [feature 1]()
-      2. [feature 2]()
+      1. [Edit layout]()
+      2. [Edit forms]()
 4. [Technology that was utilized](#technology-that-was-utilized)   
    - [Languages](#languages)
    - [External assets](#external-assets-utilized)
@@ -63,12 +66,30 @@ ___
 ## User experience:
 ### What I wanted to achieve:
 
-1. Create a...
+1. Create community forum style website that was easy to navigate and contribute towards. 
+2. Users can register for an account that will allow them to be able to interact with every aspect of the site, if a user is unregstered their interactivity will be very limited.
+3. Users can create their own rooms to discuss topics important to them, or join any public room. 
+4. Inside a room all members can start conversations to begin a discusion on a certain topic.
+5. All members in a room can contribute to any conversation in that room via comments.
+6. The creator of a room has the ability to edit and delete any conversation and comment, edit and delete the room itself as well as remove any unwanted members.
+7. All members have the ability to edit and delete any conversation they started and any comments they left in any room. 
+___
+## the road map
+### User stories
 
 ___
-### The Plan and the Roadmap:
+### Development Plan:
 ![The flow chart](assets/roadmap.png)
-- The plan for this application in the begining was...
+- The plan for this was 
+
+___
+#### Structure:
+
+___
+#### Skeleton:
+
+___
+#### Surface:
 
 ___
 ## Final Product
@@ -78,16 +99,18 @@ ___
 ___
 ## Features: 
 ### Welcome page:
-  - The first thing the user will see is the intro page. This was put in to help describe the purpose of the site and to help them understand the mechanics. It also helps the user understand that not all the information they read about a race or a class will be present at the end.
+  - The first thing the user will see is the intro page. This was put in to help describe the purpose of the site and to help them understand the mechanics.
   ![the intro page](assets/intro.png)
 
 ### Colour scheme:
-  - Throughout this application the user would of seen various colours. These were specific choices. The Logo is a bright red that so often is related to DnD. Each class and race has their own colour to give a sense of difference but also to give a sense of their 'personality' e.g the elf and gnome are green to reflect their link to Nature. The Tiefling is Red to give a sense of their link to Hell. The Character sheet at the end is also presnted in the colour of the users chosen class.
-
+  - 
 ___
 ## Technology that was utilized:
 ### languages:
 * python
+* HTML
+* CSS
+* Javascript / JQuery
 ### external assets utilized:
 * [GitHub](https://github.com/)
 * [GitPod](https://gitpod.io/)
@@ -96,15 +119,15 @@ ___
 ## Testing:
 ### Feature Testing:
 * Fixes refers to any potential current fixes/improvements that are still potentially available. 'None required' refers to the fact that at this moment there is no additional work needed to improve that feature. Many bugs and errors were encounted during the development process and several of these features were very much trail and error. The accounts of which can be found throughout the commits in GitHub.
-* Choose Race: 
-   - What was expected? The user types a Race from the list provided and is presented with the relevent information regarding that Race. The user can then read and cycle through the information at their liesure. If the user inputs a Race that is not present or misspells one of the races they are told that their choice is not playable and are asked to pick again.
-   - How it was tested? First H was typed, "H is not a playable Race, please select again" was shown. Secondly Humman was typed, "Humman is not a playable Race, please select again." was shown. human was then typed, the first bit of infomation regarding humans was then presented to the user. with the next input "Click enter to cycle through info: " The text colour was also changed to reflect the chosen Race. Enter was clicked. the previos infomation was cleared and the next bit of information was presented. A was then typed into the input. Nothing happened. A was then entered. The next bit of information was then presented without issue. These steps were then repeated for all the playable races.
-   - What was the outcome? All information presented was correct for that Race, the ability to cycle through the information worked just as planned and only the relevent information is shown. Incorrect inputs are correctly identified and the usre is prompt to choose again.
+* Registration: 
+   - What was expected? 
+   - How it was tested? 
+   - What was the outcome? 
    - Fixes? None required.
-* Choose Class: 
-   - What was expected? The user types a class from the list provided and is presented with the relevent information regarding that Class. The user can then read and cycle through the information at their liesure. If the user inputs a Class that is not present or spells one of the Classes incorrectly they are told that their choice is not playable and are asked to pick again.
-   - How it was tested?  First B was typed, "B is not a playable Class, please select again" was shown. Secondly Bardbarian was typed, "Bardbarian is not a playable Class, please select again." was shown. Barbarian was then typed, the first bit of infomation regarding barbarians was then presented to the user. with the next input "Click enter to cycle through info: " The text colour was also changed to reflect the chosen Class. Enter was clicked. the previos infomation was cleared and the next bit of information was presented. A was then typed into the input. nothing happened. A was then entered. The next bit of information was then presented without issue. These steps were then repeated for all the playable Classes.
-   - What was the outcome? All information presented was correct for that Class, the ability to cycle through the information worked just as planned and only the relevent information is shown. Incorrect inputs are correctly identified and the usre is prompt to choose again.
+* Log-in: 
+   - What was expected? 
+   - How it was tested?  
+   - What was the outcome? 
    - Fixes? None required.
                    
 #### Device testing:
