@@ -345,14 +345,28 @@ ___
    - What was expected? From inside a room the room creator can see the 'edit conversation' and 'edit comment' button on all converstaions and comments. These buttons will also be available to the converstaion starter and the user that adds a comment. The two buttons would take the user to the edit conversation form and edit comment form respectivly. In these forms the user can edit a conversations title and content, or a comments body.
    - How it was tested? 
       * As a room creator:
-         * I could see all the edit buttons.
-         * I clicked the edit conversation changed the title from 'title' to 'festivals on the west coast?' and the content to 'What should I look into?'  
-   - What was the outcome? 
+      * I could see all the edit buttons.
+      * I clicked the edit conversation changed the title from 'title' to 'festivals on the west coast?' and the content to 'What should I look into?'
+      * I then added a comment 'comment to be edited'
+      * I then clciked 'edit comment' and changed this comment to 'What time of year are you going?'
+      * I then logged back in as the conversation starter and I could again see the 'edit conversation' button and i could not see the 'edit comment' button.
+      * I clicked this and edited the title so it had a capital letter at the start of the title.
+      * I then finally re joined as another user and none of these edit options were open to me.
+   - What was the outcome? All the users that joined this room could see and edit everything they should of. The edit functionality worked as expected as well.
    - Fixes? None required.
 * Deletion of Rooms, Conversation and Comments
-   - What was expected? 
-   - How it was tested?  
-   - What was the outcome? 
+   - What was expected? When the delete button is selected an alert appears to ask if you are sure? And presents another button to confirm the deletion. Deleted comments are removed from the conversations they are posted in, deleted conversations are removed from their rooms. and Deleted Rooms are removed from the home page and your rooms.
+   - How it was tested? 
+      * I joined a previously created room called 'Another created room'
+      * I selected edit comment and within the form deleted the comment
+      * I then selected edit conversion and within the form deleted the conversation
+      * I then selected edit room and deleted the room 
+   - What was the outcome? All elements were successfully deleted and the user was redirected to where was most appropriate, in the case of the comment and conversation the suer was redirected to the room. When the room was deleted the user was redirected to the home page.
+   - Fixes? None required.
+* Conversation accordian:
+   - What was expected? When a conversation title is clicked it clapses the conversation thread, if it is clicked again the thread is expanded. 
+   - How it was tested? I entered One of the rooms created that had a conversation that had been started. Within that room I clicked the conversation title twice.
+   - What was the outcome? The conversation thread did clapse and expand as expected.
    - Fixes? None required.
 
                    
