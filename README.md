@@ -78,7 +78,7 @@ ___
 ### User stories
 User Stories | Story Criteria | Kanban |
 --- | --- | --- |
-![User Stories](assets/screenshots/user_stories.png)| ![Story Criteria](assets/screenshots/story_criteria.png) | ![Kanban](assets/screenshots/project_kanban.png) |
+![User Stories](assets/wireframes/user_stories.png)| ![Story Criteria](assets/wireframes/story_criteria.png) | ![Kanban](assets/wireframes/project_kanban.png) |
 
 - As seen above severel features were identified through the user stories. These were seperated out into varying degrees of necessity, the plan being that those labeled 'Must have' were of key importance, these features were identified as being needed for a MVP (minimum viable product) and should therefore be focused on straight away. Those labeled as 'Should have' were secondary, features that would enhance the user experience and should be implemented if possible, yet are not needed for a deployed product. Then we have 'Could have' features that would also enhance the user experience but would not impact the user if they were not implemented. These features were treated as though they would not make the final deployment until the time came when focus could be put onto them.
 - The User stories each contain 2 sections, 'Acceptance Criteria' and 'Tasks'. The acceptance criteria defines the necessary features and processes the user would interact and go though in order to achieve the user story. The tasks define the ways in which I as a developer will put these features and processes into place. When all tasks are complete and all acceptance criteria is met, the user story can be tagged as complete.
@@ -86,8 +86,8 @@ User Stories | Story Criteria | Kanban |
 
 ___
 ### Structure:
-![The flow chart](assets/roadmap.png)
-- The Structure and flow of the site is defined in the flow chart above. It defines the movement of the user through the site and the different paths they can take. This flowchart was done prior to the development process, due to this there are some changes to the flow of the final product and some features such as the request entry to private rooms are not present.
+![The flow chart](assets/wireframes/flow_one.png)
+- The basic  Structure and flow of the site is defined in the flow chart above. It defines the movement of the user through the site and the different paths they can take. This flowchart was done prior to the development process, due to this there are some changes to the flow of the final product and some features such as the request entry to private rooms are not present.
 ___
 #### Database Models:
 - This site uses ElephantSQl for the Database managment. There are four models that have been developed for this site, Tags, Rooms, Conversations and Comments. The relationship between these databases can be seen below.
@@ -116,9 +116,18 @@ ___
 - name: The name of the user that posted the comment.
 - body: the content of the comment defined by the user.
 - created_on: the date the conversation was started.
+
+![ERD](assets/wireframes/ERD.png)
 ___
 ### Skeleton:
 - The wireframes below demonstrate the initial plan for the appearence and layout of the site, as we can see when we compare the wireframes to the final product changes were made to this initial plan, however the basic layout has remained.
+
+Page | Desktop Wireframes | Mobile Wireframes |
+--- | --- | --- |
+Home | ![Home wireframe](assets/wireframes/home_wf.png) | ![Home mobile wireframe](assets/wireframes/home_mobile_wf.png) |
+Home after log in | ![Home wireframe after log in](assets/wireframes/home_wf_post_login.png) | N/A |
+In Room | ![In room wireframe](assets/wireframes/in_room_wf.png) | ![In room mobile wireframe](assets/wireframes/in_room_wf_mobile.png) |
+Edit Forms | ![Edit form wireframe](assets/wireframes/form_wf.png) | ![Edit form mobile wireframe](assets/wireframes/form_wf_mobile.png) |
 
 ___
 ### Surface:
@@ -390,41 +399,62 @@ This site has been physically tested on:
    - ASUS ZenBook
    - Iphone 11
 #### Validation
-The code was put into pythonchecker.com a link to which can be found [here](https://www.pythonchecker.com/)
-As you can see from the two images the highest score was a 92% and the lowest 82% which upon their rating system is regarded as excellent. All of the code was put through this checker I have purposely only included images of the highest and lowest scores as to avoid clutter. All other results sit in between these two figures.
-![Validatio High](assets/validation-high.png)
-![Validation Low](assets/validation-low.png)   
+All links to the validation sites can be found above.
 
 Language | Validator | Result |
 --- | --- | --- |
-HTML
-CSS
-Javascript
-Python
+HTML | W3C HTML Checker | Errors flagged in the HTML refer to the use of {%%} in the html templates as well as missing 'DOCTYPE' and meta tags due to the these elements being extended from the base.
+CSS | W3C CSS checker | No errors found in CSS file.
+Javascript | JShint Validator | No errors, 22 warnings to use esversion6 and moz
+Python | Pythonchecker Pep8 checker in gitpod | The questions flagged by the checker all were for identation errors and no white space around the operators. However git pod does not flag these as errors so they have not been altered. The highest score for the Views.py was 84% and the lowest I found was 76%. These results are shown below. Other python files such as the models.py flagged low scores due to the same errors mentioned before. However they have been left as gitpod does not flag them and they do not interfer with the working of the application. The score for the Room model is shown below as well.
+![python high](assets/screenshots/py_view_check.png)
+![python low](assets/screenshots/py_view_check_two.png)
+![error example](assets/screenshots/py_model_check.png)
+
 
    ___
 ## Deployment:
-1. Firstly pip3 freeze > requirements.txt was used in order to update the requirements.txt file so that all the imports would be read properly on Heroku.
-2. From the Heroku dashboard 'create a new app' was clicked.
-3. I then named my app characetr-creator-ci-project-3. 
-4. I selected my region and clicked create app.
-5. I then clicked on settings at the tab at the top of the page.
-6. I then created a configs var to include my creds.json file 
-7. I then added the python and node.js buildpacks.
-8. I then hit deploy in tab at the top of the page.
-9. I then connected to my github.
-10. After connecting to my gitHub I was able to search and select my required repository.
-11. I then selected automatic deployment in order to push any changes made in GitHub automatically to my application.
-12. With that done I was able to view my application and ensure everything worked as expected.
+To deploy this page to Heroku from its GitHub repository, the following steps were taken:
+
+1. Create the app on Heroku:
+   - I first selected "Create new app".
+   - I then named the app and selected my region.
+
+2. Create and connect the database:
+   - I then created a new instance in elephantSQL
+   - I then set up the plan with my databse name and region
+   - I then copied the databse URL from the dashboard and placed into my env.py file along with the other required elements.
+
+3. Prepare the environment and settings.py file: 
+   * Back in settings.py I imported my env.py
+   * I then commented out the django default database variable and added in my own
+   * I then Migrated these changes
+   * Back in heroku I then updated my config vars with my DATABASE URL and SECRET KEY.
+   * With this in place I was ready to deploy.
+   * However I then added my Cloudinary as well as in settings I added the following:
+      * Cloudinary to the INSTALLED_APPS list
+      * STATICFILE_STORAGE
+      * STATICFILES_DIRS
+      * STATIC_ROOT
+      * MEDIA_URL
+      * DEFAULT_FILE_STORAGE
+      * TEMPLATES_DIR
+      * Update DIRS in TEMPLATES with TEMPLATES_DIR
+      * Update ALLOWED_HOSTS with ['app_name.heroku.com', 'localhost']
+
+4. Set up Static and finally deploy:
+   - I created static and templates files in my main directory.
+   - I then created a Procfile and added:
+      - web: gunicorn project-name.wsgi
+   - I then went to the Deploy tab on Heroku and connected my GitHub and the required repository.
+   - I then set up automatic deploys and deployed the application.
 
 ___
 ## credits/acknowledgments
 ### Content:
-- All code was written by myself, no external code was taking during the devolopment of this application. 
-- Pandas was used to read the google sheets.
-- Tabulate was used for the presentation of the character sheet.
+- All code was written by myself, external code was taking from sources such as w3schools and stackoverflow and manupilated to suit my needs during the devolopment of this application. The button and card styling were taken from getcssscan the links of which can be found [here](https://getcssscan.com/css-buttons-examples) 
 ### Media:
-- I would like to Thank DnD Beyond for providing all the information available throughout this application. Without their vast amount of available information this application would not have been quite so possible.
+- All images used in this site were taken from google images and stored in Cloudinary.
 
 ## Final thoughts
-- This was a monumental task I set myself, I under estimated the work that would be needed to achieve what I wanted. However I do have to say im happy with how it has turned out. There is still lots that could be done here. I know that it's far from perfect but I learnt a lot along the way and I pushed myself to do something different and I can be proud of what I achieved here.
+- This was a tough project. Not everything has turned out exactly how I would of liked it to, however that being said I am still quite proud of what I managed to build. I like to think I have built something fairly unique and I sincerly hope you enjoy what I've done and can see the vision I had in mind for this application.
