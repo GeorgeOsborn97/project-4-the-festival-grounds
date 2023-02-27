@@ -124,12 +124,12 @@ ___
 
 ___
 ## Final Product
-Page | Image | Second Image (if aplicable) |
+Page | Desktop Image | Mobile Image |
 --- | --- | --- |
 Register | a | b |
 Login | a | b |
 Logout | a | b |
-Home | a | b |
+Home | ![home page](assets/screenshots/home_page.png) | b |
 Your Rooms | a | b |
 About | a | b |
 In Room | a | b |
