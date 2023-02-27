@@ -140,6 +140,7 @@ ___
 ### General:
 * Top Bar: The top bar contains the Logo for the site taht also acts as a button that returns to the home page, as well as a cover image that helps set the tone of the site. 
 * Navigation: The Navigation bar incorperates the consistant style of the site, and provides links to all relevent pages. The nav bar changes depending on the authentication of the user, and the page they are currently on.
+* Alerts: Various alerts will be triggered upon certain user interactions. Such as, logging in, logging out and creating a room etc...
 * Footer: The footer is simple yet mainatins the consistant colour scheme, it holds links to all social pages as well as declering which user is logged on, should it apply.
 
 ### User Authentication:
@@ -239,74 +240,126 @@ ___
 ### Feature Testing:
 * Fixes refers to any potential current fixes/improvements that are still potentially available. 'None required' refers to the fact that at this moment there is no additional work needed to improve that feature. Many bugs and errors were encounted during the development process and several of these features were very much trail and error. The accounts of which can be found throughout the commits in GitHub.
 * Top Bar: 
-   - What was expected? 
-   - How it was tested? 
-   - What was the outcome? 
-   - Fixes? None required.
+   - What was expected? Upon the Loading of the page the border around the cover image would slowly shift and rotate, The Logo should scale up when hovered over and when clicked should return the user to the home page.
+   - How it was tested? Upon loading up the site I waited for 10 seconds just to watch the border animation to make sure it functioned as expected. I then moved my curser over the logo severel times to ensure the scale effect worked upon the appropriate event. I then clicked the Logo to test that the correct link was etablished.
+   - What was the outcome? The border effect worked as expected, There is a slight lag on some pages, which is worstened on some devices. The Logo scalled appropriatly and at the required time and the link returned the suer to the home page as expected.
+   - Fixes? A more larger sample size of devices to test on would be needed to see if the lagging is a hardware issue, also testing with a wired connection to the internet to see if it is a network issue if these both show no chnages we can assume it is an error in the code.
 * Navigation:
-   - What was expected? 
+   - What was expected? All buttons present in the Navigation bar take the user to the desired location, or in some circumstances trigger the appearance of a form in a side canvas. The navigation bars contents should change depending on factors such as current page and the users authentification.  
    - How it was tested? 
-   - What was the outcome? 
+      * The site was opened as an unautherised user, the 3 options presented were: 'register', 'login' and 'about'. All these links were then clicked.
+      * I then logged in and the nav bar did change to show 'create', 'logout' and 'you rooms'. all these links were then clicked.
+      * Within the 'your rooms' page the options shown were 'create', 'logout' and 'home' all theselinks were also clicked.
+      * I then entered a room i had created to test the nav bar within it. the options presented were 'start conversation', 'edit room', 'logout' and 'your rooms' all these were then clicked.
+      * I then entered a room created by another user, and the options presented were 'start conversation', 'logout' and 'your rooms' all these were then clicked.
+      * Finally I entered the edit pages, 'edit conversation' and 'edit comment', the naviagtion options here were 'logout' and 'you rooms' these were also clicked. 
+   - What was the outcome? All Navigation buttons did their required task, all those that were links to other rooms succesfully navigated there. and all those that were supposed to bring up the canvas forms did so successfully.
+   - Fixes? None required.
+* Alerts:
+   - What was expected? When a user signs up, logs in, logs out, creates a room, conversation or comment, edits a room, conversation or comment or deletes a room, conversation or comment then an alert is shown to the user. Like wise if the user is unautherised and tries to enter a room, an alert asks them to sign up or log in first.
+   - How it was tested? 
+      * firstly I tried to enter a room as an unautherised user.
+      * I then created a new account called New_user.
+      * I then logged out of this account and logged back in.
+      * I then created a room called 'delete when done'.
+      * I then edited this rooms title to 'delete when done (edit)'.
+      * I then went into this room and started a conversation called 'delete'.
+      * I then edited this the title to 'delete (edit)'.
+      * I then added a comment to 'delete (edit)' called 'delete comment'.
+      * I then edited the comment to 'delete comment (edit)'.
+      * I then deleted the comment, then the conversation and finally the room.
+   - What was the outcome? At all points described above an appropriate alert was provided.
    - Fixes? None required.
 * Footer:
-   - What was expected? 
-   - How it was tested? 
-   - What was the outcome? 
+   - What was expected? All the social links icon will scale appropriatly and change colour on curser hover, when a user logs in their name is displayed in the footer 'Logged in as: ...'
+   - How it was tested? the curser was moved over each icon, the footer was viewed as both an unautherised and autherised user.
+   - What was the outcome? All the icons behaved as expected and the logged in user was only visable when the user was autherised.
    - Fixes? None required.
 * Registration: 
-   - What was expected? 
-   - How it was tested? 
-   - What was the outcome? 
+   - What was expected? The user can complete the form to create an account and gain acess to the bulk of the site
+   - How it was tested? I created a new account called New_user
+   - What was the outcome? Before signing up I could not join rooms, and could only see, Register, login and about in the navigation bar. after signing up I was alerted that I was no logged in and I could access the whole site.
    - Fixes? None required.
 * Log in: 
-   - What was expected? 
-   - How it was tested?  
-   - What was the outcome? 
+   - What was expected? A user with an account can sign into that account.
+   - How it was tested? I attempted to sign in with a made up name and password, I then logged in with my New_user account.
+   - What was the outcome? When I tried to sign in with a fake account I was alerted that the username or password was incorrect. When I tried my New_user account I could log in succesfully.
    - Fixes? None required.
 * Log out: 
-   - What was expected? 
-   - How it was tested?  
-   - What was the outcome? 
+   - What was expected? When signed in, I as a user could seuccesfully log out.
+   - How it was tested? I clicked sign out.
+   - What was the outcome? I was successfully logged out.
    - Fixes? None required.
 * The Room Cards: 
-   - What was expected? 
-   - How it was tested?  
-   - What was the outcome? 
+   - What was expected? The front of the cards shows the room title, tags, cover_image and if the room is public or private, when hovered over the card front disappears and the card then shows the room title, description, creator, number of members and the button to join the room.
+   - How it was tested? the curser was moved over each of the rooms present in each page.  
+   - What was the outcome? each room card successfuly changed from the 'front' to the 'back' and showed all the required information.
    - Fixes? None required.
+* Public or Private Rooms:
+   - What was expected? if a room is set to private it only appears in 'your rooms' if it is set to public it appears on everyones home page.
+   - How it was tested? My New_user created a new room called 'New user prv' and checked that the room was present in my rooms ('your rooms') I then logged out and logged back in as another user and checked to see if I could see the room.  
+   - What was the outcome? The room was succesfully hidden from other users, and only appeared in 'your rooms' for the user that made it. However the room appeared in page 2 despite there being nothing on page 1.
+   - Fixes? There is an obvious error with the pagination and how 'your rooms' iterates over the page_obj which results in the number of counted rooms not equaling the rooms shown.
 * Pagination:
-   - What was expected? 
-   - How it was tested?  
-   - What was the outcome? 
-   - Fixes? None required.
+   - What was expected? Five rooms are shown per page, anymore then that and a new page is created. The buttons below the rooms can be used to navigate between the pages.
+   - How it was tested? Six rooms were created amd navigated between
+   - What was the outcome? Upon the creation of the sixth room a new page was created and and the buttons below succefully moved to the required page and showed the reuired rooms. The only issue with the pagination was flagged above when working with private rooms
+   - Fixes? Only fix required has been flagged above.
 * Create a Room:
-   - What was expected? 
-   - How it was tested?  
-   - What was the outcome? 
-   - Fixes? None required.
+   - What was expected? When the 'create' button is clicked a canvas appears at the side with the room form, once completed the room is added to the database.
+   - How it was tested? 
+      * The 'create' button was clicked.
+      * The title provided was 'Best up and coming bands?'
+      * The description provided was 'What are people favourite small bands that they think deserve more recognition?'
+      * The status was set to public
+      * Three tags were slected. 'Rock', 'alternative', 'metal'
+      * An image was uploaded so overide the cover image 
+   - What was the outcome? The room was added succesfully with all the correct information
+   - Fixes? The 'alternative' tag got cut in half due to its length. it would be worth looking into the text size and padding in css.
 * Start a conversation:
-   - What was expected? 
-   - How it was tested?  
-   - What was the outcome? 
+   - What was expected?  When the 'start conversation' button is clicked a canvas appears at the side with the conversation form, once completed the conversation is added to the database.
+   - How it was tested? In the room I made above: 
+      * I clicked the 'start converstaion'
+      * I gave it a title of 'Ignea are a fantastic folk metal band from ukraine.'
+      * And content of 'They have just released their latest single 'Nomads Luck' and its well worth a listen.'
+   - What was the outcome? The conversation was successfully started with all relevent information.
    - Fixes? None required.
 * Add Comments:
-   - What was expected? 
-   - How it was tested?  
-   - What was the outcome? 
+   - What was expected?  When the 'add a comment' button is clicked a canvas appears at the side with the comment form, once completed the comment is added to the database.
+   - How it was tested?  In the conversation I just created: I added a comment saying 'I couldn't agree more' 
+   - What was the outcome? The commnet was successfully added.
    - Fixes? None required.
 * Edit Room:
-   - What was expected? 
-   - How it was tested?  
-   - What was the outcome? 
+   - What was expected? From inside a room the room creator can select the edit room button. this will product a canvas with a form containing the current room information.
+   The user can then change the title, description, status, tags, cover image and remove any unwanted members.
+   - How it was tested?
+      * I logged in as a previously created user and entered a room I made called 'another user room'.
+      * I then edited the title to 'Whats the best festival in North America?', and description to 'I have a holiday to the US planned next year, what festival should I try to go to?'
+      * I then added another tag of Blues to the already selected Rock.
+      * I changed the placeholder image to one of the USA flag.
+      * and finally removed the other member of the room
+      * I then joined a room that this account had not created and I could not edit the room.
+   - What was the outcome? Only the room creator could edit the room and all the changes that I requested were successfully made to the room.  
    - Fixes? None required.
 * Edit Conversation / Comments
+   - What was expected? From inside a room the room creator can see the 'edit conversation' and 'edit comment' button on all converstaions and comments. These buttons will also be available to the converstaion starter and the user that adds a comment. The two buttons would take the user to the edit conversation form and edit comment form respectivly. In these forms the user can edit a conversations title and content, or a comments body.
+   - How it was tested? 
+      * As a room creator:
+         * I could see all the edit buttons.
+         * I clicked the edit conversation changed the title from 'title' to 'festivals on the west coast?' and the content to 'What should I look into?'  
+   - What was the outcome? 
+   - Fixes? None required.
+* Deletion of Rooms, Conversation and Comments
    - What was expected? 
    - How it was tested?  
    - What was the outcome? 
    - Fixes? None required.
+
                    
 #### Device testing:
 This site has been physically tested on:
    - ASUS ZenBook
+   - Iphone 11
 #### Validation
 The code was put into pythonchecker.com a link to which can be found [here](https://www.pythonchecker.com/)
 As you can see from the two images the highest score was a 92% and the lowest 82% which upon their rating system is regarded as excellent. All of the code was put through this checker I have purposely only included images of the highest and lowest scores as to avoid clutter. All other results sit in between these two figures.
