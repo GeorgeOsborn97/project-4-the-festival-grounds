@@ -75,9 +75,14 @@ ___
 7. All members have the ability to edit and delete any conversation they started and any comments they left in any room. 
 ___
 ## Development Plan:
-### User stories:
-- As seen above severel features were identified through the user stories. These were seperated out into varying degrees of necessity, the plan being that those labeled 'Must have' were of key importance, these features were identified as being needed for a MVP (minimum viable product) and should therefore be focused on straight away. Those labeled as 'Should have' were secondary, features that would enhance the user experience and should be implemented if possible, yet are not needed for a deployed product. Then we have 'Could have' features that would be also enhance the user experience but would not impact impact the user if they were not implemented. These features were treated as though they would not make the final deployment until the time came when focus could be put onto them.
+### User stories
+User Stories | Story Criteria | Kanban |
+--- | --- | --- |
+![User Stories](assets/screenshots/user_stories.png)| ![Story Criteria](assets/screenshots/story_criteria.png) | ![Kanban](assets/screenshots/project_kanban.png) |
+
+- As seen above severel features were identified through the user stories. These were seperated out into varying degrees of necessity, the plan being that those labeled 'Must have' were of key importance, these features were identified as being needed for a MVP (minimum viable product) and should therefore be focused on straight away. Those labeled as 'Should have' were secondary, features that would enhance the user experience and should be implemented if possible, yet are not needed for a deployed product. Then we have 'Could have' features that would also enhance the user experience but would not impact the user if they were not implemented. These features were treated as though they would not make the final deployment until the time came when focus could be put onto them.
 - The User stories each contain 2 sections, 'Acceptance Criteria' and 'Tasks'. The acceptance criteria defines the necessary features and processes the user would interact and go though in order to achieve the user story. The tasks define the ways in which I as a developer will put these features and processes into place. When all tasks are complete and all acceptance criteria is met, the user story can be tagged as complete.
+- The User stories were then placed into a kanban chart for ease of monitoring development, the stories progressed from Planned - In Progress - Done. As we can ee not all of the user stories made it to the final product.
 
 ___
 ### Structure:
@@ -126,22 +131,23 @@ ___
 ## Final Product
 Page | Desktop Image | Mobile Image |
 --- | --- | --- |
-Register | a | b |
-Login | a | b |
-Logout | a | b |
-Home | ![home page](assets/screenshots/home_page.png) | b |
-Your Rooms | a | b |
-About | a | b |
-In Room | a | b |
-Edit Conversation | a | b |
-Edit Comment | a | b |
+Register | ![registration](assets/screenshots/registration.png) | ![registration mobile](assets/screenshots/registration_mobile.png) |
+Login | ![login](assets/screenshots/log_in.png) | ![login mobile](assets/screenshots/log_in_mobile.png) |
+Logout | ![logout](assets/screenshots/logout.png) | ![logout mobile](assets/screenshots/logout_mobile.png) |
+Home | ![home page](assets/screenshots/home_page.png) | ![home page mobile](assets/screenshots/home_mobile.png) |
+Your Rooms | ![your rooms](assets/screenshots/your_rooms.png) | ![your rooms mobile](assets/screenshots/your_rooms_mobile.png) |
+About | ![about](assets/screenshots/about.png) | ![about mobile](assets/screenshots/about_mobile.png) |
+In Room | ![in room](assets/screenshots/in_room.png) | ![in room mobile](assets/screenshots/in_room_mobile.png) |
+Edit Room | ![edit room](assets/screenshots/edit_room.png) | ![edit room mobile](assets/screenshots/edit_room_mobile.png) |
+Edit Conversation | ![edit conversation](assets/screenshots/edit_conversation.png) | ![edit conversation mobile](assets/screenshots/edit_conversation_mobile.png) |
+Edit Comment | ![edit comment](assets/screenshots/edit_comment.png) | ![edit comment mobile](assets/screenshots/edit_comment_mobile.png) |
 ___
 ## Features: 
 ### General:
-* Top Bar: The top bar contains the Logo for the site taht also acts as a button that returns to the home page, as well as a cover image that helps set the tone of the site. 
-* Navigation: The Navigation bar incorperates the consistant style of the site, and provides links to all relevent pages. The nav bar changes depending on the authentication of the user, and the page they are currently on.
-* Alerts: Various alerts will be triggered upon certain user interactions. Such as, logging in, logging out and creating a room etc...
-* Footer: The footer is simple yet mainatins the consistant colour scheme, it holds links to all social pages as well as declering which user is logged on, should it apply.
+* Top Bar: The top bar contains the Logo for the site taht also acts as a button that returns to the home page, as well as a cover image that helps set the tone of the site. ![top bar](assets/screenshots/top_bar.png)
+* Navigation: The Navigation bar incorperates the consistant style of the site, and provides links to all relevent pages. The nav bar changes depending on the authentication of the user, and the page they are currently on. ![navigation](assets/screenshots/navigation.png)
+* Alerts: Various alerts will be triggered upon certain user interactions. Such as, logging in, logging out and creating a room etc... ![alerts](assets/screenshots/alert_example.png)
+* Footer: The footer is simple yet mainatins the consistant colour scheme, it holds links to all social pages as well as declering which user is logged on, should it apply. ![footer](assets/screenshots/footer.png)
 
 ### User Authentication:
 * Registration: Allows the user to register for a free account so they may access the bulk of the sites content.
@@ -150,18 +156,27 @@ ___
 
 ### Home Page/ Your Rooms:
 * The Room Cards: Each card represents a room the user could join.
-   - Card Front: The front of the cards show to the user the room title, any tags applied, whether the room is public or private and the cover image set to the room.
-   - Card Back: The back of the cards show the description of the room, the creator of the room and how many other users have joined the room. It also has the button join the room if the user wishes. 
+   - Card Front: The front of the cards show to the user the room title, any tags applied, whether the room is public or private and the cover image set to the room.![card front](assets/screenshots/card_front.png)
+   - Card Back: The back of the cards show the description of the room, the creator of the room and how many other users have joined the room. It also has the button join the room if the user wishes. ![card back](assets/screenshots/card_back.png) 
 * Create a Room: The 'create a room' button opens a side canvas which contains the form for the user to create a new room. 
-* Pagination: Each page contains a maximum of 5 room to reduce clutter, the pagination links allow the user to go between the pages and view all the rooms.
+* Pagination: Each page contains a maximum of 5 room to reduce clutter, the pagination links allow the user to go between the pages and view all the rooms. ![pagination](assets/screenshots/pagination.png)
 
 ### About Page:
 * Site description: The Site description is a simple but effective way to introduce a new user to the site and let them know what to expect.
 
 ### In Room:
-* Conversation List: The conversation list begins as blank and alerts the user that no conversations have been started if the room is new. Once a conversation has started any members of the room can view the thread of the conversation and contribute to the conversation in the form of comments.
-   - Add Comments: The 'add comment' opens a side canvas which contains the form for the user to add a new comment to an open conversation.
+* Conversation List: The conversation list begins as blank and alerts the user that no conversations have been started if the room is new. Once a conversation has started any members of the room can view the thread of the conversation and contribute to the conversation in the form of comments. The conversation thread can also be clapsed away by clicking on the title, and expanded again by clicking for a second time. This helps to reduce the clutter on the page.
+
+Clappsed | Expanded |
+--- | --- |
+![clappsed conversation](assets/screenshots/clappsed_conversation.png) | ![expanded conversation](assets/screenshots/expanded_conversation.png) |
+
+* Add Comments: The 'add comment' opens a side canvas which contains the form for the user to add a new comment to an open conversation.
 * Start a conversation: The 'start a conversation' button opens a side canvas which contains the form for the user to start a new converstaion.
+
+Conversation canvas | Comment canvas |
+--- | --- |
+![start a conversation](assets/screenshots/start_conversation.png) | ![add a comment](assets/screenshots/add_comment.png) |
 * Edit Room: The 'edit room' button opens a side canvas which contains the form for the user to edit the room they are in (This is only available for the room creator). 
 * Edit Conversation / Comments: These two edit buttons redirect the user to an edit page in order to edit the specific conversation or comment. (This is only available for the room creator and the creator of the specific converstaion or comment.)
 ___
@@ -258,16 +273,16 @@ ___
 * Alerts:
    - What was expected? When a user signs up, logs in, logs out, creates a room, conversation or comment, edits a room, conversation or comment or deletes a room, conversation or comment then an alert is shown to the user. Like wise if the user is unautherised and tries to enter a room, an alert asks them to sign up or log in first.
    - How it was tested? 
-      * firstly I tried to enter a room as an unautherised user.
-      * I then created a new account called New_user.
-      * I then logged out of this account and logged back in.
-      * I then created a room called 'delete when done'.
-      * I then edited this rooms title to 'delete when done (edit)'.
-      * I then went into this room and started a conversation called 'delete'.
-      * I then edited this the title to 'delete (edit)'.
-      * I then added a comment to 'delete (edit)' called 'delete comment'.
-      * I then edited the comment to 'delete comment (edit)'.
-      * I then deleted the comment, then the conversation and finally the room.
+      1. firstly I tried to enter a room as an unautherised user.
+      2. I then created a new account called New_user.
+      3. I then logged out of this account and logged back in.
+      4. I then created a room called 'delete when done'.
+      5. I then edited this rooms title to 'delete when done (edit)'.
+      6. I then went into this room and started a conversation called 'delete'.
+      7. I then edited this the title to 'delete (edit)'.
+      8. I then added a comment to 'delete (edit)' called 'delete comment'.
+      9. I then edited the comment to 'delete comment (edit)'.
+      10. I then deleted the comment, then the conversation and finally the room.
    - What was the outcome? At all points described above an appropriate alert was provided.
    - Fixes? None required.
 * Footer:
@@ -308,20 +323,20 @@ ___
 * Create a Room:
    - What was expected? When the 'create' button is clicked a canvas appears at the side with the room form, once completed the room is added to the database.
    - How it was tested? 
-      * The 'create' button was clicked.
-      * The title provided was 'Best up and coming bands?'
-      * The description provided was 'What are people favourite small bands that they think deserve more recognition?'
-      * The status was set to public
-      * Three tags were slected. 'Rock', 'alternative', 'metal'
-      * An image was uploaded so overide the cover image 
+      1. The 'create' button was clicked.
+      2. The title provided was 'Best up and coming bands?'
+      3. The description provided was 'What are people favourite small bands that they think deserve more recognition?'
+      4. The status was set to public
+      5. Three tags were slected. 'Rock', 'alternative', 'metal'
+      6. An image was uploaded so overide the cover image 
    - What was the outcome? The room was added succesfully with all the correct information
    - Fixes? The 'alternative' tag got cut in half due to its length. it would be worth looking into the text size and padding in css.
 * Start a conversation:
    - What was expected?  When the 'start conversation' button is clicked a canvas appears at the side with the conversation form, once completed the conversation is added to the database.
    - How it was tested? In the room I made above: 
-      * I clicked the 'start converstaion'
-      * I gave it a title of 'Ignea are a fantastic folk metal band from ukraine.'
-      * And content of 'They have just released their latest single 'Nomads Luck' and its well worth a listen.'
+      1. I clicked the 'start converstaion'
+      2. I gave it a title of 'Ignea are a fantastic folk metal band from ukraine.'
+      3. And content of 'They have just released their latest single 'Nomads Luck' and its well worth a listen.'
    - What was the outcome? The conversation was successfully started with all relevent information.
    - Fixes? None required.
 * Add Comments:
@@ -333,34 +348,34 @@ ___
    - What was expected? From inside a room the room creator can select the edit room button. this will product a canvas with a form containing the current room information.
    The user can then change the title, description, status, tags, cover image and remove any unwanted members.
    - How it was tested?
-      * I logged in as a previously created user and entered a room I made called 'another user room'.
-      * I then edited the title to 'Whats the best festival in North America?', and description to 'I have a holiday to the US planned next year, what festival should I try to go to?'
-      * I then added another tag of Blues to the already selected Rock.
-      * I changed the placeholder image to one of the USA flag.
-      * and finally removed the other member of the room
-      * I then joined a room that this account had not created and I could not edit the room.
+      1. I logged in as a previously created user and entered a room I made called 'another user room'.
+      2. I then edited the title to 'Whats the best festival in North America?', and description to 'I have a holiday to the US planned next year, what festival should I try to go to?'
+      3. I then added another tag of Blues to the already selected Rock.
+      4. I changed the placeholder image to one of the USA flag.
+      5. and finally removed the other member of the room
+      6. I then joined a room that this account had not created and I could not edit the room.
    - What was the outcome? Only the room creator could edit the room and all the changes that I requested were successfully made to the room.  
    - Fixes? None required.
 * Edit Conversation / Comments
    - What was expected? From inside a room the room creator can see the 'edit conversation' and 'edit comment' button on all converstaions and comments. These buttons will also be available to the converstaion starter and the user that adds a comment. The two buttons would take the user to the edit conversation form and edit comment form respectivly. In these forms the user can edit a conversations title and content, or a comments body.
    - How it was tested? 
-      * As a room creator:
-      * I could see all the edit buttons.
-      * I clicked the edit conversation changed the title from 'title' to 'festivals on the west coast?' and the content to 'What should I look into?'
-      * I then added a comment 'comment to be edited'
-      * I then clciked 'edit comment' and changed this comment to 'What time of year are you going?'
-      * I then logged back in as the conversation starter and I could again see the 'edit conversation' button and i could not see the 'edit comment' button.
-      * I clicked this and edited the title so it had a capital letter at the start of the title.
-      * I then finally re joined as another user and none of these edit options were open to me.
+      1. As a room creator:
+      2. I could see all the edit buttons.
+      3. I clicked the edit conversation changed the title from 'title' to 'festivals on the west coast?' and the content to 'What should I look into?'
+      4. I then added a comment 'comment to be edited'
+      5. I then clciked 'edit comment' and changed this comment to 'What time of year are you going?'
+      6. I then logged back in as the conversation starter and I could again see the 'edit conversation' button and i could not see the 'edit comment' button.
+      7. I clicked this and edited the title so it had a capital letter at the start of the title.
+      8. I then finally re joined as another user and none of these edit options were open to me.
    - What was the outcome? All the users that joined this room could see and edit everything they should of. The edit functionality worked as expected as well.
    - Fixes? None required.
 * Deletion of Rooms, Conversation and Comments
    - What was expected? When the delete button is selected an alert appears to ask if you are sure? And presents another button to confirm the deletion. Deleted comments are removed from the conversations they are posted in, deleted conversations are removed from their rooms. and Deleted Rooms are removed from the home page and your rooms.
    - How it was tested? 
-      * I joined a previously created room called 'Another created room'
-      * I selected edit comment and within the form deleted the comment
-      * I then selected edit conversion and within the form deleted the conversation
-      * I then selected edit room and deleted the room 
+      1. I joined a previously created room called 'Another created room'
+      2. I selected edit comment and within the form deleted the comment
+      3. I then selected edit conversion and within the form deleted the conversation
+      4. I then selected edit room and deleted the room 
    - What was the outcome? All elements were successfully deleted and the user was redirected to where was most appropriate, in the case of the comment and conversation the suer was redirected to the room. When the room was deleted the user was redirected to the home page.
    - Fixes? None required.
 * Conversation accordian:
@@ -379,6 +394,13 @@ The code was put into pythonchecker.com a link to which can be found [here](http
 As you can see from the two images the highest score was a 92% and the lowest 82% which upon their rating system is regarded as excellent. All of the code was put through this checker I have purposely only included images of the highest and lowest scores as to avoid clutter. All other results sit in between these two figures.
 ![Validatio High](assets/validation-high.png)
 ![Validation Low](assets/validation-low.png)   
+
+Language | Validator | Result |
+--- | --- | --- |
+HTML
+CSS
+Javascript
+Python
 
    ___
 ## Deployment:
