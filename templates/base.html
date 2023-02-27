@@ -44,28 +44,28 @@
                     <button type="button" class="button-style" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">Create</button>
                 </div>
                 <div class="col-4">
-                    <a href="{% url 'account_logout' %}">
+                    <a class="naviagtion" href="{% url 'account_logout' %}">
                         <button type="button" class="button-style">Logout</button>
                     </a>
                 </div>
                 <div class="col-4">
-                    <a href="{% url 'your_home' %}">
+                    <a class="naviagtion" href="{% url 'your_home' %}">
                         <button type="button" class="button-style">Your Rooms</button>
                     </a>
                 </div>
                 {% else %}
                 <div class="col-4">
-                    <a href="{% url 'account_signup' %}">
+                    <a class="naviagtion" href="{% url 'account_signup' %}">
                         <button type="button" class="button-style">Register</button>
                     </a>
                 </div>
                 <div class="col-4">
-                    <a href="{% url 'account_login' %}">
+                    <a class="naviagtion" href="{% url 'account_login' %}">
                         <button type="button" class="button-style">Login</button>
                     </a>
                 </div>
                 <div class="col-4">
-                    <a href="{% url 'about' %}">
+                    <a class="naviagtion" href="{% url 'about' %}">
                         <button type="button" class="button-style">About</button>
                     </a>
                 </div>

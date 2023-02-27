@@ -14,12 +14,12 @@
                 <button type="button" class="button-style" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" aria-controls="offcanvas"  style="background-color: #739deb">Edit Room</button>
             </div>
             <div class="col-3">
-                <a href="{% url 'account_logout' %}">
+                <a class="naviagtion" href="{% url 'account_logout' %}">
                     <button type="button" class="button-style">Logout</button>
                 </a>
             </div>
             <div class="col-3">
-                <a href="{% url 'your_home' %}">
+                <a class="naviagtion" href="{% url 'your_home' %}">
                     <button type="button" class="button-style">Your Rooms</button>
                 </a>
             </div>
@@ -28,12 +28,12 @@
                 <button type="button" class="button-style" data-bs-toggle="offcanvas" data-bs-target="#convoOffcanvas" aria-controls="offcanvas">Start Conversation</button>
             </div>
             <div class="col-4">
-                <a href="{% url 'account_logout' %}">
+                <a class="naviagtion" href="{% url 'account_logout' %}">
                     <button type="button" class="button-style">Logout</button>
                 </a>
             </div>
             <div class="col-4">
-                <a href="{% url 'your_home' %}">
+                <a class="naviagtion" href="{% url 'your_home' %}">
                     <button type="button" class="button-style">Your Rooms</button>
                 </a>
             </div>
@@ -67,7 +67,7 @@
                     </button>
                     <!--If the user is the room or conversation creator they can edit the conversation-->
                     {% if user == room.creator or user == conversation.creator %}
-                    <a href="{% url 'edit' conversation.id %}">
+                    <a class="naviagtion" href="{% url 'edit' conversation.id %}">
                         <button type="button" name="edit" class="button-style"  style="background-color: #739deb">Edit Conversation</button>
                     </a> 
                     {% endif %}
@@ -87,7 +87,7 @@
                                     <p><strong>{{ comment.name }} said: </strong>{{ comment.body | safe }}</p>
                                     <!--If the user is the room or comment creator they can edit the comment-->
                                     {% if  user.username == comment.name or user == room.creator %}
-                                    <a href="{% url 'edit_comment' comment.id %}">
+                                    <a class="naviagtion" href="{% url 'edit_comment' comment.id %}">
                                         <button type="button" name="edit" class="button-style"
                                             style="background-color: #739deb; margin-left: 30px;">Edit Comment</button>
                                     </a>

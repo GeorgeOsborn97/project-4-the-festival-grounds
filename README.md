@@ -1,7 +1,7 @@
 # The Festival Ground
 
 ![full-mockup]()
-This site has been designed to be a music based community forum. The general idea of the website was to build a place where anyone and everyone could come togther to discuss and debate any topics surronding music that would like to. A key goal from the start was for the user to be in complete control over what they build into the site, they have control over the rooms that they create, the conversations they start and the comments they leave.
+This site has been designed to be a music based community forum. The general idea of the website was to build a place where anyone and everyone could come togther to discuss and debate any topics surronding music that they would like to. A key goal from the start was for the user to be in complete control over what they build into the site, they have control over the rooms that they create, the conversations they start and the comments they leave.
 
 Find a link to the deployed site [here]()
 
@@ -74,36 +74,95 @@ ___
 6. The creator of a room has the ability to edit and delete any conversation and comment, edit and delete the room itself as well as remove any unwanted members.
 7. All members have the ability to edit and delete any conversation they started and any comments they left in any room. 
 ___
-## the road map
-### User stories
+## Development Plan:
+### User stories:
+- As seen above severel features were identified through the user stories. These were seperated out into varying degrees of necessity, the plan being that those labeled 'Must have' were of key importance, these features were identified as being needed for a MVP (minimum viable product) and should therefore be focused on straight away. Those labeled as 'Should have' were secondary, features that would enhance the user experience and should be implemented if possible, yet are not needed for a deployed product. Then we have 'Could have' features that would be also enhance the user experience but would not impact impact the user if they were not implemented. These features were treated as though they would not make the final deployment until the time came when focus could be put onto them.
+- The User stories each contain 2 sections, 'Acceptance Criteria' and 'Tasks'. The acceptance criteria defines the necessary features and processes the user would interact and go though in order to achieve the user story. The tasks define the ways in which I as a developer will put these features and processes into place. When all tasks are complete and all acceptance criteria is met, the user story can be tagged as complete.
 
 ___
-### Development Plan:
+### Structure:
 ![The flow chart](assets/roadmap.png)
-- The plan for this was 
+- The Structure and flow of the site is defined in the flow chart above. It defines the movement of the user through the site and the different paths they can take. This flowchart was done prior to the development process, due to this there are some changes to the flow of the final product and some features such as the request entry to private rooms are not present.
+___
+#### Database Models:
+- This site uses ElephantSQl for the Database managment. There are four models that have been developed for this site, Tags, Rooms, Conversations and Comments. The relationship between these databases can be seen below.
+##### Tags:
+- tag: tags that the users can add to their rooms upon creation and editing.
+##### Rooms:
+- title: A unique title for the room defined by its creator.
+- creator: A foriegn key of the User model to get the username of the room creator.
+- created_on: The date of the rooms creation.
+- slug: a unique slugified version of the title.
+- cover_image: an image that the user can upload to cloudinary to set at the front of their room.
+- description: a brief description of the room provided by the room creator.
+- status: an integer field that defines the status of the room as public or private. 
+- tags: The room creator can select any of the tags defined in the Tags model.
+- members: The users that join the room are added to this field and can be removed by the creator.
+##### Conversations:
+- room: a foriegn key that defines the room the conversation is started in.
+- title: a title for the conversation defined by the creator.
+- slug: a slufied version of the conversation title.
+- creator: A foriegn key of the User model to get the username of the conversation creator.
+- content: the content or 'start' of the conversation defined by the user.
+- created_on: the date the conversation was started.
+##### Comments:
+- room: a foriegn key that defines the room the comment is posted in.
+- conversation: a foriegn key that defines the conversation the comment is posted under.
+- name: The name of the user that posted the comment.
+- body: the content of the comment defined by the user.
+- created_on: the date the conversation was started.
+___
+### Skeleton:
+- The wireframes below demonstrate the initial plan for the appearence and layout of the site, as we can see when we compare the wireframes to the final product changes were made to this initial plan, however the basic layout has remained.
 
 ___
-#### Structure:
-
-___
-#### Skeleton:
-
-___
-#### Surface:
+### Surface:
+#### Colour scheme:
+- Various colour schemes and styles were tested throughout the development process before landing on the final design. The Colour scheme is purposfully bright and colourful in order to best represent the 'festival feel' that the site aims to give off. The Rotating blurred borders that can be seen in the home and your rooms pages aim to be reminiscent of the bright light shows that occur at festivals and music shows hopefully aiding in the immersion of the user.
+#### Style
+- The user can see the same style running through the site as a whole, not only does this add to the sites consistency of imagery and colour but also the overall style should help refelect the themes of fun, music and the bright craziness of being at a festival.  
 
 ___
 ## Final Product
-### The start
-![The start](assets/final-product.png)
-* As you can see above this is the first screen that the user will be faced with. It is hoped that through reading this brief introduction that they will understand what this application has to offer and will be excited to begin to create their own charcater.
+Page | Image | Second Image (if aplicable) |
+--- | --- | --- |
+Register | a | b |
+Login | a | b |
+Logout | a | b |
+Home | a | b |
+Your Rooms | a | b |
+About | a | b |
+In Room | a | b |
+Edit Conversation | a | b |
+Edit Comment | a | b |
 ___
 ## Features: 
-### Welcome page:
-  - The first thing the user will see is the intro page. This was put in to help describe the purpose of the site and to help them understand the mechanics.
-  ![the intro page](assets/intro.png)
+### General:
+* Top Bar: The top bar contains the Logo for the site taht also acts as a button that returns to the home page, as well as a cover image that helps set the tone of the site. 
+* Navigation: The Navigation bar incorperates the consistant style of the site, and provides links to all relevent pages. The nav bar changes depending on the authentication of the user, and the page they are currently on.
+* Footer: The footer is simple yet mainatins the consistant colour scheme, it holds links to all social pages as well as declering which user is logged on, should it apply.
 
-### Colour scheme:
-  - 
+### User Authentication:
+* Registration: Allows the user to register for a free account so they may access the bulk of the sites content.
+* Log in: Allows the user to sign in if they have a registered account.
+* Sign out: Allows the user to sign out of a registered account.
+
+### Home Page/ Your Rooms:
+* The Room Cards: Each card represents a room the user could join.
+   - Card Front: The front of the cards show to the user the room title, any tags applied, whether the room is public or private and the cover image set to the room.
+   - Card Back: The back of the cards show the description of the room, the creator of the room and how many other users have joined the room. It also has the button join the room if the user wishes. 
+* Create a Room: The 'create a room' button opens a side canvas which contains the form for the user to create a new room. 
+* Pagination: Each page contains a maximum of 5 room to reduce clutter, the pagination links allow the user to go between the pages and view all the rooms.
+
+### About Page:
+* Site description: The Site description is a simple but effective way to introduce a new user to the site and let them know what to expect.
+
+### In Room:
+* Conversation List: The conversation list begins as blank and alerts the user that no conversations have been started if the room is new. Once a conversation has started any members of the room can view the thread of the conversation and contribute to the conversation in the form of comments.
+   - Add Comments: The 'add comment' opens a side canvas which contains the form for the user to add a new comment to an open conversation.
+* Start a conversation: The 'start a conversation' button opens a side canvas which contains the form for the user to start a new converstaion.
+* Edit Room: The 'edit room' button opens a side canvas which contains the form for the user to edit the room they are in (This is only available for the room creator). 
+* Edit Conversation / Comments: These two edit buttons redirect the user to an edit page in order to edit the specific conversation or comment. (This is only available for the room creator and the creator of the specific converstaion or comment.)
 ___
 ## Technology that was utilized:
 ### languages:
@@ -111,20 +170,138 @@ ___
 * HTML
 * CSS
 * Javascript / JQuery
-### external assets utilized:
-* [GitHub](https://github.com/)
+
+### Libraries and Frameworks
+
+* [Django](https://www.djangoproject.com/)   
+    * Django was used as the web framework for this project.
+   
+* [Bootstrap 5](https://getbootstrap.com/docs/5.0/getting-started/introduction/)  
+    * Bootstrap 5 was used throughout the website to help with styling and responsiveness.
+
+* [Google Fonts](https://fonts.google.com)  
+    * Google fonts was used to import the fonts that were utilised for this site.
+
+* [Font Awesome](https://fontawesome.com)  
+    * Font Awesome was used to add icons to the social links included in the footer.  
+
+### Packages / Dependecies Installed
+
+* [Django Allauth](https://django-allauth.readthedocs.io/en/latest/)  
+    * Django Allauth was used for user authentication, registration, and account management.
+
+* [Django Crispy Form](https://django-crispy-forms.readthedocs.io/en/latest/)   
+    * Django Crispy Form was used to control the rendering of the forms. 
+ 
+* [Gunicorn](https://gunicorn.org/)  
+    * Gunicorn was used as Python WSGI HTTP Server for UNIX to support the deployment of Django application.  
+
+* [Summernote](https://summernote.org/) 
+    * Summernote has been used as WYSIWYG editor.
+
+* [Cloudinary](https://cloudinary.com/)
+    * Cloudinary has been used for image management
+
+### Database Management
+* [ElephantSQL](https://www.elephantsql.com/)   
+    * ElephantSQl was used for database management
+
+
+### Tools and Programs
 * [GitPod](https://gitpod.io/)
-* [Heroku](https://dashboard.heroku.com/)
+   * GitPod was used for writing code, committing, and then pushing to GitHub.
+
+* [GitHub](https://github.com)  
+   GitHub was used to store the projects code and was used to create and mange the user storied during the design process. 
+
+* [Heroku](https://www.heroku.com)   
+   * Heroku was used to deploy the website.
+
+* [Am I Responsive](ami.responsivedesign.is)  
+    * Am I Responsive was used to preview the website across a variety of popular devices.
+   
+* [Lucid Charts](https://www.lucidchart.com/)
+   * Lucid Charts was used to create the wireframes, flow chart and ERD for this project
+
+* [Chrome DevTools](https://developer.chrome.com/docs/devtools/)
+   * Chrome DevTools was used during development process primarily to test the design on different platforms and devices.
+
+* [W3C Markup Validator](https://validator.w3.org/)
+   * W3C Markup Validator was used to validate the HTML code.
+
+* [W3C CSS Validator](https://jigsaw.w3.org/css-validator/)
+   * W3C CSS Validator was used to validate the CSS code.
+
+* [JSHint](https://jshint.com/) 
+   * JSHint was used to validate the JavaScript code.
+   
+* [Pythonchecker](https://www.pythonchecker.com/)
+   * Pythonchecker was used to validate the Python code.
 ___
 ## Testing:
 ### Feature Testing:
 * Fixes refers to any potential current fixes/improvements that are still potentially available. 'None required' refers to the fact that at this moment there is no additional work needed to improve that feature. Many bugs and errors were encounted during the development process and several of these features were very much trail and error. The accounts of which can be found throughout the commits in GitHub.
+* Top Bar: 
+   - What was expected? 
+   - How it was tested? 
+   - What was the outcome? 
+   - Fixes? None required.
+* Navigation:
+   - What was expected? 
+   - How it was tested? 
+   - What was the outcome? 
+   - Fixes? None required.
+* Footer:
+   - What was expected? 
+   - How it was tested? 
+   - What was the outcome? 
+   - Fixes? None required.
 * Registration: 
    - What was expected? 
    - How it was tested? 
    - What was the outcome? 
    - Fixes? None required.
-* Log-in: 
+* Log in: 
+   - What was expected? 
+   - How it was tested?  
+   - What was the outcome? 
+   - Fixes? None required.
+* Log out: 
+   - What was expected? 
+   - How it was tested?  
+   - What was the outcome? 
+   - Fixes? None required.
+* The Room Cards: 
+   - What was expected? 
+   - How it was tested?  
+   - What was the outcome? 
+   - Fixes? None required.
+* Pagination:
+   - What was expected? 
+   - How it was tested?  
+   - What was the outcome? 
+   - Fixes? None required.
+* Create a Room:
+   - What was expected? 
+   - How it was tested?  
+   - What was the outcome? 
+   - Fixes? None required.
+* Start a conversation:
+   - What was expected? 
+   - How it was tested?  
+   - What was the outcome? 
+   - Fixes? None required.
+* Add Comments:
+   - What was expected? 
+   - How it was tested?  
+   - What was the outcome? 
+   - Fixes? None required.
+* Edit Room:
+   - What was expected? 
+   - How it was tested?  
+   - What was the outcome? 
+   - Fixes? None required.
+* Edit Conversation / Comments
    - What was expected? 
    - How it was tested?  
    - What was the outcome? 
