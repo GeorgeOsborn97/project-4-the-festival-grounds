@@ -216,9 +216,6 @@ ___
 
 * [Heroku](https://www.heroku.com)   
    * Heroku was used to deploy the website.
-
-* [Am I Responsive](ami.responsivedesign.is)  
-    * Am I Responsive was used to preview the website across a variety of popular devices.
    
 * [Lucid Charts](https://www.lucidchart.com/)
    * Lucid Charts was used to create the wireframes, flow chart and ERD for this project
