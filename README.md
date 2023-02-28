@@ -411,8 +411,22 @@ Python | Pythonchecker Pep8 checker in gitpod | The questions flagged by the che
 ![python low](assets/screenshots/py_view_check_two.png)
 ![error example](assets/screenshots/py_model_check.png)
 
+Page | Lighthouse Desktop Result | Lighthuse Mobile Result
+--- | --- | --- |
+Register | ![registration lighthouse results](assets/wireframes/reg_result_desk.png) | ![registration mobile lighthouse results](assets/wireframes/reg_result_mobile.png) |
+Login | ![login lighthouse results](assets/wireframes/login_desk_res.png) | ![login mobile lighthouse results](assets/wireframes/login_mobile_res.png) |
+Logout | ![logout lighthouse results](assets/wireframes/logout_desktop_res.png) | ![logout mobile lighthouse results](assets/wireframes/logout_mobile_res.png) |
+Home | ![home page lighthouse results](assets/wireframes/homepage_res_desk.png) | ![home page mobile lighthouse results](assets/wireframes/homepage_res_mobile.png) |
+Your Rooms | ![your rooms lighthouse results](assets/wireframes/your_room_desk_res.png) | ![your rooms mobile lighthouse results](assets/wireframes/your_room_mobile_res.png) |
+About | ![about lighthouse results](assets/wireframes/about_desk_res.png) | ![about mobile lighthouse results](assets/wireframes/about_mobile_res.png) |
+In Room | ![in room lighthouse results](assets/wireframes/in_room_res_desktop.png) | ![in room mobile lighthouse results](assets/wireframes/in_room_res_mobile.png) |
+Edit Room | N/A | N/A |
+Edit Conversation | ![edit conversation lighthouse results](assets/wireframes/edit_conversation_desktop_res.png) | ![edit conversation mobile lighthouse results](assets/wireframes/edit_conversation_mobile_res.png) |
+Edit Comment | ![edit comment lighthouse results](assets/wireframes/edit_comment_desktop_res.png) | ![edit comment mobile lighthouse results](assets/wireframes/edit_comment_mobile_res.png) |
 
-   ___
+#### Known bugs and future plans.
+ - There are a few bugs that certainly require a look at, these a
+___
 ## Deployment:
 To deploy this page to Heroku from its GitHub repository, the following steps were taken:
 
