@@ -1,7 +1,7 @@
 # The Festival Ground
 
-![full-mockup]()
-This site has been designed to be a music based community forum. The general idea of the website was to build a place where anyone and everyone could come togther to discuss and debate any topics surronding music that they would like to. A key goal from the start was for the user to be in complete control over what they build into the site, they have control over the rooms that they create, the conversations they start and the comments they leave.
+![full-screen-shot](assets/screenshots/final_shot.png)
+This site has been designed to be a music based community forum. The general idea of the website was to build a place where anyone and everyone could come together to discuss and debate any topics surrounding music that they would like to. A key goal from the start was for the user to be in complete control over what they build into the site, they have control over the rooms that they create, the conversations they start and the comments they leave.
 
 Find a link to the deployed site [here](https://the-festival-ground.herokuapp.com/)
 
@@ -42,13 +42,13 @@ ___
 ## User experience:
 ### What I wanted to achieve:
 
-1. Create community forum style website that was easy to navigate and contribute towards. 
+1. Create a community forum style website that was easy to navigate and contribute towards. 
 2. Users can register for an account that will allow them to be able to interact with every aspect of the site, if a user is unregstered their interactivity will be very limited.
 3. Users can create their own rooms to discuss topics important to them, or join any public room. 
-4. Inside a room all members can start conversations to begin a discusion on a certain topic.
+4. Inside a room all members can start conversations to begin a discussion on a certain topic.
 5. All members in a room can contribute to any conversation in that room via comments.
 6. The creator of a room has the ability to edit and delete any conversation and comment, edit and delete the room itself as well as remove any unwanted members.
-7. All members have the ability to edit and delete any conversation they started and any comments they left in any room. 
+7. All members have the ability to edit and delete any conversation that they started and any comments that they left in any room. 
 ___
 ## Development Plan:
 ### User stories
@@ -58,7 +58,7 @@ User Stories | Story Criteria | Kanban |
 
 - As seen above severel features were identified through the user stories. These were seperated out into varying degrees of necessity, the plan being that those labeled 'Must have' were of key importance, these features were identified as being needed for a MVP (minimum viable product) and should therefore be focused on straight away. Those labeled as 'Should have' were secondary, features that would enhance the user experience and should be implemented if possible, yet are not needed for a deployed product. Then we have 'Could have' features that would also enhance the user experience but would not impact the user if they were not implemented. These features were treated as though they would not make the final deployment until the time came when focus could be put onto them.
 - The User stories each contain 2 sections, 'Acceptance Criteria' and 'Tasks'. The acceptance criteria defines the necessary features and processes the user would interact and go though in order to achieve the user story. The tasks define the ways in which I as a developer will put these features and processes into place. When all tasks are complete and all acceptance criteria is met, the user story can be tagged as complete.
-- The User stories were then placed into a kanban chart for ease of monitoring development, the stories progressed from Planned - In Progress - Done. As we can ee not all of the user stories made it to the final product.
+- The User stories were then placed into a kanban chart for ease of monitoring development, the stories progressed from Planned - In Progress - Done. As we can see not all of the user stories made it to the final product.
 
 ___
 ### Structure:
@@ -129,10 +129,10 @@ Edit Comment | ![edit comment](assets/screenshots/edit_comment.png) | ![edit com
 ___
 ## Features: 
 ### General:
-* Top Bar: The top bar contains the Logo for the site taht also acts as a button that returns to the home page, as well as a cover image that helps set the tone of the site. ![top bar](assets/screenshots/top_bar.png)
+* Top Bar: The top bar contains the Logo for the site that also acts as a button that returns to the home page, as well as a cover image that helps set the tone of the site. ![top bar](assets/screenshots/top_bar.png)
 * Navigation: The Navigation bar incorperates the consistant style of the site, and provides links to all relevent pages. The nav bar changes depending on the authentication of the user, and the page they are currently on. ![navigation](assets/screenshots/navigation.png)
 * Alerts: Various alerts will be triggered upon certain user interactions. Such as, logging in, logging out and creating a room etc... ![alerts](assets/screenshots/alert_example.png)
-* Footer: The footer is simple yet mainatins the consistant colour scheme, it holds links to all social pages as well as declering which user is logged on, should it apply. ![footer](assets/screenshots/footer.png)
+* Footer: The footer is simple yet mainatins the consistant colour scheme, it holds links to all social pages as well as declaring which user is logged on, should it apply. ![footer](assets/screenshots/footer.png)
 
 ### User Authentication:
 * Registration: Allows the user to register for a free account so they may access the bulk of the sites content.
@@ -142,7 +142,7 @@ ___
 ### Home Page and Your Rooms:
 * The Room Cards: Each card represents a room the user could join.
    - Card Front: The front of the cards show to the user the room title, any tags applied, whether the room is public or private and the cover image set to the room.![card front](assets/screenshots/card_front.png)
-   - Card Back: The back of the cards show the description of the room, the creator of the room and how many other users have joined the room. It also has the button join the room if the user wishes. ![card back](assets/screenshots/card_back.png) 
+   - Card Back: The back of the cards show the description of the room, the creator of the room and how many other users have joined the room. It also has the button to join the room if the user wishes. ![card back](assets/screenshots/card_back.png) 
 * Create a Room: The 'create a room' button opens a side canvas which contains the form for the user to create a new room. ![create a room](assets/screenshots/room_create.png)  
 * Pagination: Each page contains a maximum of 5 room to reduce clutter, the pagination links allow the user to go between the pages and view all the rooms. ![pagination](assets/screenshots/pagination.png)
 
@@ -150,7 +150,7 @@ ___
 * Site description: The Site description is a simple but effective way to introduce a new user to the site and let them know what to expect.
 
 ### In Room:
-* Conversation List: The conversation list begins as blank and alerts the user that no conversations have been started if the room is new. Once a conversation has started any members of the room can view the thread of the conversation and contribute to the conversation in the form of comments. The conversation thread can also be clapsed away by clicking on the title, and expanded again by clicking for a second time. This helps to reduce the clutter on the page.
+* Conversation List: The conversation list begins as blank and alerts the user that no conversations have been started if the room is new. Once a conversation has started any members of the room can view the thread of the conversation and contribute to the conversation in the form of comments. The conversation thread can also be clappsed away by clicking on the title, and expanded again by clicking for a second time. This helps to reduce the clutter on the page.
 
 Clappsed | Expanded |
 --- | --- |
@@ -247,15 +247,15 @@ ___
 * Top Bar: 
    - What was expected? Upon the Loading of the page the border around the cover image would slowly shift and rotate, The Logo should scale up when hovered over and when clicked should return the user to the home page.
    - How it was tested? Upon loading up the site I waited for 10 seconds just to watch the border animation to make sure it functioned as expected. I then moved my curser over the logo severel times to ensure the scale effect worked upon the appropriate event. I then clicked the Logo to test that the correct link was etablished.
-   - What was the outcome? The border effect worked as expected, There is a slight lag on some pages, which is worstened on some devices. The Logo scalled appropriatly and at the required time and the link returned the suer to the home page as expected.
+   - What was the outcome? The border effect worked as expected, There is a slight lag on some pages, which is worstened on some devices. The Logo scalled appropriatly and at the required time and the link returned the user to the home page as expected.
    - Fixes? A more larger sample size of devices to test on would be needed to see if the lagging is a hardware issue, also testing with a wired connection to the internet to see if it is a network issue if these both show no chnages we can assume it is an error in the code.
 * Navigation:
    - What was expected? All buttons present in the Navigation bar take the user to the desired location, or in some circumstances trigger the appearance of a form in a side canvas. The navigation bars contents should change depending on factors such as current page and the users authentification.  
    - How it was tested? 
       * The site was opened as an unautherised user, the 3 options presented were: 'register', 'login' and 'about'. All these links were then clicked.
       * I then logged in and the nav bar did change to show 'create', 'logout' and 'you rooms'. all these links were then clicked.
-      * Within the 'your rooms' page the options shown were 'create', 'logout' and 'home' all theselinks were also clicked.
-      * I then entered a room i had created to test the nav bar within it. the options presented were 'start conversation', 'edit room', 'logout' and 'your rooms' all these were then clicked.
+      * Within the 'your rooms' page the options shown were 'create', 'logout' and 'home' all these links were also clicked.
+      * I then entered a room I had created to test the nav bar within it. The options presented were 'start conversation', 'edit room', 'logout' and 'your rooms' all these were then clicked.
       * I then entered a room created by another user, and the options presented were 'start conversation', 'logout' and 'your rooms' all these were then clicked.
       * Finally I entered the edit pages, 'edit conversation' and 'edit comment', the naviagtion options here were 'logout' and 'you rooms' these were also clicked. 
    - What was the outcome? All Navigation buttons did their required task, all those that were links to other rooms succesfully navigated there. and all those that were supposed to bring up the canvas forms did so successfully.
@@ -283,7 +283,7 @@ ___
 * Registration: 
    - What was expected? The user can complete the form to create an account and gain acess to the bulk of the site
    - How it was tested? I created a new account called New_user
-   - What was the outcome? Before signing up I could not join rooms, and could only see, Register, login and about in the navigation bar. after signing up I was alerted that I was no logged in and I could access the whole site.
+   - What was the outcome? Before signing up I could not join rooms, and could only see, Register, login and about in the navigation bar. after signing up I was alerted that I was now logged in and I could access the whole site.
    - Fixes? None required.
 * Log in: 
    - What was expected? A user with an account can sign into that account.
@@ -353,8 +353,8 @@ ___
       2. I could see all the edit buttons.
       3. I clicked the edit conversation changed the title from 'title' to 'festivals on the west coast?' and the content to 'What should I look into?'
       4. I then added a comment 'comment to be edited'
-      5. I then clciked 'edit comment' and changed this comment to 'What time of year are you going?'
-      6. I then logged back in as the conversation starter and I could again see the 'edit conversation' button and i could not see the 'edit comment' button.
+      5. I then clicked 'edit comment' and changed this comment to 'What time of year are you going?'
+      6. I then logged back in as the conversation starter and I could again see the 'edit conversation' button and I could not see the 'edit comment' button.
       7. I clicked this and edited the title so it had a capital letter at the start of the title.
       8. I then finally re joined as another user and none of these edit options were open to me.
    - What was the outcome? All the users that joined this room could see and edit everything they should of. The edit functionality worked as expected as well.
@@ -366,7 +366,7 @@ ___
       2. I selected edit comment and within the form deleted the comment
       3. I then selected edit conversion and within the form deleted the conversation
       4. I then selected edit room and deleted the room 
-   - What was the outcome? All elements were successfully deleted and the user was redirected to where was most appropriate, in the case of the comment and conversation the suer was redirected to the room. When the room was deleted the user was redirected to the home page.
+   - What was the outcome? All elements were successfully deleted and the user was redirected to where was most appropriate, in the case of the comment and conversation the user was redirected to the room. When the room was deleted the user was redirected to the home page.
    - Fixes? None required.
 * Conversation accordian:
    - What was expected? When a conversation title is clicked it clapses the conversation thread, if it is clicked again the thread is expanded. 
@@ -407,14 +407,14 @@ Edit Comment | ![edit comment lighthouse results](assets/wireframes/edit_comment
 
 #### Known bugs and future plans.
 ##### Bugs
- - After testing and validation there are a few bugs and errors that do require attention. These have not been resolved prioir to deployment due to the fact that the site is in a functional state and in my opinion classifies as an MVP (minimum viable product), I would however of liked to of had these solved but due to the time constraints for the project it has meant that there is no longer any time to spend on these issues.
-   * The performance is an issue, additional tests on multiple devices would be key to diagnose the severity of the problem. However I have the sense the performance is caused by the border animations that are front and center on the home page. This feature however is the soul of the project, it elevates the site from a 2 dimensional to a 3 dimensional site, adding a draw to the user that i did not wish to remove. Testing of different blurring and animation speed would be key aswell to reduce the performance issue.
+ - After testing and validation there are a few bugs and errors that do require attention. These have not been resolved prior to deployment due to the fact that the site is in a functional state and in my opinion classifies as an MVP (minimum viable product), I would however of liked to of had these solved but due to the time constraints for the project it has meant that there is no longer any time to spend on these issues.
+   * The performance is an issue, additional tests on multiple devices would be key to diagnose the severity of the problem. However I have the sense the performance is caused by the border animations that are front and center on the home page. This feature however is the soul of the project, it elevates the site from a 2 dimensional to a 3 dimensional site, adding a draw to the user that I did not wish to remove. Testing of different blurring and animation speed would be key aswell to reduce the performance issue.
    * Card text. A style issue present on small laptops is that the text in the room cards can get segmented. A more in depth look into the size of the cards on different screens should solve this. This is not a problem on larger screens, tablets or mobiles so was pushed down the priority list as being a specific issue for specific screens and as such did not get sloved in the time frame.
    * Card height with tags. An issue that I overlooked during development was what would happen if someone put in all the tags? on tablets and mobile this is not an issue, the card front scrolls on overflow and flips on a tap, however on desktop this does not happen and due to the card flip on curser hover a scroll would not work as the user can not scroll before the card flips. I did not want to make the card flip on click as I felt that it is less intuative for a desktop user. There are two solves for this issue that I can see. Alter the form to limit the tags a user can use or change the style of the cards to better handle multiple tags. This is an issue I should of spotted sooner and it would not take long to fix but as it stands I have ran out of time. This would be a top priority fix in a day one patch.
    * Your room pagination. Another issue I did not spot until manual testing at the end of developoment was an issue with the paginated objects. In Your rooms the page still counts all rooms in the paginated objects which means if you make a room that is the say 7th room to be made it will appear on page 2 in 'your rooms' regardless of howmany rooms you have joined. If it is your only room it will still be on page 2 and page 1 will be blank. This again is a top priority fix for a day one patch.
 
 ##### Future plans
-- In addition to the fixes flagged above, there are a few additional features I would look to implement in the future. These can be seen in the User stories that did not make the final deployment. These 3 features are. Room search functionality, a system to respond with reactions such as likes and emoji's and finally an email notification system taht wouuld alert a user when theres activity in their room such as another user joining or a conversation being started. These 3 features were all in mind during development, the closest to being complete being the search function. I had attempted to put this in place as you can see with the commented out code in the index.html, your_rooms.html and script.js. The search function worked on a singualr page but never over all pages for this reason I removed it as it was not useful and would hinder user experience rather then enhance it, however I kept the code in as a bulding block to work off of in the future.
+- In addition to the fixes flagged above, there are a few additional features I would look to implement in the future. These can be seen in the User stories that did not make the final deployment. These 3 features are. Room search functionality, a system to respond with reactions such as likes and emoji's and finally an email notification system that would alert a user when there's activity in their room such as another user joining or a conversation being started. These 3 features were all in mind during development, the closest to being complete being the search function. I had attempted to put this in place as you can see with the commented out code in the index.html, your_rooms.html and script.js. The search function worked on a singular page but never over all paginated pages for this reason I removed it as it was not useful and would hinder user experience rather then enhance it, however I kept the code in as a bulding block to work off of in the future.
 
 ## Deployment:
 To deploy this page to Heroku from its GitHub repository, the following steps were taken:
