@@ -3,61 +3,37 @@
 ![full-mockup]()
 This site has been designed to be a music based community forum. The general idea of the website was to build a place where anyone and everyone could come togther to discuss and debate any topics surronding music that they would like to. A key goal from the start was for the user to be in complete control over what they build into the site, they have control over the rooms that they create, the conversations they start and the comments they leave.
 
-Find a link to the deployed site [here]()
+Find a link to the deployed site [here](https://the-festival-ground.herokuapp.com/)
 
 ## contents:
 1. [User experience](#user-experience)
-   - [what I wanted to achieve](#what-i-wanted-to-achieve)
-   - [the road map](#the-road-map)
+   - [What I wanted to achieve](#what-i-wanted-to-achieve)
+   - [Development Plan](#development-plan)
       1. [User Stories](#user-stories)
-      2. [Development Plan](#development-plan)
-      3. [Structure](#structure)
-      4. [Skeleton](#skeleton)
-      5. [Surface](#surface)
+      2. [Structure](#structure)
+         * [Database Models](#database-models)
+      3. [Skeleton](#skeleton)
+      4. [Surface](#surface)
 2. [Final product](#final-product)
-   - [Home Page](#home-page)
-   - [About Page](#about-page)
-   - [Room View](#room-view)
-   - [Your Rooms](#your-rooms)
-   - [Register](#register)
-   - [Login](#login)
-   - [Edit Conversation and Edit Comment](#edit-conversation-and-edit-comment)
 3. [Features](#features)
-   - [Home Page](#home-page)
-      1. [Navigation]()
-      2. [Room layout]()
-      3. [Room interactivity]()
-      4. [Room creation]()
-      5. [Pagination]()
+   - [General](#general)
+   - [User Authentication](#user-authentication)
+   - [Home Page and Your Rooms](#home-page-and-your-rooms)
    - [About Page](#about-page)
-      1. [Website description]()
-   - [Room View](#room-view)
-      1. [Navigation edited]()
-      2. [Conversation and Comment layout]()
-      3. [Starting conversations]()
-      4. [Adding comments]()
-      5. [Edit]()
-   - [Your Rooms](#your-rooms)
-      1. [Your room layout]()
-   - [Register](#register)
-      1. [Registration layout]()
-      2. [Registration form]()
-   - [Login](#login)
-      1. [Login layout]()
-      2. [Log in form]()
-   - [Edit Conversation and Edit Comment](#edit-conversation-and-edit-comment)
-      1. [Edit layout]()
-      2. [Edit forms]()
+   - [In the Room](#in-room)
+   - [Edit Conversations and Comments](#edit-conversations-and-comments)
 4. [Technology that was utilized](#technology-that-was-utilized)   
    - [Languages](#languages)
-   - [External assets](#external-assets-utilized)
+   - [Libraries and Frameworks](#libraries-and-frameworks)
+   - [Packages Installed](#packages-installed)
+   - [Database Management](#database-management)
+   - [Tools and Programs](#tools-and-programs)
 5. [Testing](#testing)  
    - [Feature testing](#feature-testing)
    - [Device testing](#device-testing)
    - [Validation](#validation)
+   - [Known Bugs and future plans](#known-bugs-and-future-plans)
 6. [Deployment](#deployment)
-7. [Known Bugs](#known-bugs)
-8. [Future Improvments](#future-improvements)
 9. [Credits/Acknowledgments](#creditsacknowledgments)
    - [Content](#content)
    - [Media](#media)  
@@ -163,11 +139,11 @@ ___
 * Log in: Allows the user to sign in if they have a registered account.
 * Sign out: Allows the user to sign out of a registered account.
 
-### Home Page/ Your Rooms:
+### Home Page and Your Rooms:
 * The Room Cards: Each card represents a room the user could join.
    - Card Front: The front of the cards show to the user the room title, any tags applied, whether the room is public or private and the cover image set to the room.![card front](assets/screenshots/card_front.png)
    - Card Back: The back of the cards show the description of the room, the creator of the room and how many other users have joined the room. It also has the button join the room if the user wishes. ![card back](assets/screenshots/card_back.png) 
-* Create a Room: The 'create a room' button opens a side canvas which contains the form for the user to create a new room. 
+* Create a Room: The 'create a room' button opens a side canvas which contains the form for the user to create a new room. ![create a room](assets/screenshots/room_create.png)  
 * Pagination: Each page contains a maximum of 5 room to reduce clutter, the pagination links allow the user to go between the pages and view all the rooms. ![pagination](assets/screenshots/pagination.png)
 
 ### About Page:
@@ -182,12 +158,17 @@ Clappsed | Expanded |
 
 * Add Comments: The 'add comment' opens a side canvas which contains the form for the user to add a new comment to an open conversation.
 * Start a conversation: The 'start a conversation' button opens a side canvas which contains the form for the user to start a new converstaion.
-
-Conversation canvas | Comment canvas |
---- | --- |
-![start a conversation](assets/screenshots/start_conversation.png) | ![add a comment](assets/screenshots/add_comment.png) |
 * Edit Room: The 'edit room' button opens a side canvas which contains the form for the user to edit the room they are in (This is only available for the room creator). 
-* Edit Conversation / Comments: These two edit buttons redirect the user to an edit page in order to edit the specific conversation or comment. (This is only available for the room creator and the creator of the specific converstaion or comment.)
+
+Conversation canvas | Comment canvas | Edit Room
+--- | --- | --- |
+![start a conversation](assets/screenshots/start_conversation.png) | ![add a comment](assets/screenshots/add_comment.png) | ![edit a room](assets/screenshots/edit_room.png) |
+
+### Edit Conversations and Comments
+Edit Conversation | Edit Comment |
+--- | --- |
+![Edit a conversation](assets/screenshots/edit_conversation.png) | ![Edit a comment](assets/screenshots/edit_comment.png) |
+* Edit Conversation / Comments: These two edit buttons redirect the user to an edit page in order to edit the specific conversation or comment. (This is only available for the room creator and the creator of the specific converstaion or comment.) Both the edit conversations and edit comments form pages are practically the same, they are a simple and easy to follow form to let users alter their conversations and comments or delete them if they wished.
 ___
 ## Technology that was utilized:
 ### languages:
@@ -210,7 +191,7 @@ ___
 * [Font Awesome](https://fontawesome.com)  
     * Font Awesome was used to add icons to the social links included in the footer.  
 
-### Packages / Dependecies Installed
+### Packages Installed
 
 * [Django Allauth](https://django-allauth.readthedocs.io/en/latest/)  
     * Django Allauth was used for user authentication, registration, and account management.
@@ -425,8 +406,16 @@ Edit Conversation | ![edit conversation lighthouse results](assets/wireframes/ed
 Edit Comment | ![edit comment lighthouse results](assets/wireframes/edit_comment_desktop_res.png) | ![edit comment mobile lighthouse results](assets/wireframes/edit_comment_mobile_res.png) |
 
 #### Known bugs and future plans.
- - There are a few bugs that certainly require a look at, these a
-___
+##### Bugs
+ - After testing and validation there are a few bugs and errors that do require attention. These have not been resolved prioir to deployment due to the fact that the site is in a functional state and in my opinion classifies as an MVP (minimum viable product), I would however of liked to of had these solved but due to the time constraints for the project it has meant that there is no longer any time to spend on these issues.
+   * The performance is an issue, additional tests on multiple devices would be key to diagnose the severity of the problem. However I have the sense the performance is caused by the border animations that are front and center on the home page. This feature however is the soul of the project, it elevates the site from a 2 dimensional to a 3 dimensional site, adding a draw to the user that i did not wish to remove. Testing of different blurring and animation speed would be key aswell to reduce the performance issue.
+   * Card text. A style issue present on small laptops is that the text in the room cards can get segmented. A more in depth look into the size of the cards on different screens should solve this. This is not a problem on larger screens, tablets or mobiles so was pushed down the priority list as being a specific issue for specific screens and as such did not get sloved in the time frame.
+   * Card height with tags. An issue that I overlooked during development was what would happen if someone put in all the tags? on tablets and mobile this is not an issue, the card front scrolls on overflow and flips on a tap, however on desktop this does not happen and due to the card flip on curser hover a scroll would not work as the user can not scroll before the card flips. I did not want to make the card flip on click as I felt that it is less intuative for a desktop user. There are two solves for this issue that I can see. Alter the form to limit the tags a user can use or change the style of the cards to better handle multiple tags. This is an issue I should of spotted sooner and it would not take long to fix but as it stands I have ran out of time. This would be a top priority fix in a day one patch.
+   * Your room pagination. Another issue I did not spot until manual testing at the end of developoment was an issue with the paginated objects. In Your rooms the page still counts all rooms in the paginated objects which means if you make a room that is the say 7th room to be made it will appear on page 2 in 'your rooms' regardless of howmany rooms you have joined. If it is your only room it will still be on page 2 and page 1 will be blank. This again is a top priority fix for a day one patch.
+
+##### Future plans
+- In addition to the fixes flagged above, there are a few additional features I would look to implement in the future. These can be seen in the User stories that did not make the final deployment. These 3 features are. Room search functionality, a system to respond with reactions such as likes and emoji's and finally an email notification system taht wouuld alert a user when theres activity in their room such as another user joining or a conversation being started. These 3 features were all in mind during development, the closest to being complete being the search function. I had attempted to put this in place as you can see with the commented out code in the index.html, your_rooms.html and script.js. The search function worked on a singualr page but never over all pages for this reason I removed it as it was not useful and would hinder user experience rather then enhance it, however I kept the code in as a bulding block to work off of in the future.
+
 ## Deployment:
 To deploy this page to Heroku from its GitHub repository, the following steps were taken:
 
@@ -466,7 +455,7 @@ To deploy this page to Heroku from its GitHub repository, the following steps we
 ___
 ## credits/acknowledgments
 ### Content:
-- All code was written by myself, external code was taking from sources such as w3schools and stackoverflow and manupilated to suit my needs during the devolopment of this application. The button and card styling were taken from getcssscan the links of which can be found [here](https://getcssscan.com/css-buttons-examples) 
+- All code was written by myself, external code was taking from sources such as w3schools and stackoverflow and manupilated to suit my needs during the devolopment of this application. The button and card styling were taken from getcssscan the links of which can be found [here](https://getcssscan.com/css-buttons-examples) and the border effect was a modified version of some code taken from [here](https://freefrontend.com/css-border-animations/)
 ### Media:
 - All images used in this site were taken from google images and stored in Cloudinary.
 

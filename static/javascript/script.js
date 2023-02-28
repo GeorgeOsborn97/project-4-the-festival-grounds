@@ -1,12 +1,12 @@
 // Search funcyionality yet to be completed and implemented properly, 
 // it wont searcxh over paginated pages
-$('#room-search').click(function(){
-    $('#card-row > div').each(function () {
-         if( $(this).attr("id").indexOf(document.getElementById("room-search-input").value) == -1){
-            $(this).hide();
-         }
-    });
-});
+// $('#room-search').click(function(){
+//    $('#card-row > div').each(function () {
+//         if( $(this).attr("id").indexOf(document.getElementById("room-search-input").value) == -1){
+//            $(this).hide();
+//         }
+//    });
+// });
 
 // Function to add an alert when an unautherised user attempts to join a room
 var alertNotUserPlaceholder = document.getElementById('liveAlertNotUser');
