@@ -4,9 +4,13 @@ from django.views import generic, View
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth.models import User
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Rooms, Conversations, Comments
 from .forms import RoomForm, EditRoomForm, ConversationForm
 from .forms import CommentForm, EditCommentForm, forms
+
+login_url = '/login/'
+redirect_field_name = '/login/'
 
 
 # Home page
@@ -66,7 +70,7 @@ class RoomList(View):
 
 
 # Your Rooms page
-class YourRoomList(View):
+class YourRoomList(LoginRequiredMixin, View):
 
     def get(self, request, *args, **kwargs):
         room_list = Rooms.objects.order_by('created_on')
@@ -121,7 +125,8 @@ class YourRoomList(View):
 
 
 # in the room page
-class RoomView(View):
+class RoomView(LoginRequiredMixin, View):
+
     def get(self, request, slug, *args, **kwargs):
         room_queryset = Rooms.objects.all()
         room = get_object_or_404(room_queryset, slug=slug)
@@ -263,7 +268,8 @@ class RoomView(View):
 
 
 # edit conversation page
-class edit_conversation(View):
+class edit_conversation(LoginRequiredMixin, View):
+
     def get(self, request, conversation_id, *args, **kwargs):
         conversation_queryset = Conversations.objects.all()
         convo = get_object_or_404(conversation_queryset, id=conversation_id)
@@ -302,7 +308,8 @@ class edit_conversation(View):
 
 
 # edit comment page
-class edit_comment(View):
+class edit_comment(LoginRequiredMixin, View):
+
     def get(self, request, comment_id, *args, **kwargs):
         comment_queryset = Comments.objects.all()
         comment = get_object_or_404(comment_queryset, id=comment_id)
