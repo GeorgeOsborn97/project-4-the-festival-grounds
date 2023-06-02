@@ -20,6 +20,7 @@
 </div>
 {% endblock %}
 {% block cards %}
+{% if  user.username == comment.name or user == room.creator %}
 <!--A holder for alerts-->
 <div id="liveAlertComment"></div>
 <!--The comment form that holds the instance the user wishes to edit-->
@@ -37,4 +38,19 @@
 <h6 id="conversationId" hidden>{{ comment.conversation }}</h6>
 <h6 id="roomId" hidden>{{ comment.room }}</h6>
 <h6 id="commentId" hidden>{{ comment.id }}</h6>
+{% else %}
+<!--A holder for alerts-->
+<div id="liveAlertComment"></div>
+<div class="container text-center">
+    <div class="row justify-content-md-center">
+        <div class="col">
+
+            <h1>You are not autherised to edit this Comment</h1>
+            <h2><a href="{% url 'home' %}">Return to the Home Page</a></h2>
+
+        </div>
+    </div>
+</div>
+
+{% endif %}
 {% endblock %}
