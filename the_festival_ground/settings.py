@@ -32,7 +32,7 @@ DEBUG = False
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
-ALLOWED_HOSTS = ['the-festival-ground.herokuapp.com', '8000-georgeosbor-project4the-a0g0m6slniw.ws-eu99.gitpod.io', 'localhost']
+ALLOWED_HOSTS = ['the-festival-ground.herokuapp.com', 'localhost']
 
 
 # Application definition
