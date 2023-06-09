@@ -33,6 +33,10 @@ Find a link to the deployed site [here](https://the-festival-ground.herokuapp.co
    - [Device testing](#device-testing)
    - [Validation](#validation)
    - [Known Bugs and future plans](#known-bugs-and-future-plans)
+   - [Problems flagged after completion](#problems-flagged-after-completion)
+   - [How the issues were resolved](#how-the-issues-were-resolved)
+   - [Testing of the new fixes](#testing-of-the-new-fixes)
+   - [Additional notes on feedback and lessons learnt](#additional-notes-on-feedback-and-lessons-learnt)
 6. [Deployment](#deployment)
 9. [Credits/Acknowledgments](#creditsacknowledgments)
    - [Content](#content)
@@ -415,6 +419,41 @@ Edit Comment | ![edit comment lighthouse results](assets/wireframes/edit_comment
 
 ##### Future plans
 - In addition to the fixes flagged above, there are a few additional features I would look to implement in the future. These can be seen in the User stories that did not make the final deployment. These 3 features are. Room search functionality, a system to respond with reactions such as likes and emoji's and finally an email notification system that would alert a user when there's activity in their room such as another user joining or a conversation being started. These 3 features were all in mind during development, the closest to being complete being the search function. I had attempted to put this in place as you can see with the commented out code in the index.html, your_rooms.html and script.js. The search function worked on a singular page but never over all paginated pages for this reason I removed it as it was not useful and would hinder user experience rather then enhance it, however I kept the code in as a bulding block to work off of in the future.
+
+#### Problems flagged after completion
+- Upon completion of this project the feedback I recieved highlighted a severe security flaw that was overlooked. The feedback in question is as follows: 
+    * The main issue with the site comes in term of defensive design. Both conversations and comments can be edited by URL without logging in. Also, comments can be deleted by URL. This is a serious security flaw and compromises the integrity of the application.
+    * This was a serious mistake on my part for not identifying this issue through testing that was done prior to deployment. This issue has since been resloved, the method of how I fixed the issue is detailed below.
+##### How the issues were resolved
+- The first step was identfying the sepecific issue, the steps below will demonstrate the steps I took to identify exactly what was happening.
+   * I logged in as the SuperUser I created during development.
+   * I entered a room I created during the development stage and entered the 'edit conversation' page for the converstaion within the room.
+   * I then copied the URL and logged out
+   * I then pasted the URL into the search bar which opened the 'edit conversation' bypassing all login and authentification procedure.
+   * This process was repated for the 'edit comment' page
+* These steps helped me to visualise the issue flagged by the assessors and allowed me to begin to think about how I could reslove it.  
+
+- After investigating the issue through the Django documentation, Allauth Documentation and StackOverflow, I identified a built in Django Parameter that can be applied the Class based views. The parameter in question is LoginRequiredMixin. By applying this to all pages that should be locked behind the log in procedure and creating a redirect at the top of views.py if someone was to enter the URL of any of these rooms they would be redirected to the Login Page.
+   * The steps defined above that were used to see the issue were repeated and indeed if the user was not logged in and entered the URL, they would be redirected to the LOgin page. 
+   * However through this procedure I identified a new issue. The site implemented different available functionalities for different Users. For example a Creator of a Room has full access to edit all conversations and comments within their room. A member of the room may not edit the room or conversation if they did not start it. 
+   * The parameter that was applied did work as intended and redirected unautherised users to the login page, but if the URL entered was for a conversation or comment they should not be able to edit even after logging in, they were still directed to that page and could edit or delete the conversation or comment freely.
+
+- In order to solve the above stated bug I utilised the same method used for providing different button options to different users. I created a python function within the HTML of the editorial pages that checked the users authentification. If the user did not meet the criteria for the ability to edit or delete the converstaion or comment they would simply be met with a screen that informs them that they are not autherised to edit the comment or converstaion and asked to return to the home page. If the user should have access to edit the comment or conversation they could proceed without issue.
+
+##### Testing of the new fixes
+- What was expected? Entry of an 'edit comment' or 'edit conversation' URL before logging in would redirect to the Login page. Afetr logging in, in this was the users authtification would be tested to see if the logged in user actually has access to edit to given comment or conversation. If they user did not meet the criteris they would be alerted and asked to return to the home page. A user with the correct authentification would be allowed to edit or delete the comment or conversation provided in the URL.
+   - How it was tested? 
+      1. 3 'users' (login details) were used to test the functionality of the fixes decsribed above.
+      2. The first to be tested was the conversations. A conversation was started by a user in a room they created. In this insatnce only that user should be able to edit the conversation.
+      3. The user entered the 'edit conversation' page the URL was copied and the user logged out. The URL was then pasted into the search bar. The user was redirected to the log in page, and the same user logged in. This step was repeated for the other two users.
+      4. A conversation was then created in a room started by one of the other users. In this instance both the room creator and conversation starter should be able to edit the conversation. So again the URL was copied and each of the 3 users attepted to access the page
+      5. The same process was repeated for the 'edit comments' page as we should expect it to function in the exact same way. 
+   - What was the outcome? Happily the fixes implemted worked as expected. The entry of a URL to restricted content when not logged in will redirect you to the Log in page. Furthermore once logged in the users authentification is checked agin and if they were trying to access a page they should not have access to, the user will be presented with a page that will alert them of this and ask them to return to the home page. If the user is allowed to continue they may do so and edit freely. 
+   - Fixes? None required.
+
+##### Additional notes on feedback and lessons learnt
+- The key problem that was flagged was a needed slap to the importance of full feature testing, as well as third party testing prior to launch in order to view things from angles I may not have seen. furthermore and most importantly I feel, it has helped me realise that there is so much more to learn. I had not checked direct URL inputs of restricted content as it never occured to me that someone would attempt to acceess something in this way. This is an obvious and disatrous oversight on my part. Moving forward I aim to continue to learn about the security side to software development an area I clealry need to improve in.
+- Other issues that were highlighted as areas that need improvment include certain design elements/choices and the undescriptive commit messages. Two areas I have already aimed to improve on in my latest project and future projects.
 
 ## Deployment:
 To deploy this page to Heroku from its GitHub repository, the following steps were taken:
