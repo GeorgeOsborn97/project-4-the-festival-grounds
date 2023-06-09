@@ -20,7 +20,7 @@
 </div>
 {% endblock %}
 {% block cards %}
-{% if  user.username == comment.name or user == room.creator %}
+{% if  user.username == comment.name or user == comment.conversation.room.creator %}
 <!--A holder for alerts-->
 <div id="liveAlertComment"></div>
 <!--The comment form that holds the instance the user wishes to edit-->
