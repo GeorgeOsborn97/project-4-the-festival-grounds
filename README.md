@@ -448,12 +448,22 @@ Edit Comment | ![edit comment lighthouse results](assets/wireframes/edit_comment
       3. The user entered the 'edit conversation' page the URL was copied and the user logged out. The URL was then pasted into the search bar. The user was redirected to the log in page, and the same user logged in. This step was repeated for the other two users.
       4. A conversation was then created in a room started by one of the other users. In this instance both the room creator and conversation starter should be able to edit the conversation. So again the URL was copied and each of the 3 users attepted to access the page
       5. The same process was repeated for the 'edit comments' page as we should expect it to function in the exact same way. 
-   - What was the outcome? Happily the fixes implemted worked as expected. The entry of a URL to restricted content when not logged in will redirect you to the Log in page. Furthermore once logged in the users authentification is checked agin and if they were trying to access a page they should not have access to, the user will be presented with a page that will alert them of this and ask them to return to the home page. If the user is allowed to continue they may do so and edit freely. 
+   - What was the outcome? Happily the fixes implemented worked as expected. The entry of a URL to restricted content when not logged in will redirect you to the Log in page. Furthermore once logged in the users authentification is checked agin and if they were trying to access a page they should not have access to, the user will be presented with a page that will alert them of this and ask them to return to the home page. If the user is allowed to continue they may do so and edit freely. 
+   ![not autherised page](/assets/screenshots/not_auth.jpg)
    - Fixes? None required.
 
 ##### Additional notes on feedback and lessons learnt
 - The key problem that was flagged was a needed slap to the importance of full feature testing, as well as third party testing prior to launch in order to view things from angles I may not have seen. furthermore and most importantly I feel, it has helped me realise that there is so much more to learn. I had not checked direct URL inputs of restricted content as it never occured to me that someone would attempt to acceess something in this way. This is an obvious and disatrous oversight on my part. Moving forward I aim to continue to learn about the security side to software development an area I clealry need to improve in.
 - Other issues that were highlighted as areas that need improvment include certain design elements/choices and the undescriptive commit messages. Two areas I have already aimed to improve on in my latest project and future projects.
+
+##### Final implementations.
+- The final thing I did in this project was add custum 404 and 500 error pages. This was someting I did not have time to implement in the initial development but with the extra time I thought would be a nice addition in order to keep the asthetitc through the whole web app experience. In order to test the 404 error page works I did as follows.
+1. I created a new comment within a conversation.
+2. I entered the 'edit comment' page and copied the URL.
+3. The commnet was then deleted and the URL pasted into the search bar.
+4. The new 404 page displayed succesfully.
+![404 error page](/assets/screenshots/404.jpg)
+- Unfortunatly I could not find any way online to force a 500 error. I looked extensivly and no resource I found provided a method to force the error. So without causing an actual server issue I could not test the 500 error page. However the method of implementation is exactly the same as the 404 error page. Therefore I am confident that the 500 page works just as well as the 404 error page.
 
 ## Deployment:
 To deploy this page to Heroku from its GitHub repository, the following steps were taken:
