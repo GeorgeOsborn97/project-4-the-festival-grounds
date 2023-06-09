@@ -22,3 +22,5 @@ urlpatterns = [
     path('', include('forum.urls'), name='forum_urls'),
     path('accounts/', include('allauth.urls')),
 ]
+handler404 = "forum.views.page_not_found_view"
+handler500 = "forum.views.server_error_view"
